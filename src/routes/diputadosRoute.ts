@@ -10,7 +10,7 @@ router.get("/on", (req: Request, res: Response) => {
 router.get("/vigentes", async (req: Request, res: Response) => {
   try {
     const url = `https://opendata.camara.cl/camaradiputados/WServices/WSDiputado.asmx/retornarDiputadosPeriodoActual?`;
-    const data = await fetchAndProcessXml(url, "DiputadoPeriodo"); // Cambia 'Votacion' según el nodo raíz del XML
+    const data = await fetchAndProcessXml(url, "DiputadoPeriodo");
     res.status(200).json(data);
   } catch (error: any) {
     res

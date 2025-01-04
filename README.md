@@ -157,7 +157,3 @@ Si deseas contribuir al desarrollo de este proyecto, puedes crear un fork, reali
 ## Licencia
 
 Este proyecto está bajo la Licencia GNU General Public License v3.0. Puedes consultarla en el archivo [LICENSE](./LICENSE).
-
-## Enlace a Información de Utils
-
-Puedes consultar la sección de utilidades haciendo clic en [Utils](./UTILS.md).
