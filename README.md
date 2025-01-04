@@ -4,122 +4,137 @@
 
 ## Descripción
 
-Servicio que consulta, almacena y categoriza datos legislativos del Senado y la Cámara de Diputados de Chile. Este proyecto utiliza Firestore para almacenar datos y modelos como Gemini para clasificar proyectos en categorías.
+El proyecto "Senado Chile" es un servicio diseñado para consultar, almacenar y categorizar datos legislativos del Senado y la Cámara de Diputados de Chile.
+Utiliza Firestore para almacenar datos y modelos de inteligencia artificial
+como Gemini o ChatGPT para clasificar automáticamente los proyectos de ley en categorías relevantes.
+
+El sistema ofrece flexibilidad y escalabilidad al permitir consultas dinámicas desde Firestore, adaptándose a las necesidades de los usuarios y la cantidad de datos.
 
 ## Funcionalidades
 
-- Consultar proyectos de ley nuevos desde el Senado y la Cámara de Diputados.
-- Consultar detalles de proyectos, votaciones y legisladores.
-- Almacenar y estructurar los datos en Firestore.
-- Clasificar proyectos automáticamente en categorías como Sociales, Económicos, Salud, entre otros.
+1. **Consulta de Datos Legislativos:**
+
+   - Obtener proyectos de ley nuevos desde el Senado y la Cámara de Diputados.
+   - Consultar detalles de proyectos, votaciones y legisladores.
+
+2. **Almacenamiento de Datos:**
+
+   - Guardar y estructurar los datos legislativos en Firestore para consultas rápidas y eficientes.
+
+3. **Clasificación Automática:**
+
+   - Clasificar proyectos de ley en categorías como Sociales, Económicos, Salud, entre otros, utilizando modelos de inteligencia artificial.
+
+4. **Automatización:**
+   - Cloud Functions para realizar tareas automáticas, como la actualización de datos legislativos y votaciones.
+
+## Tecnologías Utilizadas
+
+### **Frontend**
+
+- React
+- TypeScript
+- Next.js
+- Material-UI
+
+### **Backend**
+
+- Firebase Cloud Functions
+- Firestore
+- Firebase Cloud Storage
+- Firebase App Check (posiblemente)
 
 ---
 
-## Rutas Utilizadas
+## Estructura de Servicios y Rutas
 
-### **Listado de proyectos por fecha**
+A continuación, se detallan los servicios disponibles junto a sus rutas correspondientes:
 
-Consulta todos los proyectos que han tenido movimiento desde una fecha específica.
+### **Comisión** - `/WSComision.asmx/`
 
-- **URL:**  
-  `https://tramitacion.senado.cl/wspublico/invoca_tramitacion_fecha.html`
+- `retornarSesionesXComisionYAnno`: Detalle de las sesiones de una comisión en un año específico.
+- `retornarComision`: Detalle de una comisión.
+- `retornarComisionesVigentes`: Lista de comisiones vigentes.
+- `retornarComisionesXPeriodo`: Lista de comisiones en un periodo legislativo.
 
----
+### **Diputado** - `/WSDiputado.asmx/`
 
-### **Proyectos de ley**
+- `retornarDiputado`: Detalle de un Diputado/a.
+- `retornarDiputados`: Lista de todos los Diputados/as.
+- `retornarDiputadosPeriodoActual`: Diputados/as del periodo legislativo actual.
+- `retornarDiputadosXPeriodo`: Diputados/as en un periodo legislativo.
 
-Obtiene información detallada de un proyecto por su número de boletín.
+### **Proyectos de Acuerdo** - `/WSProyectoAcuerdo.asmx/`
 
-- **URL:**  
-  `https://tramitacion.senado.cl/wspublico/invoca_proyecto.html`
+- `retornarProyectoAcuerdo`: Detalle de un proyecto de acuerdo.
+- `retornarProyectosAcuerdoXAnno`: Proyectos de acuerdo presentados en un año específico.
 
----
+### **Proyectos de Resolución** - `/WSProyectoResolucion.asmx/`
 
-### **Votaciones por boletín - Senado**
+- `retornarProyectoResolucion`: Detalle de un proyecto de resolución.
+- `retornarProyectosResolucionXAnno`: Proyectos de resolución presentados en un año específico.
 
-Consulta votaciones de un proyecto de ley en el Senado por su boletín.
+### **Sala** - `/WSSala.asmx/`
 
-- **URL:**  
-  `https://tramitacion.senado.cl/wspublico/invoca_votacion.html`
+- `retornarSesionAsistencia`: Detalle de la asistencia en una sesión.
+- `retornarSesionesXAnno`: Sesiones de sala en un año específico.
+- `retornarSesionesXLegislatura`: Sesiones de sala por legislatura.
 
----
+### **Legislativo** - `/WSLegislativo.asmx/`
 
-### **Votaciones por boletín - Cámara de Diputados**
+- `retornarLegislaturaActual`: Legislatura actual.
+- `retornarLegislaturas`: Todas las legislaturas.
+- `retornarMaterias`: Materias asociadas a proyectos de ley.
+- `retornarMensajesXAnno`: Mensajes presentados en un año específico.
+- `retornarMocionesXAnno`: Mociones presentadas en un año específico.
+- `retornarProyectoLey`: Detalles de un proyecto de ley.
+- `retornarTramitesConstitucionales`: Detalle de trámites constitucionales.
+- `retornarTramitesReglamentarios`: Detalle de trámites reglamentarios.
+- `retornarVotacionDetalle`: Detalle de una votación.
+- `retornarVotacionesXAnno`: Votaciones efectuadas en un año específico.
+- `retornarVotacionesXProyectoLey`: Votaciones asociadas a un proyecto de ley.
 
-Consulta las votaciones de un proyecto de ley en la Cámara de Diputados.
+### **Común** - `/WSComunes.asmx/`
 
-- **URL:**  
-  `https://opendata.camara.cl/pages/votacion_boletin.aspx`
+- **División Político-Administrativa:**
 
----
+  - `retornarComunas`: Listado de comunas de Chile.
+  - `retornarDistritos`: División político-administrativa.
+  - `retornarProvincias`: Listado de provincias de Chile.
+  - `retornarRegiones`: Listado de regiones de Chile.
 
-### **Detalle de votación - Cámara de Diputados**
+- **Gobierno y Congreso:**
 
-Consulta los detalles de una votación específica por su ID.
+  - `retornarMinisterios`: División gubernamental de Chile.
+  - `retornarTiposCamaraOrigen`: Tipos de cámaras en el Congreso Nacional.
 
-- **URL:**  
-  `https://opendata.camara.cl/pages/votacion_detalle.aspx`
+- **Asistencia y Sesiones:**
 
----
+  - `retornarTiposAsistencia`: Tipos de asistencia a sesiones.
+  - `retornarTiposEstadoSesionComision`: Estados posibles de una sesión de comisión.
+  - `retornarTiposEstadoSesionSala`: Estados posibles de una sesión de sala.
+  - `retornarTiposTitularAsistencia`: Tipos asociados a la asistencia de los Diputados/as.
 
-### **Senadores vigentes**
+- **Proyectos de Ley y Legislación:**
 
-Consulta un listado de los senadores actuales en ejercicio.
+  - `retornarTiposEstado`: Tipos de estado.
+  - `retornarTiposEstadoAcuerdosResoluciones`: Estados posibles de proyectos de acuerdo y resolución.
+  - `retornarTiposIniciativaProyectoLey`: Tipos de iniciativa de un proyecto de ley.
+  - `retornarTiposLegislatura`: Tipos de legislaturas.
+  - `retornarTiposQuorumVotacion`: Tipos de quórum en una votación.
+  - `retornarTiposResultadoVotacion`: Resultados posibles de una votación.
+  - `retornarTiposVotacion`: Tipos de votación.
+  - `retornarTiposVotacionProyectoLey`: Tipos de votación en proyectos de ley.
 
-- **URL:**  
-  `https://tramitacion.senado.cl/wspublico/senadores_vigentes.php`
-
----
-
-### **Diputados vigentes**
-
-Consulta un listado de los diputados actuales en ejercicio.
-
-- **URL:**  
-  `https://opendata.camara.cl/wscamaradiputados.asmx/getDiputados_Vigentes`
-
----
-
-### **Diputados por período legislativo**
-
-Consulta los diputados activos en un período legislativo específico.
-
-- **URL:**  
-  `https://opendata.camara.cl/wscamaradiputados.asmx/getDiputados_Periodo?prmPeriodoID={ID}`
-
----
-
-### **Legislaturas - Cámara de Diputados**
-
-Consulta información sobre las legislaturas históricas.
-
-- **URL:**  
-  `https://opendata.camara.cl/pages/legislaturas.aspx`
-
----
-
-### **Legislatura actual - Cámara de Diputados**
-
-Consulta información sobre la legislatura en curso.
-
-- **URL:**  
-  `https://opendata.camara.cl/pages/legislatura_actual.aspx`
+- **General:**
+  - `retornarTiposJustificacionesInasistencia`: Justificaciones posibles de inasistencia.
+  - `retornarTiposSexo`: Tipos de sexo.
 
 ---
 
-## Utils
+## Enlace a Información de Utils
 
-### **1. Funciones conversiones XML a JSON**
-
-El archivo utils/xmlToJson.ts contiene funciones diseñadas para convertir datos en formato XML a objetos JSON de manera flexible y reutilizable. Está compuesto por dos funciones principales:
-
-processNode: Es una función recursiva que procesa nodos individuales del XML. Si un nodo no tiene hijos, retorna su contenido de texto; si tiene hijos, los procesa recursivamente para construir un objeto JSON. Además, maneja casos donde varias etiquetas con el mismo nombre están presentes, agrupándolas en un array.
-
-extractDataFromXml: Esta función toma el XML completo y un nombre de nodo raíz (rootTag). Utiliza JSDOM para parsear el XML y busca el nodo raíz especificado. Luego, aplica processNode para convertir los nodos encontrados en objetos JSON. Si hay múltiples nodos raíz (como en el caso de una lista de elementos), los procesa como un array de objetos.
-
-fetchAndProcessXml: Es una función auxiliar que realiza una solicitud HTTP a una URL dada, obtiene el XML como respuesta, y lo pasa a extractDataFromXml para procesarlo. Combina la obtención de datos remotos con la conversión a JSON, lo que la hace ideal para integrarse con APIs externas.
-
-El propósito general de este archivo es abstraer el trabajo de procesar XML en aplicaciones basadas en TypeScript. Esto lo hace reutilizable para diferentes endpoints o estructuras de XML, ya que el nodo raíz que se desea procesar puede configurarse dinámicamente. Ideal para trabajar con APIs que devuelven respuestas en XML y convertirlas a un formato más manejable (JSON) en una aplicación moderna.
+Puedes consultar la sección de utilidades haciendo clic en [Utils](./ReadmeFiles/UTILS.md).
 
 ---
 
@@ -134,3 +149,11 @@ FIRESTORE_PROJECT_ID=your-project-id
 FIRESTORE_PRIVATE_KEY=your-private-key
 FIRESTORE_CLIENT_EMAIL=your-client-email
 ```
+
+## Contribución
+
+Si deseas contribuir al desarrollo de este proyecto, puedes crear un fork, realizar los cambios necesarios y enviar un pull request. Toda contribución es bienvenida.
+
+## Licencia
+
+Este proyecto está bajo la Licencia GNU General Public License v3.0. Puedes consultarla en el archivo [LICENSE](./LICENSE).
