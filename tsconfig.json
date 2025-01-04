@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,  
+    "target": "ES2022",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "moduleResolution": "NodeNext",  // Cambia esto
+    "module": "NodeNext",           // Y esto
+    "allowImportingTsExtensions": true  // Agrega esto
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
