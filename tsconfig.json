@@ -8,9 +8,13 @@
     "strict": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
-    "allowImportingTsExtensions": true // Agrega esto
+    "moduleResolution": "node", // Cambia a "NodeNext"
+    "module": "CommonJS",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "allowImportingTsExtensions": false // Cambia a false
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

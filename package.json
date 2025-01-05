@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "description": "Proyecto para consultar y procesar datos del Senado y la Cámara de Diputados de Chile",
   "main": "dist/index.js",
+  "type": "module",
+  "imports": {
+    "#/*": "./src/",
+    "@/*": "./src/"
+  },
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "node --watch --loader ts-node/esm src/index.ts",
+    "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "test": "jest",
     "lint": "eslint .",
     "deploy": "pnpm run build && firebase deploy"
   },
-  "type": "module",
   "dependencies": {
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
@@ -28,6 +32,7 @@
     "@types/xml2js": "^0.4.14",
     "jest": "^29.7.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
   "keywords": [
