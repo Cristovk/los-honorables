@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { fetchAndProcessXml } from "../utils/xmlToJson.ts";
+import { fetchAndProcessXml } from "../../utils/xmlToJson.ts";
 
 const router = Router();
 
