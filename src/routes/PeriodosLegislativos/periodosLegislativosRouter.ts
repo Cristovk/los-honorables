@@ -1,7 +1,12 @@
 import { Router, Request, Response } from "express";
-import { fetchAndProcessXml } from "../utils/xmlToJson.ts";
+import { fetchAndProcessXml } from "../../utils/xmlToJson.ts";
 
 const router = Router();
+
+
+router.get("/on", (req: Request, res: Response) => {
+  res.status(200).json({ message: "Periodos legislativos API endpoint" });
+});
 
 router.get("/periodosLegislativos", async (req: Request, res: Response) => {
   try {
