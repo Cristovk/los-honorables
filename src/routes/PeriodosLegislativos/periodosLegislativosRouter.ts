@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import { fetchAndProcessXml } from "../../utils/xmlToJson.ts";
+import  properties  from "../../server/properties.ts";
 
 const router = Router();
 
@@ -10,8 +11,8 @@ router.get("/on", (req: Request, res: Response) => {
 
 router.get("/periodosLegislativos", async (req: Request, res: Response) => {
   try {
-    const url = `https://opendata.camara.cl/wscamaradiputados.asmx/getPeriodosLegislativos`;
-
+    const url = `${properties.BASE_URL}${properties.SERVICES.PERIODO_LEGISLATIVO.PERIODO_LEGISLATURA_TODOS}`;
+  
     // Aquí corregimos el rootTag
     const data = await fetchAndProcessXml(url, "PeriodoLegislativo");
 
@@ -26,10 +27,9 @@ router.get("/periodosLegislativos", async (req: Request, res: Response) => {
 
 router.get("/periodoActual", async (req: Request, res: Response) => {
   try {
-    const url = `https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarPeriodoLegislativoActual?`;
-
+    const url = `${properties.BASE_URL}${properties.SERVICES.PERIODO_LEGISLATIVO.LEGISLATURA_ACTUAL}?`;
     // Aquí corregimos el rootTag
-    const data = await fetchAndProcessXml(url, "PeriodoLegislativo");
+    const data = await fetchAndProcessXml(url, "Legislatura");
 
     res.status(200).json(data);
   } catch (error: any) {

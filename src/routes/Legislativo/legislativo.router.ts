@@ -10,7 +10,7 @@ router.get("/on", (req: Request, res: Response) => {
 });
 
 
-
+/* Mciones de proyectos legislativos presentados por Diputados o Senadores */
 router.get("/mocionesXAnno", async (req: Request, res: Response) => {
   const { year } = req.body;
   try {
@@ -25,6 +25,7 @@ router.get("/mocionesXAnno", async (req: Request, res: Response) => {
   }
 });
 
+/* Mensajes de proyectos legislativos presentados por Ejecutivo */
 router.get("/mensajesXAnno", async (req: Request, res: Response) => {
   const { year } = req.body;
   try {
