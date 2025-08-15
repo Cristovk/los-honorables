@@ -14,7 +14,7 @@ router.get("/sesionAsistencia", async (req: Request, res: Response) => {
   try {
     const url = `${properties.BASE_URL}${properties.SERVICES.SALA.SESION_ASISTENCIA}`;
     console.log(url);
-    const data = await fetchAndProcessXml(url, "Asistencia"); // Cambia 'SesionAsistencia' según el nodo raíz del XML
+    const data = await fetchAndProcessXml(url); // Cambia 'SesionAsistencia' según el nodo raíz del XML
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -31,7 +31,7 @@ router.get("/sesionesXAnno", async (req: Request, res: Response) => {
   try {
     const url = `${properties.BASE_URL}${properties.SERVICES.SALA.SESIONES_POR_ANNO}?prmAnno=${year}`;
     console.log(url);
-    const data = await fetchAndProcessXml(url, "Sesion"); // Cambia 'SesionAsistencia' según el nodo raíz del XML
+    const data = await fetchAndProcessXml(url); // Cambia 'SesionAsistencia' según el nodo raíz del XML
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -46,7 +46,7 @@ router.get("/sesionesXLegislatura", async (req: Request, res: Response) => {
   try {
     const url = `${properties.BASE_URL}${properties.SERVICES.SALA.SESIONES_POR_LEGISLATURA}?prmLegislaturaId=${id}`;
     console.log(url);
-    const data = await fetchAndProcessXml(url, "Sesion"); // Cambia 'SesionAsistencia' según el nodo raíz del XML
+    const data = await fetchAndProcessXml(url); // Cambia 'SesionAsistencia' según el nodo raíz del XML
     res.status(200).json(data);
   } catch (error: any) {
     res

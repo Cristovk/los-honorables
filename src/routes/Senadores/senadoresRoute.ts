@@ -10,7 +10,7 @@ router.get("/on", (req: Request, res: Response) => {
 router.get("/vigentes", async (req: Request, res: Response) => {
   try {
     const url = `https://tramitacion.senado.cl/wspublico/senadores_vigentes.php`;
-    const data = await fetchAndProcessXml(url, "senador"); 
+    const data = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res

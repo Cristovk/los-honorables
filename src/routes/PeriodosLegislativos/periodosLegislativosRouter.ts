@@ -14,7 +14,7 @@ router.get("/periodosLegislativos", async (req: Request, res: Response) => {
     const url = `${properties.BASE_URL}${properties.SERVICES.PERIODO_LEGISLATIVO.PERIODO_LEGISLATURA_TODOS}`;
   
     // Aquí corregimos el rootTag
-    const data = await fetchAndProcessXml(url, "PeriodoLegislativo");
+    const data = await fetchAndProcessXml(url);
 
     res.status(200).json(data);
   } catch (error: any) {
@@ -29,7 +29,7 @@ router.get("/periodoActual", async (req: Request, res: Response) => {
   try {
     const url = `${properties.BASE_URL}${properties.SERVICES.PERIODO_LEGISLATIVO.LEGISLATURA_ACTUAL}?`;
     // Aquí corregimos el rootTag
-    const data = await fetchAndProcessXml(url, "Legislatura");
+    const data = await fetchAndProcessXml(url);
 
     res.status(200).json(data);
   } catch (error: any) {

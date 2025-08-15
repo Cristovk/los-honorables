@@ -21,7 +21,7 @@ export const convertXmlToJson = async (xmlData: string): Promise<any> => {
   });
 };
 
-export const fetchAndConvertXml = async (url: string): Promise<any> => {
+export const fetchAndProcessXml = async (url: string): Promise<any> => {
   try {
     const response = await axios.get(url);
     return await convertXmlToJson(response.data);

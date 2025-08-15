@@ -13,7 +13,7 @@ router.get("/boletin", async (req: Request, res: Response) => {
   console.log(boletin);
   try {
     const url = `https://opendata.camara.cl/wscamaradiputados.asmx/getVotaciones_Boletin?prmBoletin=${boletin}`;
-    const data = await fetchAndProcessXml(url, "Votacion"); // Cambia 'Votacion' según el nodo raíz del XML
+    const data = await fetchAndProcessXml(url); // Cambia 'Votacion' según el nodo raíz del XML
     res.status(200).json(data);
   } catch (error: any) {
     res

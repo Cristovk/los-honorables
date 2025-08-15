@@ -16,7 +16,7 @@ router.get("/mocionesXAnno", async (req: Request, res: Response) => {
   try {
     const url = `${properties.BASE_URL}${properties.SERVICES.LEGISLATIVO.MOCIONES_POR_ANNO}?prmAnno=${year}`;
     console.log(url);
-    const data = await fetchAndProcessXml(url, "ProyectoLey"); // Cambia 'Mocion' según el nodo raíz del XML
+    const data = await fetchAndProcessXml(url); // Cambia 'Mocion' según el nodo raíz del XML
     res.status(200).json(data);
   } catch (error: any) {
     res
