@@ -1,0 +1,87 @@
+import { Router, Request, Response } from "express";
+import { fetchAndProcessXml } from "@utils/xmlToJson";
+import { CONFIG } from "@config/endpoints-config";
+import { DetalleVotacionRequest, VotacionesXAnnoRequest, VotacionesXProyectoLeyRequest } from "@interface/request.interface";
+
+const router = Router();
+
+router.get("/on", (req: Request, res: Response) => {
+  res.status(200).json({ message: "Votaciones API endpoint" });
+});
+
+/* Detalle de Votaciones */
+router.get("/detalleVotacion", async (req: Request<{}, {}, DetalleVotacionRequest>, res: Response): Promise<void> => {
+  const { id } = req.body;
+  try {
+    if (!id) {
+      res.status(400).json({ message: "El parámetro 'id' es requerido" });
+      return;
+    }
+    const endpoint = CONFIG.getEndpoint("Legislativo", "legislativo_votacion_detalle");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint, { prmVotacionId: id });
+    console.log(url);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res
+      .status(500)
+      .json({ message: "Error fetching detalleVotacion", error: error.message });
+  }
+});
+
+
+/* Votaciones por Año */
+router.get("/votacionesXAnno", async (req: Request<{}, {}, VotacionesXAnnoRequest>, res: Response): Promise<void> => {
+  const { year } = req.body;
+  try {
+    if (!year) {
+      res.status(400).json({ message: "El parámetro 'year' es requerido" });
+      return;
+    }
+    const endpoint = CONFIG.getEndpoint("Legislativo", "legislativo_votaciones_x_anno");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint, { prmAnno: year });
+    console.log(url);
+    const data = await fetchAndProcessXml(url); // Cambia 'Votacion' según el nodo raíz del XML
+    res.status(200).json(data);
+  } catch (error: any) {
+    res
+      .status(500)
+      .json({ message: "Error fetching votaciones", error: error.message });
+  }
+});
+
+/* Votaciones por Proyecto de Ley */
+router.get("/votacionesXProyectoLey", async (req: Request<{}, {}, VotacionesXProyectoLeyRequest>, res: Response): Promise<void> => {
+  const { id } = req.body;
+  try {
+    console.log('ID recibido:', id);
+    if (!id) {
+      res.status(400).json({ message: "El parámetro 'id' es requerido" });
+      return;
+    }
+    const endpoint = CONFIG.getEndpoint("Legislativo", "legislativo_votaciones_x_proyecto_ley");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint, { prmNumeroBoletin: id });
+    console.log(url);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res
+      .status(500)
+      .json({ message: "Error fetching votaciones", error: error.message });
+  }
+});
+
+
+export default router;

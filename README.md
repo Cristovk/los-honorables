@@ -134,3 +134,25 @@ FIRESTORE_PROJECT_ID=your-project-id
 FIRESTORE_PRIVATE_KEY=your-private-key
 FIRESTORE_CLIENT_EMAIL=your-client-email
 ```
+
+📌 Resumen del Flujo
+✅ 1. Obtener los periodos legislativos
+✅ 2. Filtrar el periodo legislativo actual o un año específico
+✅ 3. Obtener todos los proyectos de ley (mociones y mensajes)
+✅ 4. Consultar si el proyecto tiene votaciones
+✅ 5. Filtrar solo las votaciones en sala
+✅ 6. Obtener el detalle de las votaciones
+✅ 7. Listar qué diputados votaron y cómo votaron
+✅ 8. Cruzar la info con los diputados vigentes
+
+📌 Ejemplo Práctico
+Si quieres obtener todos los proyectos votados en sala en 2024 y qué diputados votaron, sigues este flujo:
+
+1️⃣ GET /periodosLegislativos/periodosLegislativos ➝ Buscar el periodo 2022-2026.
+2️⃣ GET /legislativo/mocionesXAnno?year=2024 ➝ Obtener proyectos ingresados en 2024.
+3️⃣ GET /legislativo/mensajesXAnno?year=2024 ➝ Obtener proyectos presidenciales en 2024.
+4️⃣ GET /legislativo/votacionesXProyectoLey?boletin=XXXXX ➝ Verificar si el proyecto tuvo votaciones.
+5️⃣ GET /sala/sesionesXAnno?year=2024 ➝ Asegurar que la votación fue en sala.
+6️⃣ GET /legislativo/votacionDetalle?boletin=XXXXX ➝ Ver resultado de la votación.
+7️⃣ GET /legislativo/votacionesXProyectoLey?boletin=XXXXX ➝ Obtener qué diputados votaron.
+8️⃣ GET /diputados/vigentes ➝ Obtener la lista de diputados vigentes.

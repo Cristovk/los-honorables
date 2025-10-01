@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
-import { fetchAndProcessXml } from "../../utils/xmlToJson.ts";
+import { fetchAndProcessXml } from "@utils/xmlToJson";
+import { CONFIG } from "@config/endpoints-config";
 
 const router = Router();
 
@@ -10,10 +11,14 @@ router.get("/on", (req: Request, res: Response) => {
 
 router.get("/periodosLegislativos", async (req: Request, res: Response) => {
   try {
-    const url = `https://opendata.camara.cl/wscamaradiputados.asmx/getPeriodosLegislativos`;
+    const endpoint = CONFIG.getEndpoint("Legislativo_periodo", "legislativo_periodos");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+    }
+    const url = CONFIG.buildUrl(endpoint);
 
     // Aquí corregimos el rootTag
-    const data = await fetchAndProcessXml(url, "PeriodoLegislativo");
+    const data = await fetchAndProcessXml(url);
 
     res.status(200).json(data);
   } catch (error: any) {
@@ -26,10 +31,13 @@ router.get("/periodosLegislativos", async (req: Request, res: Response) => {
 
 router.get("/periodoActual", async (req: Request, res: Response) => {
   try {
-    const url = `https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarPeriodoLegislativoActual?`;
-
+    const endpoint = CONFIG.getEndpoint("Legislativo_periodo", "legislativo_periodo_actual");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+    }
+    const url = CONFIG.buildUrl(endpoint);
     // Aquí corregimos el rootTag
-    const data = await fetchAndProcessXml(url, "PeriodoLegislativo");
+    const data = await fetchAndProcessXml(url);
 
     res.status(200).json(data);
   } catch (error: any) {
