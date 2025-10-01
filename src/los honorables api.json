@@ -1,0 +1,132 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-01-31T12:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v8",
+  "resources": [
+    {
+      "_id": "wrk_honorables_api",
+      "name": "Honorables API",
+      "_type": "workspace",
+      "scope": "collection"
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_projects",
+      "name": "Projects",
+      "parentId": "wrk_honorables_api"
+    },
+    {
+      "_type": "request",
+      "_id": "req_projects_health",
+      "parentId": "grp_projects",
+      "name": "Projects Health",
+      "url": "http://localhost:6000/projects/on",
+      "method": "GET"
+    },
+    {
+      "_type": "request",
+      "_id": "req_projects_boletin",
+      "parentId": "grp_projects",
+      "name": "Projects Votaciones Boletin",
+      "url": "http://localhost:6000/projects/boletin",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\"boletin\": \"valor-del-boletin\"}"
+      }
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_periodos",
+      "name": "Periodos Legislativos",
+      "parentId": "wrk_honorables_api"
+    },
+    {
+      "_type": "request",
+      "_id": "req_periodos_health",
+      "parentId": "grp_periodos",
+      "name": "Periodos Health",
+      "url": "http://localhost:6000/periodosLegislativos/on",
+      "method": "GET"
+    },
+    {
+      "_type": "request",
+      "_id": "req_periodos_todos",
+      "parentId": "grp_periodos",
+      "name": "Todos los Periodos",
+      "url": "http://localhost:6000/periodosLegislativos/periodosLegislativos",
+      "method": "GET"
+    },
+    {
+      "_type": "request",
+      "_id": "req_periodo_actual",
+      "parentId": "grp_periodos",
+      "name": "Periodo Actual",
+      "url": "http://localhost:6000/periodosLegislativos/periodoActual",
+      "method": "GET"
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_senadores",
+      "name": "Senadores",
+      "parentId": "wrk_honorables_api"
+    },
+    {
+      "_type": "request",
+      "_id": "req_senadores_health",
+      "parentId": "grp_senadores",
+      "name": "Senadores Health",
+      "url": "http://localhost:6000/senadores/on",
+      "method": "GET"
+    },
+    {
+      "_type": "request",
+      "_id": "req_senadores_vigentes",
+      "parentId": "grp_senadores",
+      "name": "Senadores Vigentes",
+      "url": "http://localhost:6000/senadores/vigentes",
+      "method": "GET"
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_diputados",
+      "name": "Diputados",
+      "parentId": "wrk_honorables_api"
+    },
+    {
+      "_type": "request",
+      "_id": "req_diputados_health",
+      "parentId": "grp_diputados",
+      "name": "Diputados Health",
+      "url": "http://localhost:6000/diputados/on",
+      "method": "GET"
+    },
+    {
+      "_type": "request",
+      "_id": "req_diputados_vigentes",
+      "parentId": "grp_diputados",
+      "name": "Diputados Vigentes",
+      "url": "http://localhost:6000/diputados/vigentes",
+      "method": "GET"
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_votaciones",
+      "name": "Votaciones",
+      "parentId": "wrk_honorables_api"
+    },
+    {
+      "_type": "request",
+      "_id": "req_votaciones_boletin",
+      "parentId": "grp_votaciones",
+      "name": "Votaciones Boletín",
+      "url": "http://localhost:6000/projects/boletin",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\"boletin\": \"valor-del-boletin\"}"
+      }
+    }
+  ]
+}

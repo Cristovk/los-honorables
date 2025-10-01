@@ -1,0 +1,16 @@
+{
+  "_type": "environment",
+  "parentId": "env_global",
+  "name": "Local API",
+  "data": {
+    "base_url": "http://localhost",
+    "port": "6000",
+    "collections": {
+      "diputados": "/diputados",
+      "senadores": "/senadores",
+      "projects": "/projects",
+      "periodos_legislativos": "/periodosLegislativos",
+      "votaciones": "/votaciones"
+    }
+  }
+}
