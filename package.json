@@ -10,7 +10,9 @@
     "test": "jest",
     "lint": "eslint .",
     "deploy": "pnpm run build && firebase deploy",
-    "procesarEndpoint": "node scripts/procesarEndpoint.js"
+    "type-check": "tsc --noEmit",
+    "procesarEndpoint": "node scripts/procesarEndpoint.js",
+    "collect": "node scripts/collector-servicios.js"
   },
   "type": "module",
   "dependencies": {

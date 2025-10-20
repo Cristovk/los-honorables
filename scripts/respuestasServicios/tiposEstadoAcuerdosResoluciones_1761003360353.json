@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "endpoint": "tiposEstadoAcuerdosResoluciones",
+  "url": "http://localhost:6000/comunes/tiposEstadoAcuerdosResoluciones",
+  "timestamp": "2025-10-20T23:36:00.353Z",
+  "data": {
+    "TiposEstadoAcuerdosResolucionesColeccion": {
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+      "xmlns": "http://opendata.camara.cl/camaradiputados/v1",
+      "TipoEstadoAcuerdosResoluciones": {
+        "1": "En trámite",
+        "2": "Retirado",
+        "3": "Aprobado",
+        "4": "Rechazado",
+        "5": "Fusionado",
+        "6": "Inadmisible"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "endpoint": "tiposEstado",
+  "url": "http://localhost:6000/comunes/tiposEstado",
+  "timestamp": "2025-10-20T23:35:59.833Z",
+  "data": {
+    "TiposEstadoColeccion": {
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+      "xmlns": "http://opendata.camara.cl/camaradiputados/v1",
+      "TipoEstado": {
+        "0": "Inactivo",
+        "1": "Activo"
+      }
+    }
+  }
+}

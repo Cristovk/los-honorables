@@ -1,0 +1,1399 @@
+{
+  "success": true,
+  "endpoint": "comunas",
+  "url": "http://localhost:6000/comunes/comunas",
+  "timestamp": "2025-10-20T23:35:54.488Z",
+  "data": {
+    "ComunasColeccion": {
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+      "xmlns": "http://opendata.camara.cl/camaradiputados/v1",
+      "Comuna": [
+        {
+          "Numero": "1",
+          "Nombre": "HUALPÉN"
+        },
+        {
+          "Numero": "2",
+          "Nombre": "ALTO BIOBíO"
+        },
+        {
+          "Numero": "3",
+          "Nombre": "CHOLCHOL"
+        },
+        {
+          "Numero": "4",
+          "Nombre": "ALTO HOSPICIO"
+        },
+        {
+          "Numero": "5",
+          "Nombre": "ALGARROBO"
+        },
+        {
+          "Numero": "6",
+          "Nombre": "ALHUE"
+        },
+        {
+          "Numero": "7",
+          "Nombre": "ALTO DEL CARMEN"
+        },
+        {
+          "Numero": "8",
+          "Nombre": "ANCUD"
+        },
+        {
+          "Numero": "9",
+          "Nombre": "ANDACOLLO"
+        },
+        {
+          "Numero": "10",
+          "Nombre": "ANGOL"
+        },
+        {
+          "Numero": "11",
+          "Nombre": "ANTARTICA"
+        },
+        {
+          "Numero": "12",
+          "Nombre": "ANTOFAGASTA"
+        },
+        {
+          "Numero": "13",
+          "Nombre": "ANTUCO"
+        },
+        {
+          "Numero": "14",
+          "Nombre": "ARAUCO"
+        },
+        {
+          "Numero": "15",
+          "Nombre": "ARICA"
+        },
+        {
+          "Numero": "16",
+          "Nombre": "AYSEN"
+        },
+        {
+          "Numero": "17",
+          "Nombre": "BUIN"
+        },
+        {
+          "Numero": "18",
+          "Nombre": "BULNES"
+        },
+        {
+          "Numero": "19",
+          "Nombre": "CABILDO"
+        },
+        {
+          "Numero": "20",
+          "Nombre": "CABRERO"
+        },
+        {
+          "Numero": "21",
+          "Nombre": "CALAMA"
+        },
+        {
+          "Numero": "22",
+          "Nombre": "CALBUCO"
+        },
+        {
+          "Numero": "23",
+          "Nombre": "CALDERA"
+        },
+        {
+          "Numero": "24",
+          "Nombre": "CALERA"
+        },
+        {
+          "Numero": "25",
+          "Nombre": "CALERA DE TANGO"
+        },
+        {
+          "Numero": "26",
+          "Nombre": "CALLE LARGA"
+        },
+        {
+          "Numero": "27",
+          "Nombre": "CAMARONES"
+        },
+        {
+          "Numero": "28",
+          "Nombre": "CAMIÑA"
+        },
+        {
+          "Numero": "29",
+          "Nombre": "CANELA"
+        },
+        {
+          "Numero": "30",
+          "Nombre": "CARAHUE"
+        },
+        {
+          "Numero": "31",
+          "Nombre": "CARTAGENA"
+        },
+        {
+          "Numero": "32",
+          "Nombre": "CASABLANCA"
+        },
+        {
+          "Numero": "33",
+          "Nombre": "CASTRO"
+        },
+        {
+          "Numero": "34",
+          "Nombre": "CATEMU"
+        },
+        {
+          "Numero": "35",
+          "Nombre": "CAUQUENES"
+        },
+        {
+          "Numero": "36",
+          "Nombre": "CAÑETE"
+        },
+        {
+          "Numero": "37",
+          "Nombre": "CERRILLOS"
+        },
+        {
+          "Numero": "38",
+          "Nombre": "CERRO NAVIA"
+        },
+        {
+          "Numero": "39",
+          "Nombre": "CHAITEN"
+        },
+        {
+          "Numero": "40",
+          "Nombre": "CHANCO"
+        },
+        {
+          "Numero": "41",
+          "Nombre": "CHAÑARAL"
+        },
+        {
+          "Numero": "42",
+          "Nombre": "CHEPICA"
+        },
+        {
+          "Numero": "43",
+          "Nombre": "CHIGUAYANTE"
+        },
+        {
+          "Numero": "44",
+          "Nombre": "CHILE CHICO"
+        },
+        {
+          "Numero": "45",
+          "Nombre": "CHILLAN"
+        },
+        {
+          "Numero": "46",
+          "Nombre": "CHILLAN VIEJO"
+        },
+        {
+          "Numero": "47",
+          "Nombre": "CHIMBARONGO"
+        },
+        {
+          "Numero": "48",
+          "Nombre": "CHONCHI"
+        },
+        {
+          "Numero": "49",
+          "Nombre": "CISNES"
+        },
+        {
+          "Numero": "50",
+          "Nombre": "COBQUECURA"
+        },
+        {
+          "Numero": "51",
+          "Nombre": "COCHAMO"
+        },
+        {
+          "Numero": "52",
+          "Nombre": "COCHRANE"
+        },
+        {
+          "Numero": "53",
+          "Nombre": "CODEGUA"
+        },
+        {
+          "Numero": "54",
+          "Nombre": "COELEMU"
+        },
+        {
+          "Numero": "55",
+          "Nombre": "COIHUECO"
+        },
+        {
+          "Numero": "56",
+          "Nombre": "COINCO"
+        },
+        {
+          "Numero": "57",
+          "Nombre": "COLBUN"
+        },
+        {
+          "Numero": "58",
+          "Nombre": "COLCHANE"
+        },
+        {
+          "Numero": "59",
+          "Nombre": "COLINA"
+        },
+        {
+          "Numero": "60",
+          "Nombre": "COLLIPULLI"
+        },
+        {
+          "Numero": "61",
+          "Nombre": "COLTAUCO"
+        },
+        {
+          "Numero": "62",
+          "Nombre": "COMBARBALA"
+        },
+        {
+          "Numero": "63",
+          "Nombre": "CONCEPCION"
+        },
+        {
+          "Numero": "64",
+          "Nombre": "CONCHALI"
+        },
+        {
+          "Numero": "65",
+          "Nombre": "CONCON"
+        },
+        {
+          "Numero": "66",
+          "Nombre": "CONSTITUCION"
+        },
+        {
+          "Numero": "67",
+          "Nombre": "CONTULMO"
+        },
+        {
+          "Numero": "68",
+          "Nombre": "COPIAPO"
+        },
+        {
+          "Numero": "69",
+          "Nombre": "COQUIMBO"
+        },
+        {
+          "Numero": "70",
+          "Nombre": "CORONEL"
+        },
+        {
+          "Numero": "71",
+          "Nombre": "CORRAL"
+        },
+        {
+          "Numero": "72",
+          "Nombre": "COYHAIQUE"
+        },
+        {
+          "Numero": "73",
+          "Nombre": "CUNCO"
+        },
+        {
+          "Numero": "74",
+          "Nombre": "CURACAUTIN"
+        },
+        {
+          "Numero": "75",
+          "Nombre": "CURACAVI"
+        },
+        {
+          "Numero": "76",
+          "Nombre": "CURACO DE VELEZ"
+        },
+        {
+          "Numero": "77",
+          "Nombre": "CURANILAHUE"
+        },
+        {
+          "Numero": "78",
+          "Nombre": "CURARREHUE"
+        },
+        {
+          "Numero": "79",
+          "Nombre": "CUREPTO"
+        },
+        {
+          "Numero": "80",
+          "Nombre": "CURICO"
+        },
+        {
+          "Numero": "81",
+          "Nombre": "DALCAHUE"
+        },
+        {
+          "Numero": "82",
+          "Nombre": "DIEGO DE ALMAGRO"
+        },
+        {
+          "Numero": "83",
+          "Nombre": "DOÑIHUE"
+        },
+        {
+          "Numero": "84",
+          "Nombre": "EL BOSQUE"
+        },
+        {
+          "Numero": "85",
+          "Nombre": "EL CARMEN"
+        },
+        {
+          "Numero": "86",
+          "Nombre": "EL MONTE"
+        },
+        {
+          "Numero": "87",
+          "Nombre": "EL QUISCO"
+        },
+        {
+          "Numero": "88",
+          "Nombre": "EL TABO"
+        },
+        {
+          "Numero": "89",
+          "Nombre": "EMPEDRADO"
+        },
+        {
+          "Numero": "90",
+          "Nombre": "ERCILLA"
+        },
+        {
+          "Numero": "91",
+          "Nombre": "ESTACION CENTRAL"
+        },
+        {
+          "Numero": "92",
+          "Nombre": "FLORIDA"
+        },
+        {
+          "Numero": "93",
+          "Nombre": "FREIRE"
+        },
+        {
+          "Numero": "94",
+          "Nombre": "FREIRINA"
+        },
+        {
+          "Numero": "95",
+          "Nombre": "FRESIA"
+        },
+        {
+          "Numero": "96",
+          "Nombre": "FRUTILLAR"
+        },
+        {
+          "Numero": "97",
+          "Nombre": "FUTALEUFU"
+        },
+        {
+          "Numero": "98",
+          "Nombre": "FUTRONO"
+        },
+        {
+          "Numero": "99",
+          "Nombre": "GALVARINO"
+        },
+        {
+          "Numero": "100",
+          "Nombre": "GENERAL LAGOS"
+        },
+        {
+          "Numero": "101",
+          "Nombre": "GORBEA"
+        },
+        {
+          "Numero": "102",
+          "Nombre": "GRANEROS"
+        },
+        {
+          "Numero": "103",
+          "Nombre": "GUAITECAS"
+        },
+        {
+          "Numero": "104",
+          "Nombre": "HIJUELAS"
+        },
+        {
+          "Numero": "105",
+          "Nombre": "HUALAIHUE"
+        },
+        {
+          "Numero": "106",
+          "Nombre": "HUALAÑE"
+        },
+        {
+          "Numero": "107",
+          "Nombre": "HUALQUI"
+        },
+        {
+          "Numero": "108",
+          "Nombre": "HUARA"
+        },
+        {
+          "Numero": "109",
+          "Nombre": "HUASCO"
+        },
+        {
+          "Numero": "110",
+          "Nombre": "HUECHURABA"
+        },
+        {
+          "Numero": "111",
+          "Nombre": "ILLAPEL"
+        },
+        {
+          "Numero": "112",
+          "Nombre": "INDEPENDENCIA"
+        },
+        {
+          "Numero": "113",
+          "Nombre": "IQUIQUE"
+        },
+        {
+          "Numero": "114",
+          "Nombre": "ISLA DE MAIPO"
+        },
+        {
+          "Numero": "115",
+          "Nombre": "ISLA DE PASCUA"
+        },
+        {
+          "Numero": "116",
+          "Nombre": "JUAN FERNANDEZ"
+        },
+        {
+          "Numero": "117",
+          "Nombre": "LA CISTERNA"
+        },
+        {
+          "Numero": "118",
+          "Nombre": "LA CRUZ"
+        },
+        {
+          "Numero": "119",
+          "Nombre": "LA ESTRELLA"
+        },
+        {
+          "Numero": "120",
+          "Nombre": "LA FLORIDA"
+        },
+        {
+          "Numero": "121",
+          "Nombre": "LA GRANJA"
+        },
+        {
+          "Numero": "122",
+          "Nombre": "LA HIGUERA"
+        },
+        {
+          "Numero": "123",
+          "Nombre": "LA LIGUA"
+        },
+        {
+          "Numero": "124",
+          "Nombre": "LA PINTANA"
+        },
+        {
+          "Numero": "125",
+          "Nombre": "LA REINA"
+        },
+        {
+          "Numero": "126",
+          "Nombre": "LA SERENA"
+        },
+        {
+          "Numero": "127",
+          "Nombre": "LA UNION"
+        },
+        {
+          "Numero": "128",
+          "Nombre": "LAGO RANCO"
+        },
+        {
+          "Numero": "129",
+          "Nombre": "LAGO VERDE"
+        },
+        {
+          "Numero": "130",
+          "Nombre": "LAGUNA BLANCA"
+        },
+        {
+          "Numero": "131",
+          "Nombre": "LAJA"
+        },
+        {
+          "Numero": "132",
+          "Nombre": "LAMPA"
+        },
+        {
+          "Numero": "133",
+          "Nombre": "LANCO"
+        },
+        {
+          "Numero": "134",
+          "Nombre": "LAS CABRAS"
+        },
+        {
+          "Numero": "135",
+          "Nombre": "LAS CONDES"
+        },
+        {
+          "Numero": "136",
+          "Nombre": "LAUTARO"
+        },
+        {
+          "Numero": "137",
+          "Nombre": "LEBU"
+        },
+        {
+          "Numero": "138",
+          "Nombre": "LICANTEN"
+        },
+        {
+          "Numero": "139",
+          "Nombre": "LIMACHE"
+        },
+        {
+          "Numero": "140",
+          "Nombre": "LINARES"
+        },
+        {
+          "Numero": "141",
+          "Nombre": "LITUECHE"
+        },
+        {
+          "Numero": "142",
+          "Nombre": "LLANQUIHUE"
+        },
+        {
+          "Numero": "143",
+          "Nombre": "LLAY-LLAY"
+        },
+        {
+          "Numero": "144",
+          "Nombre": "LO BARNECHEA"
+        },
+        {
+          "Numero": "145",
+          "Nombre": "LO ESPEJO"
+        },
+        {
+          "Numero": "146",
+          "Nombre": "LO PRADO"
+        },
+        {
+          "Numero": "147",
+          "Nombre": "LOLOL"
+        },
+        {
+          "Numero": "148",
+          "Nombre": "LONCOCHE"
+        },
+        {
+          "Numero": "149",
+          "Nombre": "LONGAVI"
+        },
+        {
+          "Numero": "150",
+          "Nombre": "LONQUIMAY"
+        },
+        {
+          "Numero": "151",
+          "Nombre": "LOS ALAMOS"
+        },
+        {
+          "Numero": "152",
+          "Nombre": "LOS ANDES"
+        },
+        {
+          "Numero": "153",
+          "Nombre": "LOS ANGELES"
+        },
+        {
+          "Numero": "154",
+          "Nombre": "LOS LAGOS"
+        },
+        {
+          "Numero": "155",
+          "Nombre": "LOS MUERMOS"
+        },
+        {
+          "Numero": "156",
+          "Nombre": "LOS SAUCES"
+        },
+        {
+          "Numero": "157",
+          "Nombre": "LOS VILOS"
+        },
+        {
+          "Numero": "158",
+          "Nombre": "LOTA"
+        },
+        {
+          "Numero": "159",
+          "Nombre": "LUMACO"
+        },
+        {
+          "Numero": "160",
+          "Nombre": "MACHALI"
+        },
+        {
+          "Numero": "161",
+          "Nombre": "MACUL"
+        },
+        {
+          "Numero": "162",
+          "Nombre": "MAFIL"
+        },
+        {
+          "Numero": "163",
+          "Nombre": "MAIPU"
+        },
+        {
+          "Numero": "164",
+          "Nombre": "MALLOA"
+        },
+        {
+          "Numero": "165",
+          "Nombre": "MARCHIGUE"
+        },
+        {
+          "Numero": "166",
+          "Nombre": "MARIA ELENA"
+        },
+        {
+          "Numero": "167",
+          "Nombre": "MARIA PINTO"
+        },
+        {
+          "Numero": "168",
+          "Nombre": "MARIQUINA"
+        },
+        {
+          "Numero": "169",
+          "Nombre": "MAULE"
+        },
+        {
+          "Numero": "170",
+          "Nombre": "MAULLIN"
+        },
+        {
+          "Numero": "171",
+          "Nombre": "MEJILLONES"
+        },
+        {
+          "Numero": "172",
+          "Nombre": "MELIPEUCO"
+        },
+        {
+          "Numero": "173",
+          "Nombre": "MELIPILLA"
+        },
+        {
+          "Numero": "174",
+          "Nombre": "MOLINA"
+        },
+        {
+          "Numero": "175",
+          "Nombre": "MONTE PATRIA"
+        },
+        {
+          "Numero": "176",
+          "Nombre": "MOSTAZAL"
+        },
+        {
+          "Numero": "177",
+          "Nombre": "MULCHEN"
+        },
+        {
+          "Numero": "178",
+          "Nombre": "NACIMIENTO"
+        },
+        {
+          "Numero": "179",
+          "Nombre": "NANCAGUA"
+        },
+        {
+          "Numero": "180",
+          "Nombre": "NATALES"
+        },
+        {
+          "Numero": "181",
+          "Nombre": "CABO DE HORNOS"
+        },
+        {
+          "Numero": "182",
+          "Nombre": "NAVIDAD"
+        },
+        {
+          "Numero": "183",
+          "Nombre": "NEGRETE"
+        },
+        {
+          "Numero": "184",
+          "Nombre": "NINHUE"
+        },
+        {
+          "Numero": "185",
+          "Nombre": "NOGALES"
+        },
+        {
+          "Numero": "186",
+          "Nombre": "NUEVA IMPERIAL"
+        },
+        {
+          "Numero": "187",
+          "Nombre": "O\"HIGGINS"
+        },
+        {
+          "Numero": "188",
+          "Nombre": "OLIVAR"
+        },
+        {
+          "Numero": "189",
+          "Nombre": "OLLAGUE"
+        },
+        {
+          "Numero": "190",
+          "Nombre": "OLMUE"
+        },
+        {
+          "Numero": "191",
+          "Nombre": "OSORNO"
+        },
+        {
+          "Numero": "192",
+          "Nombre": "OVALLE"
+        },
+        {
+          "Numero": "193",
+          "Nombre": "PADRE HURTADO"
+        },
+        {
+          "Numero": "194",
+          "Nombre": "PADRE LAS CASAS"
+        },
+        {
+          "Numero": "195",
+          "Nombre": "PAIHUANO"
+        },
+        {
+          "Numero": "196",
+          "Nombre": "PAILLACO"
+        },
+        {
+          "Numero": "197",
+          "Nombre": "PAINE"
+        },
+        {
+          "Numero": "198",
+          "Nombre": "PALENA"
+        },
+        {
+          "Numero": "199",
+          "Nombre": "PALMILLA"
+        },
+        {
+          "Numero": "200",
+          "Nombre": "PANGUIPULLI"
+        },
+        {
+          "Numero": "201",
+          "Nombre": "PANQUEHUE"
+        },
+        {
+          "Numero": "202",
+          "Nombre": "PAPUDO"
+        },
+        {
+          "Numero": "203",
+          "Nombre": "PAREDONES"
+        },
+        {
+          "Numero": "204",
+          "Nombre": "PARRAL"
+        },
+        {
+          "Numero": "205",
+          "Nombre": "PEDRO AGUIRRE CERDA"
+        },
+        {
+          "Numero": "206",
+          "Nombre": "PELARCO"
+        },
+        {
+          "Numero": "207",
+          "Nombre": "PELLUHUE"
+        },
+        {
+          "Numero": "208",
+          "Nombre": "PEMUCO"
+        },
+        {
+          "Numero": "209",
+          "Nombre": "PENCAHUE"
+        },
+        {
+          "Numero": "210",
+          "Nombre": "PENCO"
+        },
+        {
+          "Numero": "211",
+          "Nombre": "PERALILLO"
+        },
+        {
+          "Numero": "212",
+          "Nombre": "PERQUENCO"
+        },
+        {
+          "Numero": "213",
+          "Nombre": "PETORCA"
+        },
+        {
+          "Numero": "214",
+          "Nombre": "PEUMO"
+        },
+        {
+          "Numero": "215",
+          "Nombre": "PEÑAFLOR"
+        },
+        {
+          "Numero": "216",
+          "Nombre": "PEÑALOLEN"
+        },
+        {
+          "Numero": "217",
+          "Nombre": "PICA"
+        },
+        {
+          "Numero": "218",
+          "Nombre": "PICHIDEGUA"
+        },
+        {
+          "Numero": "219",
+          "Nombre": "PICHILEMU"
+        },
+        {
+          "Numero": "220",
+          "Nombre": "PINTO"
+        },
+        {
+          "Numero": "221",
+          "Nombre": "PIRQUE"
+        },
+        {
+          "Numero": "222",
+          "Nombre": "PITRUFQUEN"
+        },
+        {
+          "Numero": "223",
+          "Nombre": "PLACILLA"
+        },
+        {
+          "Numero": "224",
+          "Nombre": "PORTEZUELO"
+        },
+        {
+          "Numero": "225",
+          "Nombre": "PORVENIR"
+        },
+        {
+          "Numero": "226",
+          "Nombre": "POZO ALMONTE"
+        },
+        {
+          "Numero": "227",
+          "Nombre": "PRIMAVERA"
+        },
+        {
+          "Numero": "228",
+          "Nombre": "PROVIDENCIA"
+        },
+        {
+          "Numero": "229",
+          "Nombre": "PUCHUNCAVI"
+        },
+        {
+          "Numero": "231",
+          "Nombre": "PUDAHUEL"
+        },
+        {
+          "Numero": "233",
+          "Nombre": "PUERTO MONTT"
+        },
+        {
+          "Numero": "234",
+          "Nombre": "PUERTO OCTAY"
+        },
+        {
+          "Numero": "235",
+          "Nombre": "PUERTO VARAS"
+        },
+        {
+          "Numero": "237",
+          "Nombre": "PUNITAQUI"
+        },
+        {
+          "Numero": "238",
+          "Nombre": "PUNTA ARENAS"
+        },
+        {
+          "Numero": "239",
+          "Nombre": "PUQUELDON"
+        },
+        {
+          "Numero": "241",
+          "Nombre": "PURRANQUE"
+        },
+        {
+          "Numero": "243",
+          "Nombre": "PUTRE"
+        },
+        {
+          "Numero": "244",
+          "Nombre": "PUYEHUE"
+        },
+        {
+          "Numero": "246",
+          "Nombre": "QUELLON"
+        },
+        {
+          "Numero": "247",
+          "Nombre": "QUEMCHI"
+        },
+        {
+          "Numero": "249",
+          "Nombre": "QUILICURA"
+        },
+        {
+          "Numero": "250",
+          "Nombre": "QUILLECO"
+        },
+        {
+          "Numero": "252",
+          "Nombre": "QUILLOTA"
+        },
+        {
+          "Numero": "253",
+          "Nombre": "QUILPUE"
+        },
+        {
+          "Numero": "254",
+          "Nombre": "QUINCHAO"
+        },
+        {
+          "Numero": "256",
+          "Nombre": "QUINTA NORMAL"
+        },
+        {
+          "Numero": "257",
+          "Nombre": "QUINTERO"
+        },
+        {
+          "Numero": "258",
+          "Nombre": "QUIRIHUE"
+        },
+        {
+          "Numero": "259",
+          "Nombre": "RANCAGUA"
+        },
+        {
+          "Numero": "261",
+          "Nombre": "RAUCO"
+        },
+        {
+          "Numero": "262",
+          "Nombre": "RECOLETA"
+        },
+        {
+          "Numero": "263",
+          "Nombre": "RENAICO"
+        },
+        {
+          "Numero": "265",
+          "Nombre": "RENGO"
+        },
+        {
+          "Numero": "267",
+          "Nombre": "RETIRO"
+        },
+        {
+          "Numero": "268",
+          "Nombre": "RINCONADA"
+        },
+        {
+          "Numero": "269",
+          "Nombre": "RIO BUENO"
+        },
+        {
+          "Numero": "271",
+          "Nombre": "RIO HURTADO"
+        },
+        {
+          "Numero": "272",
+          "Nombre": "RIO IBAÑEZ"
+        },
+        {
+          "Numero": "274",
+          "Nombre": "RIO VERDE"
+        },
+        {
+          "Numero": "275",
+          "Nombre": "ROMERAL"
+        },
+        {
+          "Numero": "276",
+          "Nombre": "SAAVEDRA"
+        },
+        {
+          "Numero": "278",
+          "Nombre": "SALAMANCA"
+        },
+        {
+          "Numero": "279",
+          "Nombre": "SAN ANTONIO"
+        },
+        {
+          "Numero": "280",
+          "Nombre": "SAN BERNARDO"
+        },
+        {
+          "Numero": "281",
+          "Nombre": "SAN CARLOS"
+        },
+        {
+          "Numero": "283",
+          "Nombre": "SAN ESTEBAN"
+        },
+        {
+          "Numero": "284",
+          "Nombre": "SAN FABIAN"
+        },
+        {
+          "Numero": "285",
+          "Nombre": "SAN FELIPE"
+        },
+        {
+          "Numero": "287",
+          "Nombre": "SAN GREGORIO"
+        },
+        {
+          "Numero": "288",
+          "Nombre": "SAN IGNACIO"
+        },
+        {
+          "Numero": "289",
+          "Nombre": "SAN JAVIER"
+        },
+        {
+          "Numero": "290",
+          "Nombre": "SAN JOAQUIN"
+        },
+        {
+          "Numero": "292",
+          "Nombre": "SAN JUAN DE LA COSTA"
+        },
+        {
+          "Numero": "293",
+          "Nombre": "SAN MIGUEL"
+        },
+        {
+          "Numero": "294",
+          "Nombre": "SAN NICOLAS"
+        },
+        {
+          "Numero": "295",
+          "Nombre": "SAN PABLO"
+        },
+        {
+          "Numero": "297",
+          "Nombre": "SAN PEDRO DE ATACAMA"
+        },
+        {
+          "Numero": "298",
+          "Nombre": "SAN PEDRO DE LA PAZ"
+        },
+        {
+          "Numero": "299",
+          "Nombre": "SAN RAFAEL"
+        },
+        {
+          "Numero": "301",
+          "Nombre": "SAN ROSENDO"
+        },
+        {
+          "Numero": "302",
+          "Nombre": "SAN VICENTE"
+        },
+        {
+          "Numero": "304",
+          "Nombre": "SANTA CRUZ"
+        },
+        {
+          "Numero": "305",
+          "Nombre": "SANTA JUANA"
+        },
+        {
+          "Numero": "306",
+          "Nombre": "SANTA MARIA"
+        },
+        {
+          "Numero": "307",
+          "Nombre": "SANTIAGO"
+        },
+        {
+          "Numero": "309",
+          "Nombre": "SIERRA GORDA"
+        },
+        {
+          "Numero": "310",
+          "Nombre": "TALAGANTE"
+        },
+        {
+          "Numero": "311",
+          "Nombre": "TALCA"
+        },
+        {
+          "Numero": "313",
+          "Nombre": "TALTAL"
+        },
+        {
+          "Numero": "314",
+          "Nombre": "TEMUCO"
+        },
+        {
+          "Numero": "315",
+          "Nombre": "TENO"
+        },
+        {
+          "Numero": "316",
+          "Nombre": "TEODORO SCHMIDT"
+        },
+        {
+          "Numero": "318",
+          "Nombre": "TILTIL"
+        },
+        {
+          "Numero": "319",
+          "Nombre": "TIMAUKEL"
+        },
+        {
+          "Numero": "320",
+          "Nombre": "TIRUA"
+        },
+        {
+          "Numero": "321",
+          "Nombre": "TOCOPILLA"
+        },
+        {
+          "Numero": "323",
+          "Nombre": "TOME"
+        },
+        {
+          "Numero": "324",
+          "Nombre": "TORRES DEL PAINE"
+        },
+        {
+          "Numero": "326",
+          "Nombre": "TRAIGUEN"
+        },
+        {
+          "Numero": "328",
+          "Nombre": "TUCAPEL"
+        },
+        {
+          "Numero": "329",
+          "Nombre": "VALDIVIA"
+        },
+        {
+          "Numero": "330",
+          "Nombre": "VALLENAR"
+        },
+        {
+          "Numero": "332",
+          "Nombre": "VICHUQUEN"
+        },
+        {
+          "Numero": "333",
+          "Nombre": "VICTORIA"
+        },
+        {
+          "Numero": "334",
+          "Nombre": "VICUÑA"
+        },
+        {
+          "Numero": "336",
+          "Nombre": "VILLA ALEGRE"
+        },
+        {
+          "Numero": "338",
+          "Nombre": "VILLARRICA"
+        },
+        {
+          "Numero": "339",
+          "Nombre": "VITACURA"
+        },
+        {
+          "Numero": "340",
+          "Nombre": "VIÑA DEL MAR"
+        },
+        {
+          "Numero": "341",
+          "Nombre": "YERBAS BUENAS"
+        },
+        {
+          "Numero": "343",
+          "Nombre": "YUNGAY"
+        },
+        {
+          "Numero": "344",
+          "Nombre": "ZAPALLAR"
+        },
+        {
+          "Numero": "346",
+          "Nombre": "ÑUÑOA"
+        },
+        {
+          "Numero": "230",
+          "Nombre": "PUCON"
+        },
+        {
+          "Numero": "232",
+          "Nombre": "PUENTE ALTO"
+        },
+        {
+          "Numero": "236",
+          "Nombre": "PUMANQUE"
+        },
+        {
+          "Numero": "240",
+          "Nombre": "PUREN"
+        },
+        {
+          "Numero": "242",
+          "Nombre": "PUTAENDO"
+        },
+        {
+          "Numero": "245",
+          "Nombre": "QUEILEN"
+        },
+        {
+          "Numero": "248",
+          "Nombre": "QUILACO"
+        },
+        {
+          "Numero": "251",
+          "Nombre": "QUILLON"
+        },
+        {
+          "Numero": "255",
+          "Nombre": "QUINTA DE TILCOCO"
+        },
+        {
+          "Numero": "260",
+          "Nombre": "RANQUIL"
+        },
+        {
+          "Numero": "264",
+          "Nombre": "RENCA"
+        },
+        {
+          "Numero": "266",
+          "Nombre": "REQUINOA"
+        },
+        {
+          "Numero": "270",
+          "Nombre": "RIO CLARO"
+        },
+        {
+          "Numero": "273",
+          "Nombre": "RIO NEGRO"
+        },
+        {
+          "Numero": "277",
+          "Nombre": "SAGRADA FAMILIA"
+        },
+        {
+          "Numero": "282",
+          "Nombre": "SAN CLEMENTE"
+        },
+        {
+          "Numero": "286",
+          "Nombre": "SAN FERNANDO"
+        },
+        {
+          "Numero": "291",
+          "Nombre": "SAN JOSE DE MAIPO"
+        },
+        {
+          "Numero": "296",
+          "Nombre": "SAN PEDRO"
+        },
+        {
+          "Numero": "300",
+          "Nombre": "SAN RAMON"
+        },
+        {
+          "Numero": "303",
+          "Nombre": "SANTA BARBARA"
+        },
+        {
+          "Numero": "308",
+          "Nombre": "SANTO DOMINGO"
+        },
+        {
+          "Numero": "312",
+          "Nombre": "TALCAHUANO"
+        },
+        {
+          "Numero": "317",
+          "Nombre": "TIERRA AMARILLA"
+        },
+        {
+          "Numero": "322",
+          "Nombre": "TOLTEN"
+        },
+        {
+          "Numero": "325",
+          "Nombre": "TORTEL"
+        },
+        {
+          "Numero": "327",
+          "Nombre": "TREGUACO"
+        },
+        {
+          "Numero": "331",
+          "Nombre": "VALPARAISO"
+        },
+        {
+          "Numero": "335",
+          "Nombre": "VILCUN"
+        },
+        {
+          "Numero": "337",
+          "Nombre": "VILLA ALEMANA"
+        },
+        {
+          "Numero": "342",
+          "Nombre": "YUMBEL"
+        },
+        {
+          "Numero": "345",
+          "Nombre": "ÑIQUEN"
+        }
+      ]
+    }
+  }
+}

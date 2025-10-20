@@ -1,0 +1,131 @@
+{
+  "success": true,
+  "endpoint": "ministerios",
+  "url": "http://localhost:6000/comunes/ministerios",
+  "timestamp": "2025-10-20T23:35:56.669Z",
+  "data": {
+    "MinisteriosColeccion": {
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+      "xmlns": "http://opendata.camara.cl/camaradiputados/v1",
+      "Ministerio": [
+        {
+          "Id": "164",
+          "Nombre": "Ministerio del Medio Ambiente"
+        },
+        {
+          "Id": "68",
+          "Nombre": "Consejo Nacional de la Cultura y las Artes"
+        },
+        {
+          "Id": "1",
+          "Nombre": "Ministerio de Economía, Fomento y Turism"
+        },
+        {
+          "Id": "2",
+          "Nombre": "Ministerio de Hacienda"
+        },
+        {
+          "Id": "3",
+          "Nombre": "Ministerio de Educación"
+        },
+        {
+          "Id": "4",
+          "Nombre": "Ministerio de Agricultura"
+        },
+        {
+          "Id": "7",
+          "Nombre": "Ministerio de Transporte y Telecomunicaciones"
+        },
+        {
+          "Id": "44",
+          "Nombre": "Ministerio de Bienes Nacionales"
+        },
+        {
+          "Id": "46",
+          "Nombre": "Ministerio de Defensa Nacional"
+        },
+        {
+          "Id": "48",
+          "Nombre": "Ministerio de Minería"
+        },
+        {
+          "Id": "49",
+          "Nombre": "Ministerio de Obras Públicas"
+        },
+        {
+          "Id": "51",
+          "Nombre": "Ministerio de Relaciones Exteriores"
+        },
+        {
+          "Id": "52",
+          "Nombre": "Ministerio de Salud"
+        },
+        {
+          "Id": "57",
+          "Nombre": "Ministerio Secretaría General de Gobierno"
+        },
+        {
+          "Id": "54",
+          "Nombre": "Ministerio de Vivienda y Urbanismo"
+        },
+        {
+          "Id": "56",
+          "Nombre": "Ministerio de Trabajo y Previsión Social"
+        },
+        {
+          "Id": "58",
+          "Nombre": "Ministerio Secretaría General de la Presidencia"
+        },
+        {
+          "Id": "64",
+          "Nombre": "CORFO"
+        },
+        {
+          "Id": "65",
+          "Nombre": "Servicio Nacional de la Mujer"
+        },
+        {
+          "Id": "144",
+          "Nombre": "Ministerio de Energía"
+        },
+        {
+          "Id": "165",
+          "Nombre": "Ministerio de Desarrollo Social y Famili"
+        },
+        {
+          "Id": "166",
+          "Nombre": "Ministerio del Deporte"
+        },
+        {
+          "Id": "183",
+          "Nombre": "Ministerio de la Cultura, las Artes y el Patrimonio"
+        },
+        {
+          "Id": "5",
+          "Nombre": "Ministerio de la Mujer y Equidad de Género"
+        },
+        {
+          "Id": "167",
+          "Nombre": "Ministerio de Justicia y de Derechos Humanos"
+        },
+        {
+          "Id": "204",
+          "Nombre": "Ministerio de Ciencia, Tecnología, C e I"
+        },
+        {
+          "Id": "224",
+          "Nombre": "Ministerio del Interior y Seg. Pública"
+        },
+        {
+          "Id": "225",
+          "Nombre": "Ministerio del Interior"
+        },
+        {
+          "Id": "226",
+          "Nombre": "Ministerio de Seguridad Pública"
+        }
+      ]
+    }
+  }
+}

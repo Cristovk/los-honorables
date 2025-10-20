@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { EndpointsDiputados } from '@server/EndpointsDiputados';
+import { EndpointsDiputados } from '../server/EndpointsDiputados';
 
 // Configuración centralizada que combina endpoints con variables de entorno
 const env = (key: string, defaultValue?: string) => {
@@ -49,7 +49,9 @@ export const CONFIG = {
   // Helper para obtener endpoint por categoría y nombre
   getEndpoint: (category: keyof typeof EndpointsDiputados, endpointKey: string) => {
     const categoryEndpoints = CONFIG.ENDPOINTS[category] as any;
-    return categoryEndpoints?.[endpointKey] || null;
+    const retorno = categoryEndpoints?.[endpointKey] || null;
+    console.log('getEndpoint', retorno);
+    return retorno;
   }
 };
 

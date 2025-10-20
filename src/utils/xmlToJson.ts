@@ -1,5 +1,6 @@
 import xml2js from 'xml2js';
 import axios from 'axios';
+import { processXmlData } from './dataTransformations';
 
 export const convertXmlToJson = async (xmlData: string): Promise<any> => {
   return new Promise((resolve, reject) => {
@@ -24,66 +25,56 @@ export const convertXmlToJson = async (xmlData: string): Promise<any> => {
 export const fetchAndProcessXml = async (url: string): Promise<any> => {
   try {
     const response = await axios.get(url);
-    return await convertXmlToJson(response.data);
+    const jsonData = await convertXmlToJson(response.data);
+    
+    // Aplicar transformaciones automáticas a los datos
+    return processXmlDataRecursively(jsonData);
   } catch (error) {
     console.error('Error fetching or converting XML:', error);
     throw error;
   }
 };
 
+/**
+ * Función recursiva para aplicar transformaciones a todos los niveles del objeto JSON
+ * Busca estructuras { _: string, Valor: string } o { _: string, $: { Valor: string } } y las transforma automáticamente
+ */
+const processXmlDataRecursively = (data: any): any => {
+  if (Array.isArray(data)) {
+    // Si es un array, procesar cada elemento
+    return data.map(item => processXmlDataRecursively(item));
+  }
+  
+  if (typeof data === 'object' && data !== null) {
+    // Función para verificar si un objeto tiene la estructura que podemos transformar
+    const hasValidStructure = (item: any) => 
+      item._ !== undefined && (item.Valor !== undefined || item.$?.Valor !== undefined);
+    
+    // Si este objeto tiene la estructura que podemos transformar
+    if (hasValidStructure(data)) {
+      return processXmlData(data, 'keyValue');
+    }
+    
+    // Buscar arrays que contengan objetos con la estructura válida
+    for (const key in data) {
+      if (data.hasOwnProperty(key) && Array.isArray(data[key])) {
+        const array = data[key];
+        if (array.length > 0 && hasValidStructure(array[0])) {
+          // Si encontramos un array con la estructura válida, transformarlo
+          data[key] = processXmlData(array, 'keyValue');
+        } else {
+          // Si no, procesar recursivamente cada elemento del array
+          data[key] = array.map(item => processXmlDataRecursively(item));
+        }
+      } else if (data.hasOwnProperty(key) && typeof data[key] === 'object' && data[key] !== null) {
+        // Procesar recursivamente objetos anidados
+        data[key] = processXmlDataRecursively(data[key]);
+      }
+    }
+    
+    return data;
+  }
+  
+  return data;
+};
 
-// import axios from "axios";
-// import { JSDOM } from "jsdom";
-
-// const processNode = (node: Element): any => {
-//   const children = Array.from(node.children);
-
-//   if (children.length === 0) {
-//     return node.textContent?.trim() || "";
-//   }
-
-//   const result: Record<string, any> = {};
-//   children.forEach((child) => {
-//     const key = child.tagName;
-//     if (result[key]) {
-//       // Si la clave ya existe, convierte el valor en un array
-//       if (!Array.isArray(result[key])) {
-//         result[key] = [result[key]];
-//       }
-//       result[key].push(processNode(child));
-//     } else {
-//       result[key] = processNode(child);
-//     }
-//   });
-
-//   return result;
-// };
-
-// export const extractDataFromXml = (xmlData: string, rootTag: string): any => {
-//   try {
-//     const dom = new JSDOM(xmlData, { contentType: "text/xml" });
-//     const document = dom.window.document;
-
-//     const rootElements = document.querySelectorAll(rootTag);
-//     if (!rootElements.length)
-//       throw new Error(`Root tag <${rootTag}> not found`);
-
-//     // Si hay múltiples elementos, devolver array
-//     return Array.from(rootElements).map((el) => processNode(el as Element));
-//   } catch (error: any) {
-//     throw new Error(`Error extracting data: ${error.message}`);
-//   }
-// };
-
-// export const fetchAndProcessXml = async (
-//   url: string,
-//   rootTag: string
-// ): Promise<any> => {
-//   try {
-//     const response = await axios.get(url);
-//     return extractDataFromXml(response.data, rootTag);
-//   } catch (error) {
-//     console.error("Error fetching or processing XML:", error);
-//     throw error;
-//   }
-// };
