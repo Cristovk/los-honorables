@@ -12,6 +12,7 @@ router.get("/on", (req: Request, res: Response) => {
 router.get("/comunas", async (req: Request, res: Response) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_comunas");
+    console.log(endpoint);
     if (!endpoint) {
       res.status(404).json({ message: "Endpoint not found" });
       return;
@@ -133,6 +134,7 @@ router.get("/tiposAsistencia", async (req: Request, res: Response) => {
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
     const data = await fetchAndProcessXml(url);
+    console.log('tiposAsistencia', JSON.stringify(data, null, 2));
     res.status(200).json(data);
   } catch (error: any) {
     res

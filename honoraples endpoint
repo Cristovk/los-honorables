@@ -1,0 +1,1272 @@
+type: collection.insomnia.rest/5.0
+name: Honorables API
+meta:
+  id: wrk_2e70b32358234701ab85f8012371f726
+  created: 1738376010496
+  modified: 1738376010496
+  description: ""
+collection:
+  - url: https://opendata.camara.cl/camaradiputados/WServices/WSDiputado.asmx/retornarDiputado?
+    name: New Request
+    meta:
+      id: req_f06f41fa41054ac7828023fa165f9218
+      created: 1755231965913
+      modified: 1755231983879
+      isPrivate: false
+      description: ""
+      sortKey: -1755231965913
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.4.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - name: Periodos Legislativos
+    meta:
+      id: fld_6e2331f93835405683a40350260e2d20
+      created: 1738376010502
+      modified: 1738382430250
+      sortKey: -1738376010502
+      description: ""
+    children:
+      - url: http://localhost:6000/periodosLegislativos/on
+        name: Periodos Health
+        meta:
+          id: req_2f441c2f4f014b6a8bb4ca7bf1f524a2
+          created: 1738376010503
+          modified: 1738376010503
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010503
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url:
+          "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.periodos_legislativos
+          }}/periodoActual"
+        name: Periodo Actual
+        meta:
+          id: req_1a5052d0f06647dcae1d72fd86ee464b
+          created: 1738376010504
+          modified: 1738539099140
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010504
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/periodosLegislativos/periodosLegislativos
+        name: Todos los Periodos
+        meta:
+          id: req_41772b8113dc4834ae876873c77e1bec
+          created: 1738376010504
+          modified: 1738376010504
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010504
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Senadores
+    meta:
+      id: fld_479e9432b5af443294e8b86143cc8471
+      created: 1738376010505
+      modified: 1738376010505
+      sortKey: -1738376010505
+      description: ""
+    children:
+      - url: http://localhost:6000/senadores/on
+        name: Senadores Health
+        meta:
+          id: req_2914dab2b2e442bdb118cbaf8f6b368e
+          created: 1738376010506
+          modified: 1738376010506
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010506
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.senadores }}/vigentes"
+        name: Senadores Vigentes
+        meta:
+          id: req_f4c02cb7f86a4ae688eba66ceb48b9f5
+          created: 1738376010507
+          modified: 1738376424648
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010507
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Comisiones
+    meta:
+      id: fld_comisiones_001
+      created: 1738376010511
+      modified: 1738376010511
+      sortKey: -1738376010509
+      description: "Endpoints de comisiones legislativas"
+    children:
+      - url: http://localhost:6000/comisiones/on
+        name: Comisiones Health
+        meta:
+          id: req_comisiones_health_001
+          created: 1738376010511
+          modified: 1738376010511
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010511
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/comisiones/sesionesXComisionYAnno
+        name: Sesiones por Comisión y Año
+        meta:
+          id: req_comisiones_sesiones_002
+          created: 1738376010511
+          modified: 1738376010511
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010510.75
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"comisionId": 1,
+            	"anno": 2024
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/comisiones/detalle
+        name: Detalle Comisión
+        meta:
+          id: req_comisiones_detalle_003
+          created: 1738376010511
+          modified: 1738376010511
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010510.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"comisionId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/comisiones/vigentes
+        name: Comisiones Vigentes
+        meta:
+          id: req_comisiones_vigentes_004
+          created: 1738376010511
+          modified: 1738376010511
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010510.25
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/comisiones/porPeriodo
+        name: Comisiones por Período
+        meta:
+          id: req_comisiones_periodo_005
+          created: 1738376010511
+          modified: 1738376010511
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010510
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"periodoId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Diputados
+    meta:
+      id: fld_6bb97d6b330849eaa778b0bfbe0c2fd1
+      created: 1738376010508
+      modified: 1738376010508
+      sortKey: -1738376010508
+      description: ""
+    children:
+      - url: http://localhost:6000/diputados/on
+        name: Diputados Health
+        meta:
+          id: req_6a0ae1c3726e4ddeb78bed2f4772e061
+          created: 1738376010508
+          modified: 1738376010508
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010508
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/diputados/vigentes
+        name: Diputados Vigentes
+        meta:
+          id: req_6a2fcf14f5754a80ad851d93b65c75c6
+          created: 1738376010509
+          modified: 1738376010509
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010509
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/diputados/detalle
+        name: Detalle Diputado
+        meta:
+          id: req_diputados_detalle_003
+          created: 1738376010509
+          modified: 1738376010509
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010509.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"diputadoId": 123
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/diputados/lista
+        name: Lista Todos los Diputados
+        meta:
+          id: req_diputados_lista_004
+          created: 1738376010509
+          modified: 1738376010509
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010509.25
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/diputados/porPeriodo
+        name: Diputados por Período
+        meta:
+          id: req_diputados_periodo_005
+          created: 1738376010509
+          modified: 1738376010509
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010509
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"periodoId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Votaciones
+    meta:
+      id: fld_fd07a4a15b7848eda79363ceebac6bf1
+      created: 1738376010510
+      modified: 1738376010510
+      sortKey: -1738376010510
+      description: ""
+    children:
+      - url: http://localhost:6000/votaciones/on
+        name: Votaciones Health
+        meta:
+          id: req_votaciones_health_001
+          created: 1738376010509
+          modified: 1738376010509
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010511
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/votaciones/detalleVotacion
+        name: Detalle Votación
+        meta:
+          id: req_votacion_detalle_002
+          created: 1738376010510
+          modified: 1738376010510
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010510.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"id": "12345"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/votaciones/votacionesXAnno
+        name: Votaciones por Año
+        meta:
+          id: req_votaciones_year_003
+          created: 1738376010510
+          modified: 1738376010510
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010510.25
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"year": "2024"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.votaciones
+          }}/votacionesXProyectoLey"
+        name: Votaciones Boletín
+        meta:
+          id: req_dbe6679c691140b18d0ebdbc22117ff3
+          created: 1738376010510
+          modified: 1759280656179
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010510
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"id": "10007-15"
+            }
+        headers:
+          - id: pair_498817e8cbdd41b58b30b684bcce8827
+            name: Content-Type
+            value: application/json
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Comunes
+    meta:
+      id: fld_968384e5de604efcbe468bb2cbc705d5
+      created: 1738376010511
+      modified: 1738376010511
+      sortKey: -1738376010511
+      description: Endpoints de datos comunes y maestros
+    children:
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/on"
+        name: Health Check - Datos Comunes
+        meta:
+          id: req_08a71dd2adfa42708829d36f12f5fc6c
+          created: 1738376010512
+          modified: 1738376010512
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010512
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/comunas"
+        name: Comunas
+        meta:
+          id: req_69ae7ac6291b4b5db819bea74a80cc5b
+          created: 1738376010513
+          modified: 1738376010513
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010513
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/distritos"
+        name: Distritos
+        meta:
+          id: req_59018a05ba0147ed9bfb35b1384ceb73
+          created: 1738376010514
+          modified: 1738376010514
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010514
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/provincias"
+        name: Provincias
+        meta:
+          id: req_7582430159ea4ae3bb4d4db0bc26ed89
+          created: 1738376010515
+          modified: 1738376010515
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010515
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/regiones"
+        name: Regiones
+        meta:
+          id: req_5e2f2d9af2234a438f1eb9f545e3b806
+          created: 1738376010516
+          modified: 1738376010516
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010516
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/ministerios"
+        name: Ministerios
+        meta:
+          id: req_18837ef6c40c4c2d8aebb2e11730396e
+          created: 1738376010517
+          modified: 1738376010517
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010517
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/tiposCamaraOrigen"
+        name: Tipos de Cámara de Origen
+        meta:
+          id: req_34c8da1ff69240a985ea7dd816bf83a8
+          created: 1738376010518
+          modified: 1738376010518
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010518
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/tiposAsistencia"
+        name: Tipos de Asistencia
+        meta:
+          id: req_854d6a199dad48b882b8dfa6939a82df
+          created: 1738376010519
+          modified: 1738376010519
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010519
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port
+          }}/comunes/tiposEstadoSesionComision"
+        name: Tipos de Estado de Sesión de Comisión
+        meta:
+          id: req_564a0d67e7264f819ed4d9d67144dfed
+          created: 1738376010520
+          modified: 1738376010520
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010520
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/tiposEstadoSesionSala"
+        name: Tipos de Estado de Sesión de Sala
+        meta:
+          id: req_1d84e9872e844495b081d3e0b1ff62f9
+          created: 1738376010521
+          modified: 1738376010521
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010521
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/tiposTitularAsistencia"
+        name: Tipos de Titular de Asistencia
+        meta:
+          id: req_c1c713c7f02847c8803b6936b75fec75
+          created: 1738376010522
+          modified: 1738376010522
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010522
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}/comunes/tiposEstado"
+        name: Tipos de Estado
+        meta:
+          id: req_a5bdd19c7168411093632ab0d8b3270b
+          created: 1738376010523
+          modified: 1738376010523
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010523
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port
+          }}/comunes/tiposEstadoAcuerdosResoluciones"
+        name: Tipos de Estado de Acuerdos y Resoluciones
+        meta:
+          id: req_4b02aada9b654851bfbcde550df08542
+          created: 1738376010524
+          modified: 1738376010524
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010524
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port
+          }}/comunes/tiposIniciativaProyectoLey"
+        name: Tipos de Iniciativa de Proyecto de Ley
+        meta:
+          id: req_c4ca10d6a88e4351bd07ad8e4e3ef03a
+          created: 1738376010525
+          modified: 1759367440348
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010525
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Proyectos de Acuerdo
+    meta:
+      id: fld_proyectos_acuerdo_001
+      created: 1738376010526
+      modified: 1738376010526
+      sortKey: -1738376010526
+      description: "Endpoints de proyectos de acuerdo"
+    children:
+      - url: http://localhost:6000/proyectosAcuerdo/on
+        name: Proyectos Acuerdo Health
+        meta:
+          id: req_proyectos_acuerdo_health_001
+          created: 1738376010526
+          modified: 1738376010526
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010526
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/proyectosAcuerdo/detalle
+        name: Detalle Proyecto de Acuerdo
+        meta:
+          id: req_proyectos_acuerdo_detalle_002
+          created: 1738376010526
+          modified: 1738376010526
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010525.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"idProyectoAcuerdo": 12345
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/proyectosAcuerdo/porAnno
+        name: Proyectos Acuerdo por Año
+        meta:
+          id: req_proyectos_acuerdo_year_003
+          created: 1738376010526
+          modified: 1738376010526
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010525
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"anno": 2024
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Proyectos de Resolución
+    meta:
+      id: fld_proyectos_resolucion_001
+      created: 1738376010527
+      modified: 1738376010527
+      sortKey: -1738376010527
+      description: "Endpoints de proyectos de resolución"
+    children:
+      - url: http://localhost:6000/proyectosResolucion/on
+        name: Proyectos Resolución Health
+        meta:
+          id: req_proyectos_resolucion_health_001
+          created: 1738376010527
+          modified: 1738376010527
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010527
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/proyectosResolucion/detalle
+        name: Detalle Proyecto de Resolución
+        meta:
+          id: req_proyectos_resolucion_detalle_002
+          created: 1738376010527
+          modified: 1738376010527
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010526.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"idProyectoResolucion": 67890
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/proyectosResolucion/porAnno
+        name: Proyectos Resolución por Año
+        meta:
+          id: req_proyectos_resolucion_year_003
+          created: 1738376010527
+          modified: 1738376010527
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010526
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"anno": 2024
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Legislativo
+    meta:
+      id: fld_ad51d6e6f71c4914b0e32c89549ac625
+      created: 1738382226276
+      modified: 1738382226276
+      sortKey: -1738382226276
+      description: ""
+    children:
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.legislativos }}/on"
+        name: Legislativos Healt
+        meta:
+          id: req_a772db5a036d43db8d8f0a4d28ae462c
+          created: 1738382232563
+          modified: 1738382448017
+          isPrivate: false
+          description: ""
+          sortKey: -1738382232563
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.legislativos
+          }}/mocionesXAnno"
+        name: Mociones x año
+        meta:
+          id: req_63e835ca7d614da3b367017bddef6bdf
+          created: 1738382470841
+          modified: 1738382659055
+          isPrivate: false
+          description: ""
+          sortKey: -1738379121536.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"year": "2024"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.legislativos
+          }}/mensajesXAnno"
+        name: Mensajes x año
+        meta:
+          id: req_3aef9b3702054ef186154aaac6376b31
+          created: 1738382482616
+          modified: 1738383362800
+          isPrivate: false
+          description: ""
+          sortKey: -1738377566023.25
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"year": "2024"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.legislativos
+          }}/materias"
+        name: Materias
+        meta:
+          id: req_9c6d3d52f32541178b76851e30cabfa6
+          created: 1738384422770
+          modified: 1738384428124
+          isPrivate: false
+          description: ""
+          sortKey: -1738380677049.75
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/legislativos/legislaturas
+        name: Legislaturas
+        meta:
+          id: req_legislativos_legislaturas_004
+          created: 1738384422771
+          modified: 1738384422771
+          isPrivate: false
+          description: ""
+          sortKey: -1738380677049.5
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/legislativos/proyectoLey
+        name: Proyecto de Ley por Boletín
+        meta:
+          id: req_legislativos_proyecto_ley_005
+          created: 1738384422771
+          modified: 1738384422771
+          isPrivate: false
+          description: ""
+          sortKey: -1738380677049.25
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"numeroBoletin": 1234567
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/legislativos/tramitesConstitucionales
+        name: Trámites Constitucionales
+        meta:
+          id: req_legislativos_tramites_const_006
+          created: 1738384422771
+          modified: 1738384422771
+          isPrivate: false
+          description: ""
+          sortKey: -1738380677049
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/legislativos/tramitesReglamentarios
+        name: Trámites Reglamentarios
+        meta:
+          id: req_legislativos_tramites_regl_007
+          created: 1738384422771
+          modified: 1738384422771
+          isPrivate: false
+          description: ""
+          sortKey: -1738380677048.75
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Projects
+    meta:
+      id: fld_projects_001
+      created: 1738376010528
+      modified: 1738376010528
+      sortKey: -1738376010501
+      description: "Endpoints de proyectos"
+    children:
+      - url: http://localhost:6000/projects/on
+        name: Projects Health
+        meta:
+          id: req_projects_health_001
+          created: 1738376010528
+          modified: 1738376010528
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010501.5
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:6000/projects/boletin
+        name: Votaciones por Boletín
+        meta:
+          id: req_projects_boletin_002
+          created: 1738376010528
+          modified: 1738376010528
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010501
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"boletin": "1234567"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Servicio Sala
+    meta:
+      id: fld_a0172a0a5c7f4a8fb0ef23645ee631bd
+      created: 1738540622113
+      modified: 1738540622113
+      sortKey: -1738376010500.5
+      description: ""
+    children:
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.servicioSala
+          }}/sesionesXAnno"
+        name: Sesiones x Año
+        meta:
+          id: req_86994e06bdc44acab55176fa7e7e5301
+          created: 1738540622118
+          modified: 1759247303703
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010504
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"year": "2025"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.servicioSala
+          }}/sesionAsistencia"
+        name: Asistencia Sesiones
+        meta:
+          id: req_7e202226a3d84af0ab9187d80ab84463
+          created: 1738540622119
+          modified: 1738540953541
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010504
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.servicioSala }}/on"
+        name: Sala Healt
+        meta:
+          id: req_7bc6329be4d9463c984d2019e58ca079
+          created: 1738540861010
+          modified: 1738541178641
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010503.5
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.Local.base_url }}{{ _.Local.port }}{{ _.Local.servicioSala
+          }}/sesionesXLegislatura"
+        name: Sesiones x Legislatura
+        meta:
+          id: req_0a092f9495c44ebbaecbb783bc1a64b0
+          created: 1738542216916
+          modified: 1738542315923
+          isPrivate: false
+          description: ""
+          sortKey: -1738376010503.75
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"id": "56"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_9ef3c1730e2e3a9cc77056ff88387306c0ec3a3d
+    created: 1738376020034
+    modified: 1738376020034
+environments:
+  name: Base Environment
+  meta:
+    id: env_9ef3c1730e2e3a9cc77056ff88387306c0ec3a3d
+    created: 1738376020032
+    modified: 1738376020032
+    isPrivate: false

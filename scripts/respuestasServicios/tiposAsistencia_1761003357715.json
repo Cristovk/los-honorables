@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "endpoint": "tiposAsistencia",
+  "url": "http://localhost:6000/comunes/tiposAsistencia",
+  "timestamp": "2025-10-20T23:35:57.715Z",
+  "data": {
+    "TiposAsistenciaColeccion": {
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+      "xmlns": "http://opendata.camara.cl/camaradiputados/v1",
+      "TipoAsistencia": {
+        "0": "No Asiste",
+        "1": "Asiste",
+        "2": "Justificado"
+      }
+    }
+  }
+}

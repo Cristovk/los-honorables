@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "endpoint": "tiposIniciativaProyectoLey",
+  "url": "http://localhost:6000/comunes/tiposIniciativaProyectoLey",
+  "timestamp": "2025-10-20T23:36:00.874Z",
+  "data": {
+    "TiposIniciativaProyectoLeyColeccion": {
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+      "xmlns": "http://opendata.camara.cl/camaradiputados/v1",
+      "TipoIniciativaProyectoLey": {
+        "1": "Mensaje",
+        "2": "Moción"
+      }
+    }
+  }
+}
