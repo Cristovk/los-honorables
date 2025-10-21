@@ -1,6 +1,21 @@
 import { Router, Request, Response } from "express";
 import { fetchAndProcessXml } from "@utils/xmlToJson";
 import { CONFIG } from "@config/endpoints-config";
+import {
+  ComunasResponse,
+  DistritosResponse,
+  ProvinciasResponse,
+  RegionesResponse,
+  MinisteriosResponse,
+  TiposCamaraOrigenResponse,
+  TiposAsistenciaResponse,
+  TiposEstadoSesionComisionResponse,
+  TiposEstadoSesionSalaResponse,
+  TiposTitularAsistenciaResponse,
+  TiposEstadoResponse,
+  TiposEstadoAcuerdosResolucionesResponse,
+  TiposIniciativaProyectoLeyResponse
+} from "@interface/external/camara-diputados/comunes";
 
 const router = Router();
 
@@ -9,126 +24,258 @@ router.get("/on", (req: Request, res: Response) => {
 });
 
 /* Comunas */
-router.get("/comunas", async (req: Request, res: Response) => {
+router.get("/comunas", async (req: Request, res: Response<ComunasResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_comunas");
     console.log(endpoint);
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_comunas",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { ComunasColeccion: { xmlns: "", xmlns_xsi: "", xmlns_xsd: "", Comuna: [] } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
     const data = await fetchAndProcessXml(url);
-    res.status(200).json(data);
+
+    const response: ComunasResponse = {
+      success: true,
+      endpoint: "comun_comunas",
+      url: url,
+      timestamp: new Date().toISOString(),
+      data: data
+    };
+
+    res.status(200).json(response);
   } catch (error: any) {
-    res
-      .status(500)
-      .json({ message: "Error fetching comunas", error: error.message });
+    const errorResponse: ComunasResponse = {
+      success: false,
+      endpoint: "comun_comunas",
+      url: "",
+      timestamp: new Date().toISOString(),
+      data: { ComunasColeccion: { xmlns: "", xmlns_xsi: "", xmlns_xsd: "", Comuna: [] } }
+    };
+
+    res.status(500).json(errorResponse);
   }
 });
 
 /* Distritos */
-router.get("/distritos", async (req: Request, res: Response) => {
+router.get("/distritos", async (req: Request, res: Response<DistritosResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_distritos");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_distritos",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { DistritosColeccion: { "xmlns": "", "xmlns:xsi": "", "xmlns:xsd": "", Distrito: [] } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
     const data = await fetchAndProcessXml(url);
-    res.status(200).json(data);
+
+    const response: DistritosResponse = {
+      success: true,
+      endpoint: "comun_distritos",
+      url: url,
+      timestamp: new Date().toISOString(),
+      data: data
+    };
+
+    res.status(200).json(response);
   } catch (error: any) {
-    res
-      .status(500)
-      .json({ message: "Error fetching distritos", error: error.message });
+    const errorResponse: DistritosResponse = {
+      success: false,
+      endpoint: "comun_distritos",
+      url: "",
+      timestamp: new Date().toISOString(),
+      data: { DistritosColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", Distrito: [] } }
+    };
+
+    res.status(500).json(errorResponse);
   }
 });
 
 /* Provincias */
-router.get("/provincias", async (req: Request, res: Response) => {
+router.get("/provincias", async (req: Request, res: Response<ProvinciasResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_provincias");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_provincias",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { ProvinciasColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", Provincia: [] } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
     const data = await fetchAndProcessXml(url);
-    res.status(200).json(data);
+
+    const response: ProvinciasResponse = {
+      success: true,
+      endpoint: "comun_provincias",
+      url: url,
+      timestamp: new Date().toISOString(),
+      data: data
+    };
+
+    res.status(200).json(response);
   } catch (error: any) {
-    res
-      .status(500)
-      .json({ message: "Error fetching provincias", error: error.message });
+    const errorResponse: ProvinciasResponse = {
+      success: false,
+      endpoint: "comun_provincias",
+      url: "",
+      timestamp: new Date().toISOString(),
+      data: { ProvinciasColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", Provincia: [] } }
+    };
+
+    res.status(500).json(errorResponse);
   }
 });
 
 /* Regiones */
-router.get("/regiones", async (req: Request, res: Response) => {
+router.get("/regiones", async (req: Request, res: Response<RegionesResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_regiones");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_regiones",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { RegionesColeccion: { xmlns: "", xmlns_xsi: "", xmlns_xsd: "", Region: [] } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
     const data = await fetchAndProcessXml(url);
-    res.status(200).json(data);
+
+    const response: RegionesResponse = {
+      success: true,
+      endpoint: "comun_regiones",
+      url: url,
+      timestamp: new Date().toISOString(),
+      data: data
+    };
+
+    res.status(200).json(response);
   } catch (error: any) {
-    res
-      .status(500)
-      .json({ message: "Error fetching regiones", error: error.message });
+    const errorResponse: RegionesResponse = {
+      success: false,
+      endpoint: "comun_regiones",
+      url: "",
+      timestamp: new Date().toISOString(),
+      data: { RegionesColeccion: { xmlns: "", xmlns_xsi: "", xmlns_xsd: "", Region: [] } }
+    };
+
+    res.status(500).json(errorResponse);
   }
 });
 
 /* Ministerios */
-router.get("/ministerios", async (req: Request, res: Response) => {
+router.get("/ministerios", async (req: Request, res: Response<MinisteriosResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_ministerios");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_ministerios",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { MinisteriosColeccion: { xmlns: "", xmlns_xsi: "", xmlns_xsd: "", Ministerio: [] } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
     const data = await fetchAndProcessXml(url);
-    res.status(200).json(data);
+
+    const response: MinisteriosResponse = {
+      success: true,
+      endpoint: "comun_ministerios",
+      url: url,
+      timestamp: new Date().toISOString(),
+      data: data
+    };
+
+    res.status(200).json(response);
   } catch (error: any) {
-    res
-      .status(500)
-      .json({ message: "Error fetching ministerios", error: error.message });
+    const errorResponse: MinisteriosResponse = {
+      success: false,
+      endpoint: "comun_ministerios",
+      url: "",
+      timestamp: new Date().toISOString(),
+      data: { MinisteriosColeccion: { xmlns: "", xmlns_xsi: "", xmlns_xsd: "", Ministerio: [] } }
+    };
+
+    res.status(500).json(errorResponse);
   }
 });
 
 /* Tipos de Cámara de Origen */
-router.get("/tiposCamaraOrigen", async (req: Request, res: Response) => {
+router.get("/tiposCamaraOrigen", async (req: Request, res: Response<TiposCamaraOrigenResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_camara_origen");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_tipos_camara_origen",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposCamaraOrigenColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoCamaraOrigen: { '1': '', '2': '' } } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
     const data = await fetchAndProcessXml(url);
-    res.status(200).json(data);
+
+    const response: TiposCamaraOrigenResponse = {
+      success: true,
+      endpoint: "comun_tipos_camara_origen",
+      url: url,
+      timestamp: new Date().toISOString(),
+      data: data
+    };
+
+    res.status(200).json(response);
   } catch (error: any) {
     res
       .status(500)
-      .json({ message: "Error fetching tipos cámara origen", error: error.message });
+      .json({
+        success: false,
+        endpoint: "comun_tipos_camara_origen",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposCamaraOrigenColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoCamaraOrigen: { '1': '', '2': '' } } }
+      });
   }
 });
 
 /* Tipos de Asistencia */
-router.get("/tiposAsistencia", async (req: Request, res: Response) => {
+router.get("/tiposAsistencia", async (req: Request, res: Response<TiposAsistenciaResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_asistencia");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_tipos_asistencia",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposAsistenciaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoAsistencia: { '0': '', '1': '', '2': '' } } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
@@ -139,16 +286,28 @@ router.get("/tiposAsistencia", async (req: Request, res: Response) => {
   } catch (error: any) {
     res
       .status(500)
-      .json({ message: "Error fetching tipos asistencia", error: error.message });
+      .json({
+        success: false,
+        endpoint: "comun_tipos_asistencia",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposAsistenciaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoAsistencia: { '0': '', '1': '', '2': '' } } }
+      });
   }
 });
 
 /* Tipos de Estado de Sesión de Comisión */
-router.get("/tiposEstadoSesionComision", async (req: Request, res: Response) => {
+router.get("/tiposEstadoSesionComision", async (req: Request, res: Response<TiposEstadoSesionComisionResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_estado_sesion_comision");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_tipos_estado_sesion_comision",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposEstadoSesionComisionColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionComision: {} } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
@@ -158,7 +317,13 @@ router.get("/tiposEstadoSesionComision", async (req: Request, res: Response) => 
   } catch (error: any) {
     res
       .status(500)
-      .json({ message: "Error fetching tipos estado sesión comisión", error: error.message });
+      .json({
+        success: false,
+        endpoint: "comun_tipos_estado_sesion_comision",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposEstadoSesionComisionColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionComision: {} } }
+      });
   }
 });
 
@@ -182,11 +347,17 @@ router.get("/tiposEstadoSesionSala", async (req: Request, res: Response) => {
 });
 
 /* Tipos de Titular de Asistencia */
-router.get("/tiposTitularAsistencia", async (req: Request, res: Response) => {
+router.get("/tiposTitularAsistencia", async (req: Request, res: Response<TiposTitularAsistenciaResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_titular_asistencia");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_tipos_titular_asistencia",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposTitularAsistenciaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoTitularAsistencia: {} } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
@@ -196,16 +367,28 @@ router.get("/tiposTitularAsistencia", async (req: Request, res: Response) => {
   } catch (error: any) {
     res
       .status(500)
-      .json({ message: "Error fetching tipos titular asistencia", error: error.message });
+      .json({
+        success: false,
+        endpoint: "comun_tipos_titular_asistencia",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposTitularAsistenciaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoTitularAsistencia: {} } }
+      });
   }
 });
 
 /* Tipos de Estado */
-router.get("/tiposEstado", async (req: Request, res: Response) => {
+router.get("/tiposEstado", async (req: Request, res: Response<TiposEstadoResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_estado");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_tipos_estado",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposEstadoColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstado: {} } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
@@ -215,16 +398,28 @@ router.get("/tiposEstado", async (req: Request, res: Response) => {
   } catch (error: any) {
     res
       .status(500)
-      .json({ message: "Error fetching tipos estado", error: error.message });
+      .json({
+        success: false,
+        endpoint: "comun_tipos_estado",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposEstadoColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstado: {} } }
+      });
   }
 });
 
 /* Tipos de Estado de Acuerdos y Resoluciones */
-router.get("/tiposEstadoAcuerdosResoluciones", async (req: Request, res: Response) => {
+router.get("/tiposEstadoAcuerdosResoluciones", async (req: Request, res: Response<TiposEstadoAcuerdosResolucionesResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_estado_acuerdos_resoluciones");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_tipos_estado_acuerdos_resoluciones",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposEstadoAcuerdosResolucionesColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoAcuerdosResoluciones: {} } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
@@ -234,16 +429,28 @@ router.get("/tiposEstadoAcuerdosResoluciones", async (req: Request, res: Respons
   } catch (error: any) {
     res
       .status(500)
-      .json({ message: "Error fetching tipos estado acuerdos resoluciones", error: error.message });
+      .json({
+        success: false,
+        endpoint: "comun_tipos_estado_acuerdos_resoluciones",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposEstadoAcuerdosResolucionesColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoAcuerdosResoluciones: {} } }
+      });
   }
 });
 
 /* Tipos de Iniciativa de Proyecto de Ley */
-router.get("/tiposIniciativaProyectoLey", async (req: Request, res: Response) => {
+router.get("/tiposIniciativaProyectoLey", async (req: Request, res: Response<TiposIniciativaProyectoLeyResponse>) => {
   try {
     const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_iniciativa_proyecto_ley");
     if (!endpoint) {
-      res.status(404).json({ message: "Endpoint not found" });
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_tipos_iniciativa_proyecto_ley",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposIniciativaProyectoLeyColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoIniciativaProyectoLey: {} } }
+      });
       return;
     }
     const url = CONFIG.buildUrl(endpoint);
@@ -253,7 +460,13 @@ router.get("/tiposIniciativaProyectoLey", async (req: Request, res: Response) =>
   } catch (error: any) {
     res
       .status(500)
-      .json({ message: "Error fetching tipos iniciativa proyecto ley", error: error.message });
+      .json({
+        success: false,
+        endpoint: "comun_tipos_iniciativa_proyecto_ley",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposIniciativaProyectoLeyColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoIniciativaProyectoLey: {} } }
+      });
   }
 });
 

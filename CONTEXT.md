@@ -140,37 +140,37 @@ los-honorables/
 │   │   ├── Sala/
 │   │   ├── Senadores/
 │   │   └── Votaciones/
-│   ├── 📊 data/                     # Funciones para obtener datos de APIs externas
 │   ├── 🔧 utils/                    # Utilidades (XML/JSON, Firestore)
 │   ├── ☁️  cloud/                   # Configuración Firebase
-│   ├── ⚙️  config/                  # ⭐ NUEVA - Configuraciones centralizadas
-│   │   └── ai-config.ts             # Configuración para DeepSeek v3.1
-│   ├── 🏗️  api/                     # ⭐ NUEVA - API estructurada
+│   ├── ⚙️  config/                  # ⭐ Configuraciones centralizadas
+│   │   ├── ai-config.ts             # Configuración para DeepSeek v3.1
+│   │   └── endpoints-config.ts      # Configuración de endpoints externos
+│   ├── 🏗️  api/                     # ⭐ API estructurada
 │   │   ├── controllers/             # Controladores de endpoints
 │   │   └── middlewares/             # Middlewares de validación
-│   ├── 🔧 services/                 # ⭐ NUEVA - Servicios de negocio
+│   ├── 🔧 services/                 # ⭐ Servicios de negocio
 │   │   ├── ai-processor/            # 🤖 Procesamiento con IA
 │   │   │   └── deepseek-client.ts   # Cliente principal de DeepSeek v3.1
 │   │   ├── data-collector/          # 📥 Recolección de datos externos
 │   │   └── cache-manager/           # 🗃️ Gestión de caché
 │   │       └── ai-cache.ts          # Caché específico para respuestas IA
-│   ├── 📋 models/                   # ⭐ NUEVA - Modelos de datos
-│   │   ├── firestore/               # Modelos Firestore
-│   │   │   ├── collections/         # Definiciones de colecciones
+│   ├── 📋 models/                   # ⭐ Modelos de datos
+│   │   ├── firestore/               # 🔥 Modelos Firestore
+│   │   │   ├── collections/         # 📁 Definiciones de colecciones
 │   │   │   │   └── ai-explanations.model.ts  # Modelo para explicaciones IA
-│   │   │   └── repositories/        # Repositorios de acceso a datos
-│   │   └── types/                   # Tipos TypeScript
-│   └── ⚡ functions/                # ⭐ NUEVA - Cloud Functions
-│       ├── scheduled/               # Funciones programadas
+│   │   │   └── repositories/        # 📚 Repositorios de acceso a datos
+│   │   └── types/                   # 🏷️ Tipos TypeScript
+│   └── ⚡ functions/                # ⚡ Cloud Functions
+│       ├── scheduled/               # 📅 Funciones programadas
 │       │   └── weekly-data-processing.ts  # Procesamiento semanal principal
-│       ├── manual/                  # Funciones manuales
-│       └── shared/                  # Utilidades compartidas
-├── 📚 docs/                         # ⭐ NUEVA - Documentación
-│   ├── api/                         # Documentación de API
-│   ├── architecture/                # Documentación arquitectural
-│   └── deployment/                  # Guías de despliegue
-├── 🧪 tests/                        # Pruebas unitarias
-├── 📜 scripts/                      # Scripts de procesamiento
+│       ├── manual/                  # 🖱️ Funciones manuales
+│       └── shared/                  # 🔗 Utilidades compartidas
+├── 📚 docs/                         # 📚 Documentación
+│   ├── api/                         # 📋 Documentación de API
+│   ├── architecture/                # 🏗️ Documentación arquitectural
+│   └── deployment/                  # 🚀 Guías de despliegue
+├── 🧪 tests/                        # 🧪 Pruebas unitarias
+├── 📜 scripts/                      # 📜 Scripts de procesamiento
 └── 📄 Archivos de configuración raíz
 ```
 
@@ -346,6 +346,38 @@ docs/
 └── deployment/               # ⭕ VACÍO - Pendiente documentación
 ```
 
+### 🎯 Recomendaciones de Estructura Actualizadas
+
+#### 📊 Directorio `src/data/` - OBSOLETO
+El directorio `src/data/` contiene archivos vacíos y debe ser eliminado. Las funciones de obtención de datos deben moverse a:
+- `src/services/data-collector/` - Para clientes de APIs externas
+- `src/models/firestore/repositories/` - Para operaciones de base de datos
+
+#### 🔥 Funciones y Métodos de Firestore - UBICACIÓN CORRECTA
+Las operaciones de Firestore deben organizarse en:
+- `src/models/firestore/repositories/` - Repositorios base y específicos
+  - `base.repository.ts` - Clase base abstracta con operaciones CRUD
+  - `proyecto-ley.repository.ts` - Repositorio específico para proyectos de ley
+  - `votaciones.repository.ts` - Repositorio específico para votaciones
+
+- `src/models/firestore/collections/` - Modelos de colecciones
+  - `proyecto-ley.model.ts` - Interfaz TypeScript para proyectos de ley
+  - `votacion.model.ts` - Interfaz TypeScript para votaciones
+  - `ai-explanation.model.ts` - Modelo para explicaciones IA (ya implementado)
+
+#### ⚡ Cloud Functions - UBICACIÓN CORRECTA
+La estructura actual de Cloud Functions es adecuada:
+- `src/functions/scheduled/` - Funciones programadas (ej: procesamiento semanal)
+- `src/functions/manual/` - Funciones de ejecución manual (ej: sincronización forzada)
+- `src/functions/shared/` - Utilidades compartidas entre funciones
+
+#### 📥 Recolección de Datos Externos - ESTRUCTURA ACTUAL
+La obtención de datos ya se realiza a través de las rutas en:
+- `src/routes/SenadoresRoutes/` - Para datos del Senado
+- `src/routes/DiputadosRoutes/` - Para datos de la Cámara de Diputados
+
+Los archivos vacíos en `src/data/` deben ser eliminados ya que la funcionalidad ya existe en la estructura de rutas.
+
 ### 🚀 Próximos Archivos Críticos a Crear
 
 #### Alta Prioridad:
@@ -378,6 +410,7 @@ docs/
 - [x] **Archivos base de IA** (deepseek-client.ts, ai-config.ts, ai-cache.ts)
 - [x] **Modelo base para explicaciones IA** (ai-explanations.model.ts)
 - [x] **Función programada base** (weekly-data-processing.ts)
+- [x] **Identificación de directorios obsoletos** (src/data/ - debe ser eliminado)
 
 ### 🔄 En Progreso
 - [x] ✅ Reestructuración de directorios para escalabilidad
@@ -519,6 +552,11 @@ npm run deploy  # Firebase deploy automatizado
 ### Procesamiento de Endpoints
 ```bash
 npm run procesarEndpoint  # Script para procesar y validar endpoints
+```
+
+### Pruebas de Código Suelto
+```bash
+npx tsx ruta/al/archivo.ts  # Ejecutar archivos TypeScript individuales
 ```
 
 ---
