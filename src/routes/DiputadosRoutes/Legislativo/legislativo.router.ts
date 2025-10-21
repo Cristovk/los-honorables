@@ -1,8 +1,7 @@
 import { Router, Request, Response } from "express";
 import { fetchAndProcessXml } from "@utils/xmlToJson";
 import CONFIG from "@config/endpoints-config";
-import { MocionesXAnnoRequest, MensajesXAnnoRequest, LegislativoProyectoLeyRequest } from "@interface/request.interface";
-import { MensajesXAnnoRequest, MocionesXAnnoRequest } from "@interface/request.interface";
+import { MensajesXAnnoRequest, MocionesXAnnoRequest, ProyectoLeyRequest } from "@interface/external/camara-diputados/comunes";
 
 const router = Router();
 
@@ -89,7 +88,7 @@ router.get("/legislaturas", async (req: Request, res: Response) => {
 });
 
 /* Proyecto de Ley por boletín */
-router.get("/proyectoLey", async (req: Request<{}, {}, LegislativoProyectoLeyRequest>, res: Response) => {
+router.get("/proyectoLey", async (req: Request<{}, {}, ProyectoLeyRequest>, res: Response) => {
   const { numeroBoletin } = req.body;
   try {
     if (!numeroBoletin) {

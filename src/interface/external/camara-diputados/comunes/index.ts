@@ -5,8 +5,18 @@ export * from './ministerios.interface';
 export * from './distritos.interface';
 export { Provincia, ProvinciasColeccion, ProvinciasResponse } from './provincias.interface';
 export * from './tipos.interface';
-export * from './tipos-especificos.interface';
 export * from './requests.interface';
+
+// Exportaciones de nuevos archivos de tipos
+export * from './tipos-asistencia.interface';
+export * from './tipos-camara-origen.interface';
+export * from './tipos-estado.interface';
+export * from './tipos-estado-acuerdos-resoluciones.interface';
+export * from './tipos-estado-sesion-comision.interface';
+export * from './tipos-estado-sesion-sala.interface';
+export * from './tipos-iniciativa-proyecto-ley.interface';
+export * from './tipos-titular-asistencia.interface';
+
 
 /**
  * Tipos comunes reexportados para fácil acceso
@@ -29,23 +39,6 @@ export type { TipoCamaraOrigen } from './tipos.interface';
 export type { TipoAsistencia } from './tipos.interface';
 export type { TiposColeccion } from './tipos.interface';
 export type { TiposResponse } from './tipos.interface';
-
-export type { TipoAsistenciaColeccion } from './tipos-especificos.interface';
-export type { TiposAsistenciaResponse } from './tipos-especificos.interface';
-export type { TipoCamaraOrigenColeccion } from './tipos-especificos.interface';
-export type { TiposCamaraOrigenResponse } from './tipos-especificos.interface';
-export type { TipoEstadoSesionComisionColeccion } from './tipos-especificos.interface';
-export type { TiposEstadoSesionComisionResponse } from './tipos-especificos.interface';
-export type { TipoEstadoSesionSalaColeccion } from './tipos-especificos.interface';
-export type { TiposEstadoSesionSalaResponse } from './tipos-especificos.interface';
-export type { TipoEstadoColeccion } from './tipos-especificos.interface';
-export type { TiposEstadoResponse } from './tipos-especificos.interface';
-export type { TipoEstadoAcuerdosResolucionesColeccion } from './tipos-especificos.interface';
-export type { TiposEstadoAcuerdosResolucionesResponse } from './tipos-especificos.interface';
-export type { TipoIniciativaProyectoLeyColeccion } from './tipos-especificos.interface';
-export type { TiposIniciativaProyectoLeyResponse } from './tipos-especificos.interface';
-export type { TipoTitularAsistenciaColeccion } from './tipos-especificos.interface';
-export type { TiposTitularAsistenciaResponse } from './tipos-especificos.interface';
 
 // Requests
 export type {
