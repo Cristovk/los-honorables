@@ -113,12 +113,12 @@ function mapRegionToFirestore(regionData: any): RegionFirestore {
         nombre: comuna.Nombre?.toString() || ''
       })) || []
     })) || [],
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: Timestamp.now(),
+    updatedAt: Timestamp.now(),
     metadata: {
       source: 'camara-diputados',
       endpoint: 'comun_regiones',
-      lastSynced: new Date()
+      lastSynced: Timestamp.now()
     }
   };
 }
@@ -130,12 +130,12 @@ function mapMinisterioToFirestore(ministerioData: any): MinisterioFirestore {
   return {
     numero: ministerioData.Numero?.toString() || '',
     nombre: ministerioData.Nombre?.toString() || '',
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: Timestamp.now(),
+    updatedAt: Timestamp.now(),
     metadata: {
       source: 'camara-diputados',
       endpoint: 'comun_ministerios',
-      lastSynced: new Date()
+      lastSynced: Timestamp.now()
     }
   };
 }

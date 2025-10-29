@@ -1,14 +1,14 @@
 import { Firestore } from 'firebase/firestore';
 import { TipoCamaraOrigenFirestore } from '@models/firestore/collections/comunes/tipos-camara-origen.model';
 import { BaseRepository } from '../base.repository';
-import { COLLECTIONS } from '@models/firestore/collections/comunes/collections.constants';
+import { TIPOS_CAMARA_ORIGEN_COLLECTION } from '@models/firestore/collections/comunes/collections.constants';
 
 /**
  * Repositorio para manejar operaciones CRUD de tipos de cámara de origen en Firestore
  */
 export class TiposCamaraOrigenRepository extends BaseRepository<TipoCamaraOrigenFirestore> {
   constructor(db: Firestore) {
-    super(db, COLLECTIONS.TIPOS_CAMARA_ORIGEN);
+    super(db, TIPOS_CAMARA_ORIGEN_COLLECTION);
   }
 
   /**
@@ -17,7 +17,7 @@ export class TiposCamaraOrigenRepository extends BaseRepository<TipoCamaraOrigen
    * @returns Promise con los tipos de cámara de origen encontrados
    */
   async findByNombre(nombre: string): Promise<TipoCamaraOrigenFirestore[]> {
-    return this.findByField('nombre', '==', nombre);
+    return this.findByField('nombre', nombre);
   }
 
   /**
@@ -26,7 +26,7 @@ export class TiposCamaraOrigenRepository extends BaseRepository<TipoCamaraOrigen
    * @returns Promise con el tipo de cámara de origen encontrado o null
    */
   async findOneById(id: string): Promise<TipoCamaraOrigenFirestore | null> {
-    return this.findOneByField('id', '==', id);
+    return this.findOneByField('id', id);
   }
 
   /**
@@ -35,7 +35,7 @@ export class TiposCamaraOrigenRepository extends BaseRepository<TipoCamaraOrigen
    * @returns Promise booleano indicando si existe
    */
   async existsById(id: string): Promise<boolean> {
-    return this.existsByField('id', '==', id);
+    return this.existsByField('id', id);
   }
 
   /**
@@ -44,6 +44,6 @@ export class TiposCamaraOrigenRepository extends BaseRepository<TipoCamaraOrigen
    * @returns Promise booleano indicando si existe
    */
   async existsByNombre(nombre: string): Promise<boolean> {
-    return this.existsByField('nombre', '==', nombre);
+    return this.existsByField('nombre', nombre);
   }
 }

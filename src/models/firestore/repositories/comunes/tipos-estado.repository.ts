@@ -1,14 +1,14 @@
 import { Firestore } from 'firebase/firestore';
 import { TipoEstadoFirestore } from '@models/firestore/collections/comunes/tipos-estado.model';
 import { BaseRepository } from '../base.repository';
-import { COLLECTIONS } from '@models/firestore/collections/comunes/collections.constants';
+import { TIPOS_ESTADO_COLLECTION } from '@models/firestore/collections/comunes/collections.constants';
 
 /**
  * Repositorio para manejar operaciones CRUD de tipos de estado en Firestore
  */
 export class TiposEstadoRepository extends BaseRepository<TipoEstadoFirestore> {
   constructor(db: Firestore) {
-    super(db, COLLECTIONS.TIPOS_ESTADO);
+    super(db, TIPOS_ESTADO_COLLECTION);
   }
 
   /**
@@ -17,7 +17,7 @@ export class TiposEstadoRepository extends BaseRepository<TipoEstadoFirestore> {
    * @returns Promise con los tipos de estado encontrados
    */
   async findByNombre(nombre: string): Promise<TipoEstadoFirestore[]> {
-    return this.findByField('nombre', '==', nombre);
+    return this.findByField('nombre', nombre);
   }
 
   /**
@@ -26,7 +26,7 @@ export class TiposEstadoRepository extends BaseRepository<TipoEstadoFirestore> {
    * @returns Promise con el tipo de estado encontrado o null
    */
   async findOneById(id: string): Promise<TipoEstadoFirestore | null> {
-    return this.findOneByField('id', '==', id);
+    return this.findOneByField('id', id);
   }
 
   /**
@@ -35,7 +35,7 @@ export class TiposEstadoRepository extends BaseRepository<TipoEstadoFirestore> {
    * @returns Promise booleano indicando si existe
    */
   async existsById(id: string): Promise<boolean> {
-    return this.existsByField('id', '==', id);
+    return this.existsByField('id', id);
   }
 
   /**
@@ -44,6 +44,6 @@ export class TiposEstadoRepository extends BaseRepository<TipoEstadoFirestore> {
    * @returns Promise booleano indicando si existe
    */
   async existsByNombre(nombre: string): Promise<boolean> {
-    return this.existsByField('nombre', '==', nombre);
+    return this.existsByField('nombre', nombre);
   }
 }

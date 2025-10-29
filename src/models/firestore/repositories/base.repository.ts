@@ -260,6 +260,27 @@ export abstract class BaseRepository<T extends DocumentData> {
     }
   }
 
+
+  /**
+   * existsByField
+   * @param field - Nombre del campo
+   * @param value - Valor a buscar
+   * @returns Promise booleano indicando si existe un documento con el valor en el campo especificado
+   */
+  async existsByField(field: string, value: any): Promise<boolean> {
+    try {
+      const querySnapshot = await getDocs(
+        query(
+          collection(this.db, this.collectionName),
+          where(field, '==', value)
+        )
+      );
+      return !querySnapshot.empty;
+    } catch (error) {
+      this.handleError(error, 'existsByField', { field, value });
+    }
+  }
+
   /**
    * Elimina un documento
    */
