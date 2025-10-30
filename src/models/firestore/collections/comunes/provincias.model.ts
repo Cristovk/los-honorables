@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase-admin/firestore';
 
 /**
  * Modelo de Firestore para una comuna dentro de una provincia
@@ -18,7 +18,7 @@ export interface ProvinciaFirestore {
   /** Nombre de la provincia */
   nombre: string;
   /** Comunas que pertenecen a la provincia */
-  comunas: ComunaProvinciaFirestore[];
+  comunas?: ComunaProvinciaFirestore[];
   /** Fecha de creación en Firestore */
   createdAt: Timestamp;
   /** Fecha de última actualización */
@@ -33,4 +33,3 @@ export interface ProvinciaFirestore {
     lastSynced: Timestamp;
   };
 }
-

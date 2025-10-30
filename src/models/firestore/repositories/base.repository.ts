@@ -1,26 +1,24 @@
-import {
-  collection,
-  doc,
-  getDocs,
-  getDoc,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  query,
-  where,
-  orderBy,
-  limit,
+import * as admin from 'firebase-admin';
+import type {
   Firestore,
   DocumentData,
-  QueryConstraint,
-  WithFieldValue,
-  writeBatch
-} from 'firebase/firestore';
+  QueryDocumentSnapshot,
+  DocumentSnapshot,
+  WriteBatch,
+  FieldValue,
+} from 'firebase-admin/firestore';
 
 import { ILogger } from '@interface/logging.interface';
 import { createLogger } from '@services/logging/console-logger.service';
-import { createFirestoreErrorHandler, FirestoreErrorHandlerService } from '@services/error-handling/firestore-error-handler.service';
-import { RepositoryError, DocumentNotFoundError, ValidationError } from '@interface/errors/repository-errors';
+import {
+  createFirestoreErrorHandler,
+  FirestoreErrorHandlerService
+} from '@services/error-handling/firestore-error-handler.service';
+import {
+  RepositoryError,
+  DocumentNotFoundError,
+  ValidationError
+} from '@interface/errors/repository-errors';
 
 /**
  * Opciones de configuración del repositorio
@@ -35,7 +33,50 @@ export interface RepositoryOptions {
 }
 
 /**
- * Repositorio base para operaciones CRUD en Firestore
+ * Opciones para consultas con paginación
+ */
+export interface QueryOptions {
+  limit?: number;
+  orderByField?: string;
+  orderDirection?: 'asc' | 'desc';
+  startAfter?: any;
+  startAt?: any;
+  endBefore?: any;
+  endAt?: any;
+}
+
+/**
+ * Resultado de consulta paginada
+ */
+export interface PaginatedResult<T> {
+  data: T[];
+  lastDoc: QueryDocumentSnapshot | null;
+  hasMore: boolean;
+  total?: number;
+}
+
+/**
+ * Repositorio base para operaciones CRUD en Firestore usando firebase-admin
+ * 
+ * @template T - Tipo del documento
+ * 
+ * @example
+ * ```typescript
+ * interface ProyectoLey extends DocumentData {
+ *   boletin: string;
+ *   titulo: string;
+ *   descripcion: string;
+ * }
+ * 
+ * class ProyectoLeyRepository extends BaseRepository<ProyectoLey> {
+ *   constructor(db: Firestore) {
+ *     super(db, 'proyectos_ley', {
+ *       enableLogging: true,
+ *       serviceName: 'proyecto-ley-repository'
+ *     });
+ *   }
+ * }
+ * ```
  */
 export abstract class BaseRepository<T extends DocumentData> {
   protected readonly db: Firestore;
@@ -68,6 +109,13 @@ export abstract class BaseRepository<T extends DocumentData> {
       maxRetries: this.maxRetries,
       retryDelay: this.retryDelay
     });
+  }
+
+  /**
+   * Obtiene la referencia a la colección
+   */
+  protected get collectionRef() {
+    return this.db.collection(this.collectionName);
   }
 
   /**
@@ -107,23 +155,46 @@ export abstract class BaseRepository<T extends DocumentData> {
   }
 
   /**
-   * Obtiene todos los documentos de la colección
+   * Convierte un DocumentSnapshot a objeto con ID
    */
-  async getAll(): Promise<T[]> {
+  protected docToObject(doc: QueryDocumentSnapshot | DocumentSnapshot): T {
+    return {
+      id: doc.id,
+      ...doc.data()
+    } as unknown as T;
+  }
+
+  /**
+   * Obtiene todos los documentos de la colección
+   * ⚠️ Usar con precaución en colecciones grandes
+   */
+  async getAll(options?: QueryOptions): Promise<T[]> {
     try {
       return await this.executeWithRetry(async () => {
-        const querySnapshot = await getDocs(collection(this.db, this.collectionName));
+        let query = this.collectionRef as any;
+
+        // Aplicar ordenamiento si está especificado
+        if (options?.orderByField) {
+          query = query.orderBy(
+            options.orderByField,
+            options.orderDirection || 'asc'
+          );
+        }
+
+        // Aplicar límite si está especificado
+        if (options?.limit) {
+          query = query.limit(options.limit);
+        }
+
+        const snapshot = await query.get();
 
         if (this.enableLogging) {
-          this.logger.debug(`Obtenidos ${querySnapshot.docs.length} documentos`, {
+          this.logger.debug(`Obtenidos ${snapshot.docs.length} documentos`, {
             collection: this.collectionName
           });
         }
 
-        return querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        } as unknown as T));
+        return snapshot.docs.map((doc: QueryDocumentSnapshot) => this.docToObject(doc));
       }, 'getAll');
     } catch (error) {
       this.handleError(error, 'getAll');
@@ -138,22 +209,25 @@ export abstract class BaseRepository<T extends DocumentData> {
 
     try {
       return await this.executeWithRetry(async () => {
-        const docRef = doc(this.db, this.collectionName, id);
-        const docSnap = await getDoc(docRef);
+        const docRef = this.collectionRef.doc(id);
+        const docSnap = await docRef.get();
 
-        if (!docSnap.exists()) {
+        if (!docSnap.exists) {
           if (this.throwOnNotFound) {
             throw new DocumentNotFoundError(id, this.collectionName);
           }
 
           if (this.enableLogging) {
-            this.logger.warn(`Documento no encontrado`, { id, collection: this.collectionName });
+            this.logger.warn(`Documento no encontrado`, {
+              id,
+              collection: this.collectionName
+            });
           }
 
           return null;
         }
 
-        return { id: docSnap.id, ...docSnap.data() } as unknown as T;
+        return this.docToObject(docSnap);
       }, 'getById');
     } catch (error) {
       if (error instanceof DocumentNotFoundError) {
@@ -175,14 +249,21 @@ export abstract class BaseRepository<T extends DocumentData> {
   }
 
   /**
-   * Crea un nuevo documento
+   * Crea un nuevo documento con ID autogenerado
    */
-  async create(data: WithFieldValue<T>): Promise<string> {
+  async create(data: Partial<T>): Promise<string> {
     this.validateData(data, 'create');
 
     try {
       return await this.executeWithRetry(async () => {
-        const docRef = await addDoc(collection(this.db, this.collectionName), data);
+        // Agregar timestamps automáticos
+        const dataWithTimestamps = {
+          ...data,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        };
+
+        const docRef = await this.collectionRef.add(dataWithTimestamps);
 
         if (this.enableLogging) {
           this.logger.info(`Documento creado exitosamente`, {
@@ -199,9 +280,39 @@ export abstract class BaseRepository<T extends DocumentData> {
   }
 
   /**
-   * Crea múltiples documentos en un batch
+   * Crea un documento con un ID específico
    */
-  async createBatch(dataArray: WithFieldValue<T>[]): Promise<string[]> {
+  async createWithId(id: string, data: Partial<T>): Promise<void> {
+    this.validateId(id, 'createWithId');
+    this.validateData(data, 'createWithId');
+
+    try {
+      await this.executeWithRetry(async () => {
+        const dataWithTimestamps = {
+          ...data,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        };
+
+        await this.collectionRef.doc(id).set(dataWithTimestamps);
+
+        if (this.enableLogging) {
+          this.logger.info(`Documento creado con ID específico`, {
+            id,
+            collection: this.collectionName
+          });
+        }
+      }, 'createWithId');
+    } catch (error) {
+      this.handleError(error, 'createWithId', { id, data });
+    }
+  }
+
+  /**
+   * Crea múltiples documentos en un batch
+   * Límite de Firebase: 500 operaciones por batch
+   */
+  async createBatch(dataArray: Partial<T>[]): Promise<string[]> {
     if (!dataArray || dataArray.length === 0) {
       throw new ValidationError('El array de datos no puede estar vacío');
     }
@@ -212,12 +323,18 @@ export abstract class BaseRepository<T extends DocumentData> {
 
     try {
       return await this.executeWithRetry(async () => {
-        const batch = writeBatch(this.db);
+        const batch = this.db.batch();
         const ids: string[] = [];
 
         dataArray.forEach(data => {
-          const docRef = doc(collection(this.db, this.collectionName));
-          batch.set(docRef, data);
+          const docRef = this.collectionRef.doc();
+          const dataWithTimestamps = {
+            ...data,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+          };
+
+          batch.set(docRef, dataWithTimestamps);
           ids.push(docRef.id);
         });
 
@@ -237,7 +354,7 @@ export abstract class BaseRepository<T extends DocumentData> {
   }
 
   /**
-   * Actualiza un documento existente
+   * Actualiza un documento existente (merge parcial)
    */
   async update(id: string, data: Partial<T>): Promise<void> {
     this.validateId(id, 'update');
@@ -245,8 +362,14 @@ export abstract class BaseRepository<T extends DocumentData> {
 
     try {
       await this.executeWithRetry(async () => {
-        const docRef = doc(this.db, this.collectionName, id);
-        await updateDoc(docRef, data as DocumentData);
+        const docRef = this.collectionRef.doc(id);
+
+        const dataWithTimestamp = {
+          ...data,
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        };
+
+        await docRef.update(dataWithTimestamp);
 
         if (this.enableLogging) {
           this.logger.info(`Documento actualizado exitosamente`, {
@@ -260,22 +383,47 @@ export abstract class BaseRepository<T extends DocumentData> {
     }
   }
 
+  /**
+   * Actualiza o crea un documento (upsert)
+   */
+  async upsert(id: string, data: Partial<T>): Promise<void> {
+    this.validateId(id, 'upsert');
+    this.validateData(data, 'upsert');
+
+    try {
+      await this.executeWithRetry(async () => {
+        const docRef = this.collectionRef.doc(id);
+
+        const dataWithTimestamps = {
+          ...data,
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        };
+
+        await docRef.set(dataWithTimestamps, { merge: true });
+
+        if (this.enableLogging) {
+          this.logger.info(`Documento actualizado/creado (upsert)`, {
+            id,
+            collection: this.collectionName
+          });
+        }
+      }, 'upsert');
+    } catch (error) {
+      this.handleError(error, 'upsert', { id, data });
+    }
+  }
 
   /**
-   * existsByField
-   * @param field - Nombre del campo
-   * @param value - Valor a buscar
-   * @returns Promise booleano indicando si existe un documento con el valor en el campo especificado
+   * Verifica si existe un documento con un campo específico
    */
   async existsByField(field: string, value: any): Promise<boolean> {
     try {
-      const querySnapshot = await getDocs(
-        query(
-          collection(this.db, this.collectionName),
-          where(field, '==', value)
-        )
-      );
-      return !querySnapshot.empty;
+      const snapshot = await this.collectionRef
+        .where(field, '==', value)
+        .limit(1)
+        .get();
+
+      return !snapshot.empty;
     } catch (error) {
       this.handleError(error, 'existsByField', { field, value });
     }
@@ -289,8 +437,8 @@ export abstract class BaseRepository<T extends DocumentData> {
 
     try {
       await this.executeWithRetry(async () => {
-        const docRef = doc(this.db, this.collectionName, id);
-        await deleteDoc(docRef);
+        const docRef = this.collectionRef.doc(id);
+        await docRef.delete();
 
         if (this.enableLogging) {
           this.logger.info(`Documento eliminado exitosamente`, {
@@ -318,11 +466,11 @@ export abstract class BaseRepository<T extends DocumentData> {
 
     try {
       await this.executeWithRetry(async () => {
-        const batch = writeBatch(this.db);
+        const batch = this.db.batch();
 
         ids.forEach(id => {
           this.validateId(id, 'deleteBatch');
-          const docRef = doc(this.db, this.collectionName, id);
+          const docRef = this.collectionRef.doc(id);
           batch.delete(docRef);
         });
 
@@ -340,32 +488,6 @@ export abstract class BaseRepository<T extends DocumentData> {
   }
 
   /**
-   * Ejecuta una consulta personalizada
-   */
-  async query(constraints: QueryConstraint[]): Promise<T[]> {
-    try {
-      return await this.executeWithRetry(async () => {
-        const q = query(collection(this.db, this.collectionName), ...constraints);
-        const querySnapshot = await getDocs(q);
-
-        if (this.enableLogging) {
-          this.logger.debug(`Query ejecutado con ${querySnapshot.docs.length} resultados`, {
-            collection: this.collectionName,
-            constraintsCount: constraints.length
-          });
-        }
-
-        return querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        } as unknown as T));
-      }, 'query');
-    } catch (error) {
-      this.handleError(error, 'query', { constraintsCount: constraints.length });
-    }
-  }
-
-  /**
    * Busca documentos por campo y valor
    */
   async findByField(field: string, value: any): Promise<T[]> {
@@ -373,7 +495,25 @@ export abstract class BaseRepository<T extends DocumentData> {
       throw new ValidationError('El nombre del campo no puede estar vacío', 'field');
     }
 
-    return this.query([where(field, '==', value)]);
+    try {
+      return await this.executeWithRetry(async () => {
+        const snapshot = await this.collectionRef
+          .where(field, '==', value)
+          .get();
+
+        if (this.enableLogging) {
+          this.logger.debug(`Query por campo ejecutado: ${snapshot.docs.length} resultados`, {
+            collection: this.collectionName,
+            field,
+            value
+          });
+        }
+
+        return snapshot.docs.map(doc => this.docToObject(doc));
+      }, 'findByField');
+    } catch (error) {
+      this.handleError(error, 'findByField', { field, value });
+    }
   }
 
   /**
@@ -385,6 +525,74 @@ export abstract class BaseRepository<T extends DocumentData> {
   }
 
   /**
+   * Ejecuta una consulta con múltiples condiciones
+   */
+  async findWhere(conditions: Array<{ field: string; operator: FirebaseFirestore.WhereFilterOp; value: any }>): Promise<T[]> {
+    try {
+      return await this.executeWithRetry(async () => {
+        let query = this.collectionRef as FirebaseFirestore.Query;
+
+        conditions.forEach(({ field, operator, value }) => {
+          query = query.where(field, operator, value);
+        });
+
+        const snapshot = await query.get();
+
+        if (this.enableLogging) {
+          this.logger.debug(`Query con múltiples condiciones: ${snapshot.docs.length} resultados`, {
+            collection: this.collectionName,
+            conditionsCount: conditions.length
+          });
+        }
+
+        return snapshot.docs.map(doc => this.docToObject(doc));
+      }, 'findWhere');
+    } catch (error) {
+      this.handleError(error, 'findWhere', { conditionsCount: conditions.length });
+    }
+  }
+
+  /**
+   * Obtiene documentos con paginación
+   */
+  async paginate(
+    pageSize: number = 20,
+    lastDocSnapshot?: QueryDocumentSnapshot,
+    options?: QueryOptions
+  ): Promise<PaginatedResult<T>> {
+    try {
+      return await this.executeWithRetry(async () => {
+        let query = this.collectionRef as FirebaseFirestore.Query;
+
+        // Ordenamiento
+        if (options?.orderByField) {
+          query = query.orderBy(options.orderByField, options.orderDirection || 'asc');
+        }
+
+        // Paginación
+        if (lastDocSnapshot) {
+          query = query.startAfter(lastDocSnapshot);
+        }
+
+        // Límite
+        query = query.limit(pageSize);
+
+        const snapshot = await query.get();
+        const data = snapshot.docs.map(doc => this.docToObject(doc));
+        const lastDoc = snapshot.docs[snapshot.docs.length - 1] || null;
+
+        return {
+          data,
+          lastDoc,
+          hasMore: snapshot.docs.length === pageSize,
+        };
+      }, 'paginate');
+    } catch (error) {
+      this.handleError(error, 'paginate', { pageSize });
+    }
+  }
+
+  /**
    * Verifica si existe un documento con el ID dado
    */
   async exists(id: string): Promise<boolean> {
@@ -392,9 +600,9 @@ export abstract class BaseRepository<T extends DocumentData> {
 
     try {
       return await this.executeWithRetry(async () => {
-        const docRef = doc(this.db, this.collectionName, id);
-        const docSnap = await getDoc(docRef);
-        return docSnap.exists();
+        const docRef = this.collectionRef.doc(id);
+        const docSnap = await docRef.get();
+        return docSnap.exists;
       }, 'exists');
     } catch (error) {
       this.handleError(error, 'exists', { id });
@@ -402,13 +610,14 @@ export abstract class BaseRepository<T extends DocumentData> {
   }
 
   /**
-   * Cuenta el número de documentos en la colección
+   * Cuenta el número total de documentos en la colección
+   * ⚠️ Puede ser costoso en colecciones grandes
    */
   async count(): Promise<number> {
     try {
       return await this.executeWithRetry(async () => {
-        const querySnapshot = await getDocs(collection(this.db, this.collectionName));
-        return querySnapshot.size;
+        const snapshot = await this.collectionRef.get();
+        return snapshot.size;
       }, 'count');
     } catch (error) {
       this.handleError(error, 'count');
@@ -416,17 +625,147 @@ export abstract class BaseRepository<T extends DocumentData> {
   }
 
   /**
-   * Cuenta documentos que cumplen con los constraints dados
+   * Cuenta documentos que cumplen con una condición
    */
-  async countWhere(constraints: QueryConstraint[]): Promise<number> {
+  async countWhere(field: string, operator: FirebaseFirestore.WhereFilterOp, value: any): Promise<number> {
     try {
       return await this.executeWithRetry(async () => {
-        const q = query(collection(this.db, this.collectionName), ...constraints);
-        const querySnapshot = await getDocs(q);
-        return querySnapshot.size;
+        const snapshot = await this.collectionRef
+          .where(field, operator, value)
+          .get();
+
+        return snapshot.size;
       }, 'countWhere');
     } catch (error) {
-      this.handleError(error, 'countWhere', { constraintsCount: constraints.length });
+      this.handleError(error, 'countWhere', { field, operator, value });
+    }
+  }
+
+  /**
+   * Incrementa un campo numérico
+   */
+  async increment(id: string, field: string, value: number = 1): Promise<void> {
+    this.validateId(id, 'increment');
+
+    try {
+      await this.executeWithRetry(async () => {
+        const docRef = this.collectionRef.doc(id);
+        await docRef.update({
+          [field]: admin.firestore.FieldValue.increment(value),
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        if (this.enableLogging) {
+          this.logger.debug(`Campo incrementado`, {
+            id,
+            field,
+            value,
+            collection: this.collectionName
+          });
+        }
+      }, 'increment');
+    } catch (error) {
+      this.handleError(error, 'increment', { id, field, value });
+    }
+  }
+
+  /**
+   * Agrega un elemento a un array
+   */
+  async arrayUnion(id: string, field: string, values: any[]): Promise<void> {
+    this.validateId(id, 'arrayUnion');
+
+    try {
+      await this.executeWithRetry(async () => {
+        const docRef = this.collectionRef.doc(id);
+        await docRef.update({
+          [field]: admin.firestore.FieldValue.arrayUnion(...values),
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        if (this.enableLogging) {
+          this.logger.debug(`Elementos agregados al array`, {
+            id,
+            field,
+            count: values.length,
+            collection: this.collectionName
+          });
+        }
+      }, 'arrayUnion');
+    } catch (error) {
+      this.handleError(error, 'arrayUnion', { id, field });
+    }
+  }
+
+  /**
+   * Elimina elementos de un array
+   */
+  async arrayRemove(id: string, field: string, values: any[]): Promise<void> {
+    this.validateId(id, 'arrayRemove');
+
+    try {
+      await this.executeWithRetry(async () => {
+        const docRef = this.collectionRef.doc(id);
+        await docRef.update({
+          [field]: admin.firestore.FieldValue.arrayRemove(...values),
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        if (this.enableLogging) {
+          this.logger.debug(`Elementos removidos del array`, {
+            id,
+            field,
+            count: values.length,
+            collection: this.collectionName
+          });
+        }
+      }, 'arrayRemove');
+    } catch (error) {
+      this.handleError(error, 'arrayRemove', { id, field });
+    }
+  }
+
+  /**
+   * Obtiene documentos creados después de una fecha
+   */
+  async getCreatedAfter(date: Date, limit?: number): Promise<T[]> {
+    try {
+      return await this.executeWithRetry(async () => {
+        let query = this.collectionRef
+          .where('createdAt', '>', admin.firestore.Timestamp.fromDate(date))
+          .orderBy('createdAt', 'desc') as FirebaseFirestore.Query;
+
+        if (limit) {
+          query = query.limit(limit);
+        }
+
+        const snapshot = await query.get();
+        return snapshot.docs.map(doc => this.docToObject(doc));
+      }, 'getCreatedAfter');
+    } catch (error) {
+      this.handleError(error, 'getCreatedAfter', { date });
+    }
+  }
+
+  /**
+   * Obtiene documentos actualizados después de una fecha
+   */
+  async getUpdatedAfter(date: Date, limit?: number): Promise<T[]> {
+    try {
+      return await this.executeWithRetry(async () => {
+        let query = this.collectionRef
+          .where('updatedAt', '>', admin.firestore.Timestamp.fromDate(date))
+          .orderBy('updatedAt', 'desc') as FirebaseFirestore.Query;
+
+        if (limit) {
+          query = query.limit(limit);
+        }
+
+        const snapshot = await query.get();
+        return snapshot.docs.map(doc => this.docToObject(doc));
+      }, 'getUpdatedAfter');
+    } catch (error) {
+      this.handleError(error, 'getUpdatedAfter', { date });
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase-admin/firestore';
 
 /**
  * Modelo de Firestore para una comuna dentro de una región
@@ -25,7 +25,7 @@ export interface RegionFirestore {
   /** Número de la región */
   numero: string;
   /** Número romano de la región */
-  numeroRomano: string;
+  numeroRomano?: string;
   /** Nombre de la región */
   nombre: string;
   /** Provincias que pertenecen a la región */

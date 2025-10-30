@@ -1,4 +1,4 @@
-import { Firestore } from 'firebase/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 import { BaseRepository } from '../base.repository';
 import { ProvinciaFirestore } from '../../collections/comunes/provincias.model';
 import { PROVINCIAS_COLLECTION } from '../../collections/comunes/collections.constants';

@@ -167,32 +167,6 @@ export const quickConnectionTest = async (): Promise<boolean> => {
 
 /**
  * Script ejecutable para pruebas rápidas
- * Ejecutar con: npx tsx src/functions/manual/firestore-connection-check.ts
+ * Ejecutar con: ts-node src/functions/manual/test-firestore-connection/firestore-connection-check.ts
+ * O crear un archivo de prueba separado que importe estas funciones
  */
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Verificación para ES Modules
-if (import.meta.url === `file://${__filename}`) {
-  console.log('🚀 Ejecutando pruebas de conexión Firebase...\n');
-
-  (async () => {
-    try {
-      // Test básico de Firestore
-      await testFirestoreConnection();
-
-      // Test de todos los servicios
-      console.log('─'.repeat(50));
-      await testAllFirebaseServices();
-
-      console.log('✅ ¡Todas las pruebas completadas!\n');
-      process.exit(0);
-    } catch (error) {
-      console.error('\n❌ Las pruebas fallaron\n');
-      process.exit(1);
-    }
-  })();
-}

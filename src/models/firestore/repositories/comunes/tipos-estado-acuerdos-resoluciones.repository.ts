@@ -1,4 +1,4 @@
-import { Firestore } from 'firebase/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 import { TipoEstadoAcuerdosResolucionesFirestore } from '@models/firestore/collections/comunes/tipos-estado-acuerdos-resoluciones.model';
 import { BaseRepository } from '../base.repository';
 import { TIPOS_ESTADO_ACUERDOS_RESOLUCIONES_COLLECTION } from '@models/firestore/collections/comunes/collections.constants';

@@ -1,4 +1,4 @@
-import { Firestore } from 'firebase/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 import { TipoEstadoFirestore } from '@models/firestore/collections/comunes/tipos-estado.model';
 import { BaseRepository } from '../base.repository';
 import { TIPOS_ESTADO_COLLECTION } from '@models/firestore/collections/comunes/collections.constants';

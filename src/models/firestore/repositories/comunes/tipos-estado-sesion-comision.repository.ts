@@ -1,4 +1,4 @@
-import { Firestore } from 'firebase/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 import { TipoEstadoSesionComisionFirestore } from '@models/firestore/collections/comunes/tipos-estado-sesion-comision.model';
 import { BaseRepository } from '../base.repository';
 import { TIPOS_ESTADO_SESION_COMISION_COLLECTION } from '@models/firestore/collections/comunes/collections.constants';

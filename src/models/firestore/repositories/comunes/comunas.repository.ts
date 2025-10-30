@@ -1,4 +1,4 @@
-import { Firestore } from 'firebase/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 import { BaseRepository } from '../base.repository';
 import { ComunaFirestore } from '../../collections/comunes/comunas.model';
 import { COMUNAS_COLLECTION } from '../../collections/comunes/collections.constants';

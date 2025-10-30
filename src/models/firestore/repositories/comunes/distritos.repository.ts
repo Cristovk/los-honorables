@@ -1,4 +1,4 @@
-import { Firestore } from 'firebase/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 import { BaseRepository } from '../base.repository';
 import { DistritoFirestore } from '../../collections/comunes/distritos.model';
 import { DISTRITOS_COLLECTION } from '../../collections/comunes/collections.constants';

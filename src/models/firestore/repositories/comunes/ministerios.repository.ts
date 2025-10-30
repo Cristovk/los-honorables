@@ -1,4 +1,4 @@
-import { Firestore } from 'firebase/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 import { BaseRepository } from '../base.repository';
 import { MinisterioFirestore } from '../../collections/comunes/ministerios.model';
 import { MINISTERIOS_COLLECTION } from '../../collections/comunes/collections.constants';

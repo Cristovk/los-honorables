@@ -1,4 +1,4 @@
-import { Firestore } from 'firebase/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 import { TipoCamaraOrigenFirestore } from '@models/firestore/collections/comunes/tipos-camara-origen.model';
 import { BaseRepository } from '../base.repository';
 import { TIPOS_CAMARA_ORIGEN_COLLECTION } from '@models/firestore/collections/comunes/collections.constants';

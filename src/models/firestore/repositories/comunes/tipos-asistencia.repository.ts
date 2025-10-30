@@ -1,4 +1,4 @@
-import { Firestore } from 'firebase/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 import { TipoAsistenciaFirestore } from '@models/firestore/collections/comunes/tipos-asistencia.model';
 import { BaseRepository } from '../base.repository';
 import { TIPOS_ASISTENCIA_COLLECTION } from '@models/firestore/collections/comunes/collections.constants';
@@ -17,7 +17,7 @@ export class TiposAsistenciaRepository extends BaseRepository<TipoAsistenciaFire
    * @returns Promise con los tipos de asistencia encontrados
    */
   async findByNombre(nombre: string): Promise<TipoAsistenciaFirestore[]> {
-    return this.findByField('nombre', '==', nombre);
+    return this.findByField('nombre', nombre);
   }
 
   /**
@@ -26,7 +26,7 @@ export class TiposAsistenciaRepository extends BaseRepository<TipoAsistenciaFire
    * @returns Promise con el tipo de asistencia encontrado o null
    */
   async findOneById(id: string): Promise<TipoAsistenciaFirestore | null> {
-    return this.findOneByField('id', '==', id);
+    return this.findOneByField('id', id);
   }
 
   /**
@@ -35,7 +35,7 @@ export class TiposAsistenciaRepository extends BaseRepository<TipoAsistenciaFire
    * @returns Promise booleano indicando si existe
    */
   async existsById(id: string): Promise<boolean> {
-    return this.existsByField('id', '==', id);
+    return this.existsByField('id', id);
   }
 
   /**
@@ -44,6 +44,6 @@ export class TiposAsistenciaRepository extends BaseRepository<TipoAsistenciaFire
    * @returns Promise booleano indicando si existe
    */
   async existsByNombre(nombre: string): Promise<boolean> {
-    return this.existsByField('nombre', '==', nombre);
+    return this.existsByField('nombre', nombre);
   }
 }

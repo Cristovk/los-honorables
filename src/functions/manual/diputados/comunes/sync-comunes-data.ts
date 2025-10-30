@@ -1,8 +1,7 @@
-import { Firestore, Timestamp } from 'firebase/firestore';
-import { getFirestore } from 'firebase/firestore';
-import { initializeApp } from 'firebase/app';
-import { getProjectInfo } from '@cloud/firebaseConfig';
-import { fetchAndProcessXml } from '@utils/xmlToJson';
+import * as functions from 'firebase-functions/v1';
+import * as admin from 'firebase-admin';
+import { Timestamp } from 'firebase-admin/firestore';
+import { fetchAndProcessXml } from "@utils/xmlToJson";
 import { CONFIG } from '@config/endpoints-config';
 import { createLogger } from '@services/logging/console-logger.service';
 
@@ -20,29 +19,12 @@ import { ProvinciaFirestore } from '@models/firestore/collections/comunes/provin
 import { RegionFirestore } from '@models/firestore/collections/comunes/regiones.model';
 import { MinisterioFirestore } from '@models/firestore/collections/comunes/ministerios.model';
 
-// Importar interfaces de respuesta
-import {
-  ComunasResponse,
-  DistritosResponse,
-  ProvinciasResponse,
-  RegionesResponse,
-  MinisteriosResponse
-} from '@interface/external/camara-diputados/comunes';
+
 
 const logger = createLogger({ serviceName: 'sync-comunes-data', enabled: true });
 
-/**
- * Configuración de Firebase
- */
-const projectInfo = getProjectInfo();
-const firebaseConfig = {
-  projectId: projectInfo.projectId,
-  // Otras configuraciones si son necesarias
-};
-
-// Inicializar Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// Inicializar Firebase Admin (ya debería estar inicializado en el contexto de Cloud Functions)
+const db = admin.firestore();
 
 /**
  * Mapea datos de comuna de la API a Firestore
@@ -128,7 +110,7 @@ function mapRegionToFirestore(regionData: any): RegionFirestore {
  */
 function mapMinisterioToFirestore(ministerioData: any): MinisterioFirestore {
   return {
-    numero: ministerioData.Numero?.toString() || '',
+    id: ministerioData.Numero?.toString() || '', // Usar el número como ID
     nombre: ministerioData.Nombre?.toString() || '',
     createdAt: Timestamp.now(),
     updatedAt: Timestamp.now(),
@@ -167,7 +149,7 @@ async function syncComunas(): Promise<void> {
     // Eliminar datos existentes antes de insertar nuevos
     const existingComunas = await comunasRepository.getAll();
     if (existingComunas.length > 0) {
-      const ids = existingComunas.map(c => c.id!).filter(Boolean);
+      const ids = existingComunas.map(c => c.numero!).filter(Boolean);
       await comunasRepository.deleteBatch(ids);
       logger.info(`Eliminadas ${ids.length} comunas existentes`);
     }
@@ -179,7 +161,7 @@ async function syncComunas(): Promise<void> {
     logger.info(`Sincronizadas ${insertedIds.length} comunas exitosamente`);
 
   } catch (error) {
-    logger.error('Error sincronizando comunas:', { error: error instanceof Error ? error.message : 'Error desconocido' });
+    logger.error('Error sincronizando comunas:', error instanceof Error ? error : new Error('Error desconocido'));
     throw error;
   }
 }
@@ -211,7 +193,7 @@ async function syncDistritos(): Promise<void> {
     // Eliminar datos existentes antes de insertar nuevos
     const existingDistritos = await distritosRepository.getAll();
     if (existingDistritos.length > 0) {
-      const ids = existingDistritos.map(d => d.id!).filter(Boolean);
+      const ids = existingDistritos.map(d => d.numero!).filter(Boolean);
       await distritosRepository.deleteBatch(ids);
       logger.info(`Eliminados ${ids.length} distritos existentes`);
     }
@@ -223,7 +205,7 @@ async function syncDistritos(): Promise<void> {
     logger.info(`Sincronizados ${insertedIds.length} distritos exitosamente`);
 
   } catch (error) {
-    logger.error('Error sincronizando distritos:', { error: error instanceof Error ? error.message : 'Error desconocido' });
+    logger.error('Error sincronizando distritos:', error instanceof Error ? error : new Error('Error desconocido'));
     throw error;
   }
 }
@@ -255,7 +237,7 @@ async function syncProvincias(): Promise<void> {
     // Eliminar datos existentes antes de insertar nuevos
     const existingProvincias = await provinciasRepository.getAll();
     if (existingProvincias.length > 0) {
-      const ids = existingProvincias.map(p => p.id!).filter(Boolean);
+      const ids = existingProvincias.map(p => p.numero!).filter(Boolean);
       await provinciasRepository.deleteBatch(ids);
       logger.info(`Eliminadas ${ids.length} provincias existentes`);
     }
@@ -267,7 +249,7 @@ async function syncProvincias(): Promise<void> {
     logger.info(`Sincronizadas ${insertedIds.length} provincias exitosamente`);
 
   } catch (error) {
-    logger.error('Error sincronizando provincias:', { error: error instanceof Error ? error.message : 'Error desconocido' });
+    logger.error('Error sincronizando provincias:', error instanceof Error ? error : new Error('Error desconocido'));
     throw error;
   }
 }
@@ -299,7 +281,7 @@ async function syncRegiones(): Promise<void> {
     // Eliminar datos existentes antes de insertar nuevos
     const existingRegiones = await regionesRepository.getAll();
     if (existingRegiones.length > 0) {
-      const ids = existingRegiones.map(r => r.id!).filter(Boolean);
+      const ids = existingRegiones.map(r => r.numero!).filter(Boolean);
       await regionesRepository.deleteBatch(ids);
       logger.info(`Eliminadas ${ids.length} regiones existentes`);
     }
@@ -311,7 +293,7 @@ async function syncRegiones(): Promise<void> {
     logger.info(`Sincronizadas ${insertedIds.length} regiones exitosamente`);
 
   } catch (error) {
-    logger.error('Error sincronizando regiones:', { error: error instanceof Error ? error.message : 'Error desconocido' });
+    logger.error('Error sincronizando regiones:', error instanceof Error ? error : new Error('Error desconocido'));
     throw error;
   }
 }
@@ -355,7 +337,7 @@ async function syncMinisterios(): Promise<void> {
     logger.info(`Sincronizados ${insertedIds.length} ministerios exitosamente`);
 
   } catch (error) {
-    logger.error('Error sincronizando ministerios:', { error: error instanceof Error ? error.message : 'Error desconocido' });
+    logger.error('Error sincronizando ministerios:', error instanceof Error ? error : new Error('Error desconocido'));
     throw error;
   }
 }
@@ -377,26 +359,71 @@ export async function syncAllComunesData(): Promise<void> {
     logger.info('Sincronización completa de datos comunes finalizada exitosamente');
 
   } catch (error) {
-    logger.error('Error en sincronización completa:', { error: error instanceof Error ? error.message : 'Error desconocido' });
+    logger.error('Error en sincronización completa:', error instanceof Error ? error : new Error('Error desconocido'));
     throw error;
   }
 }
 
 /**
- * Función para ejecutar desde línea de comandos
+ * Cloud Function para sincronizar datos comunes de la Cámara de Diputados
+ * Se puede invocar mediante HTTP o programación
  */
-async function main() {
-  try {
-    await syncAllComunesData();
-    console.log('✅ Sincronización completada exitosamente');
-    process.exit(0);
-  } catch (error) {
-    console.error('❌ Error en sincronización:', error instanceof Error ? error.message : 'Error desconocido');
-    process.exit(1);
-  }
-}
+export const syncComunesData = functions
+  .region('southamerica-east1') // Ajustar región según necesidad
+  .https.onRequest(async (request, response) => {
+    // Configurar CORS para permitir llamadas desde diferentes orígenes
+    response.set('Access-Control-Allow-Origin', '*');
 
-// Ejecutar si se llama directamente
-if (require.main === module) {
-  main();
-}
+    if (request.method === 'OPTIONS') {
+      response.set('Access-Control-Allow-Methods', 'GET, POST');
+      response.set('Access-Control-Allow-Headers', 'Content-Type');
+      response.status(204).send('');
+      return;
+    }
+
+    try {
+      logger.info('Iniciando sincronización de datos comunes via Cloud Function');
+
+      await syncAllComunesData();
+
+      logger.info('Sincronización completada exitosamente');
+      response.status(200).json({
+        success: true,
+        message: 'Sincronización de datos comunes completada exitosamente',
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      logger.error('Error en sincronización:', error instanceof Error ? error : new Error(errorMessage));
+
+      response.status(500).json({
+        success: false,
+        message: 'Error en sincronización de datos comunes',
+        error: errorMessage,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
+/**
+ * Cloud Function programada para sincronización automática
+ * Ejemplo: ejecutar diariamente a las 3:00 AM
+ */
+export const scheduledSyncComunesData = functions
+  .region('southamerica-east1')
+  .pubsub.schedule('0 3 * * *') // Todos los días a las 3:00 AM
+  .timeZone('America/Santiago')
+  .onRun(async (context) => {
+    try {
+      logger.info('Iniciando sincronización programada de datos comunes');
+
+      await syncAllComunesData();
+
+      logger.info('Sincronización programada completada exitosamente');
+      return null;
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      logger.error('Error en sincronización programada:', error instanceof Error ? error : new Error(errorMessage));
+      throw error;
+    }
+  });

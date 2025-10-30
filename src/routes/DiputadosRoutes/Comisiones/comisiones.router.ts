@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
 import { fetchAndProcessXml } from "@utils/xmlToJson";
 import { CONFIG } from "@config/endpoints-config";
-import { 
-  ComisionSesionesXComisionYAnnoRequest, 
-  ComisionDetalleRequest, 
-  ComisionPorPeriodoRequest 
+import {
+  ComisionSesionesXComisionYAnnoRequest,
+  ComisionDetalleRequest,
+  ComisionPorPeriodoRequest
 } from "@interface/request.interface";
 
 const router = Router();
