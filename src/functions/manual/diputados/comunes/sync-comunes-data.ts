@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions/v1';
 import * as admin from 'firebase-admin';
-import { Timestamp } from 'firebase-admin/firestore';
+import { Timestamp, FieldValue } from 'firebase-admin/firestore';
 import { fetchAndProcessXml } from "@utils/xmlToJson";
 import { CONFIG } from '@config/endpoints-config';
 import { createLogger } from '@services/logging/console-logger.service';
@@ -29,12 +29,10 @@ const db = admin.firestore();
 /**
  * Mapea datos de comuna de la API a Firestore
  */
-function mapComunaToFirestore(comunaData: any): ComunaFirestore {
+function mapComunaToFirestore(comunaData: any): Partial<ComunaFirestore> {
   return {
     numero: comunaData.Numero?.toString() || '',
     nombre: comunaData.Nombre?.toString() || '',
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
     metadata: {
       source: 'camara-diputados',
       endpoint: 'comun_comunas',
@@ -46,15 +44,13 @@ function mapComunaToFirestore(comunaData: any): ComunaFirestore {
 /**
  * Mapea datos de distrito de la API a Firestore
  */
-function mapDistritoToFirestore(distritoData: any): DistritoFirestore {
+function mapDistritoToFirestore(distritoData: any): Partial<DistritoFirestore> {
   return {
     numero: distritoData.Numero?.toString() || '',
     comunas: distritoData.Comunas?.Comuna?.map((comuna: any) => ({
       numero: comuna.Numero?.toString() || '',
       nombre: comuna.Nombre?.toString() || ''
     })) || [],
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
     metadata: {
       source: 'camara-diputados',
       endpoint: 'comun_distritos',
@@ -66,12 +62,10 @@ function mapDistritoToFirestore(distritoData: any): DistritoFirestore {
 /**
  * Mapea datos de provincia de la API a Firestore
  */
-function mapProvinciaToFirestore(provinciaData: any): ProvinciaFirestore {
+function mapProvinciaToFirestore(provinciaData: any): Partial<ProvinciaFirestore> {
   return {
     numero: provinciaData.Numero?.toString() || '',
     nombre: provinciaData.Nombre?.toString() || '',
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
     metadata: {
       source: 'camara-diputados',
       endpoint: 'comun_provincias',
@@ -83,7 +77,7 @@ function mapProvinciaToFirestore(provinciaData: any): ProvinciaFirestore {
 /**
  * Mapea datos de región de la API a Firestore
  */
-function mapRegionToFirestore(regionData: any): RegionFirestore {
+function mapRegionToFirestore(regionData: any): Partial<RegionFirestore> {
   return {
     numero: regionData.Numero?.toString() || '',
     nombre: regionData.Nombre?.toString() || '',
@@ -95,8 +89,6 @@ function mapRegionToFirestore(regionData: any): RegionFirestore {
         nombre: comuna.Nombre?.toString() || ''
       })) || []
     })) || [],
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
     metadata: {
       source: 'camara-diputados',
       endpoint: 'comun_regiones',
@@ -108,12 +100,10 @@ function mapRegionToFirestore(regionData: any): RegionFirestore {
 /**
  * Mapea datos de ministerio de la API a Firestore
  */
-function mapMinisterioToFirestore(ministerioData: any): MinisterioFirestore {
+function mapMinisterioToFirestore(ministerioData: any): Partial<MinisterioFirestore> {
   return {
     id: ministerioData.Numero?.toString() || '', // Usar el número como ID
     nombre: ministerioData.Nombre?.toString() || '',
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
     metadata: {
       source: 'camara-diputados',
       endpoint: 'comun_ministerios',
@@ -154,9 +144,16 @@ async function syncComunas(): Promise<void> {
       logger.info(`Eliminadas ${ids.length} comunas existentes`);
     }
 
-    // Insertar nuevas comunas
+    // Insertar nuevas comunas usando el método corregido
     const comunasToInsert = comunasData.map(mapComunaToFirestore);
-    const insertedIds = await comunasRepository.createBatch(comunasToInsert);
+    
+    // Usar createBatch (ya corregido) o createBatchChunked para mayor confiabilidad
+    const insertedIds = await comunasRepository.createBatchChunked(comunasToInsert, {
+      chunkSize: 400,
+      onProgress: (completed, total) => {
+        logger.info(`Progreso comunas: ${completed}/${total}`);
+      }
+    });
 
     logger.info(`Sincronizadas ${insertedIds.length} comunas exitosamente`);
 

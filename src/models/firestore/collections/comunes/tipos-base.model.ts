@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase-admin/firestore';
+import { Timestamp, FieldValue } from 'firebase-admin/firestore';
 
 /**
  * Modelo base para tipos comunes en Firestore
@@ -9,9 +9,9 @@ export interface TipoBaseFirestore {
   /** Nombre descriptivo del tipo */
   nombre: string;
   /** Fecha de creación en Firestore */
-  createdAt: Timestamp;
+  createdAt: Timestamp | FieldValue;
   /** Fecha de última actualización */
-  updatedAt: Timestamp;
+  updatedAt: Timestamp | FieldValue;
   /** Metadata de la fuente de datos */
   metadata: {
     /** Fuente de los datos */

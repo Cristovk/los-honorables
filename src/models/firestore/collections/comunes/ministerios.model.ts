@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase-admin/firestore';
+import { Timestamp, FieldValue } from 'firebase-admin/firestore';
 
 /**
  * Modelo de Firestore para un ministerio chileno
@@ -10,9 +10,9 @@ export interface MinisterioFirestore {
   /** Nombre completo del ministerio */
   nombre: string;
   /** Fecha de creación en Firestore */
-  createdAt: Timestamp;
+  createdAt: Timestamp | FieldValue;
   /** Fecha de última actualización */
-  updatedAt: Timestamp;
+  updatedAt: Timestamp | FieldValue;
   /** Metadata de la fuente de datos */
   metadata: {
     /** Fuente de los datos */

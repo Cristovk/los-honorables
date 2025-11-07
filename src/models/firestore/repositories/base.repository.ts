@@ -256,14 +256,8 @@ export abstract class BaseRepository<T extends DocumentData> {
 
     try {
       return await this.executeWithRetry(async () => {
-        // Agregar timestamps automáticos
-        const dataWithTimestamps = {
-          ...data,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        };
-
-        const docRef = await this.collectionRef.add(dataWithTimestamps);
+        // Crear documento sin timestamps automáticos
+        const docRef = await this.collectionRef.add(data);
 
         if (this.enableLogging) {
           this.logger.info(`Documento creado exitosamente`, {
@@ -288,13 +282,8 @@ export abstract class BaseRepository<T extends DocumentData> {
 
     try {
       await this.executeWithRetry(async () => {
-        const dataWithTimestamps = {
-          ...data,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        };
-
-        await this.collectionRef.doc(id).set(dataWithTimestamps);
+        // Crear documento sin timestamps automáticos
+        await this.collectionRef.doc(id).set(data);
 
         if (this.enableLogging) {
           this.logger.info(`Documento creado con ID específico`, {
@@ -328,13 +317,10 @@ export abstract class BaseRepository<T extends DocumentData> {
 
         dataArray.forEach(data => {
           const docRef = this.collectionRef.doc();
-          const dataWithTimestamps = {
-            ...data,
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
-            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-          };
-
-          batch.set(docRef, dataWithTimestamps);
+          
+          // Crear documento sin timestamps automáticos
+          batch.set(docRef, data as T);
+          
           ids.push(docRef.id);
         });
 
@@ -350,6 +336,221 @@ export abstract class BaseRepository<T extends DocumentData> {
       }, 'createBatch');
     } catch (error) {
       this.handleError(error, 'createBatch', { count: dataArray.length });
+    }
+  }
+
+  /**
+   * Crea múltiples documentos en un batch sin timestamps automáticos
+   * Útil cuando los datos ya incluyen timestamps o se requiere control manual
+   */
+  async createBatchRaw(dataArray: Partial<T>[]): Promise<string[]> {
+    if (!dataArray || dataArray.length === 0) {
+      throw new ValidationError('El array de datos no puede estar vacío');
+    }
+
+    if (dataArray.length > 500) {
+      throw new ValidationError('No se pueden crear más de 500 documentos en un batch');
+    }
+
+    try {
+      return await this.executeWithRetry(async () => {
+        const batch = this.db.batch();
+        const ids: string[] = [];
+
+        dataArray.forEach(data => {
+          const docRef = this.collectionRef.doc();
+          batch.set(docRef, data as T);
+          ids.push(docRef.id);
+        });
+
+        await batch.commit();
+
+        if (this.enableLogging) {
+          this.logger.info(`${dataArray.length} documentos creados en batch (raw)`, {
+            collection: this.collectionName
+          });
+        }
+
+        return ids;
+      }, 'createBatchRaw');
+    } catch (error) {
+      this.handleError(error, 'createBatchRaw', { count: dataArray.length });
+    }
+  }
+
+  /**
+   * Crea múltiples documentos usando server timestamps verdaderos
+   * Más lento pero garantiza timestamps del servidor
+   */
+  async createBatchWithServerTimestamps(dataArray: Partial<T>[]): Promise<string[]> {
+    if (!dataArray || dataArray.length === 0) {
+      throw new ValidationError('El array de datos no puede estar vacío');
+    }
+
+    try {
+      return await this.executeWithRetry(async () => {
+        const ids: string[] = [];
+        
+        // Procesar en chunks para evitar límites de Firestore
+        const chunkSize = 100;
+        for (let i = 0; i < dataArray.length; i += chunkSize) {
+          const chunk = dataArray.slice(i, i + chunkSize);
+          const promises = chunk.map(async (data) => {
+            const docRef = this.collectionRef.doc();
+            await docRef.set({
+              ...data,
+              createdAt: admin.firestore.FieldValue.serverTimestamp(),
+              updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            });
+            return docRef.id;
+          });
+          
+          const chunkIds = await Promise.all(promises);
+          ids.push(...chunkIds);
+        }
+
+        if (this.enableLogging) {
+          this.logger.info(`${dataArray.length} documentos creados con server timestamps`, {
+            collection: this.collectionName
+          });
+        }
+
+        return ids;
+      }, 'createBatchWithServerTimestamps');
+    } catch (error) {
+      this.handleError(error, 'createBatchWithServerTimestamps', { count: dataArray.length });
+    }
+  }
+
+  /**
+   * Crea múltiples documentos de forma individual con control de concurrencia
+   * Más lento pero más confiable para grandes volúmenes de datos
+   */
+  async createIndividual(
+    dataArray: Partial<T>[],
+    options: { 
+      concurrency?: number; 
+      onProgress?: (completed: number, total: number) => void;
+    } = {}
+  ): Promise<string[]> {
+    if (!dataArray || dataArray.length === 0) {
+      throw new ValidationError('El array de datos no puede estar vacío');
+    }
+
+    const { concurrency = 10, onProgress } = options;
+
+    try {
+      return await this.executeWithRetry(async () => {
+        const ids: string[] = [];
+
+        // Procesar en chunks con control de concurrencia
+        for (let i = 0; i < dataArray.length; i += concurrency) {
+          const chunk = dataArray.slice(i, i + concurrency);
+          
+          const promises = chunk.map(async (data) => {
+            const docRef = this.collectionRef.doc();
+            
+            // Crear documento sin timestamps automáticos
+            await docRef.set(data);
+            return docRef.id;
+          });
+
+          const chunkIds = await Promise.all(promises);
+          ids.push(...chunkIds);
+
+          // Reportar progreso si se proporciona callback
+          if (onProgress) {
+            onProgress(ids.length, dataArray.length);
+          }
+
+          if (this.enableLogging && i % 100 === 0) {
+            this.logger.debug(`Progreso: ${ids.length}/${dataArray.length} documentos creados`, {
+              collection: this.collectionName
+            });
+          }
+        }
+
+        if (this.enableLogging) {
+          this.logger.info(`${dataArray.length} documentos creados individualmente`, {
+            collection: this.collectionName,
+            concurrency
+          });
+        }
+
+        return ids;
+      }, 'createIndividual');
+    } catch (error) {
+      this.handleError(error, 'createIndividual', { count: dataArray.length, concurrency });
+    }
+  }
+
+  /**
+   * Crea múltiples documentos usando batch inteligente por chunks
+   * Combina la eficiencia de batch con la confiabilidad de chunks
+   */
+  async createBatchChunked(
+    dataArray: Partial<T>[],
+    options: {
+      chunkSize?: number;
+      onProgress?: (completed: number, total: number) => void;
+    } = {}
+  ): Promise<string[]> {
+    if (!dataArray || dataArray.length === 0) {
+      throw new ValidationError('El array de datos no puede estar vacío');
+    }
+
+    const { chunkSize = 450, onProgress } = options;
+
+    try {
+      return await this.executeWithRetry(async () => {
+        const allIds: string[] = [];
+
+        // Procesar en chunks para evitar límites de Firestore
+        for (let i = 0; i < dataArray.length; i += chunkSize) {
+          const chunk = dataArray.slice(i, i + chunkSize);
+          const batch = this.db.batch();
+          const chunkIds: string[] = [];
+
+          chunk.forEach(data => {
+            const docRef = this.collectionRef.doc();
+            
+            // Crear documento sin timestamps automáticos
+            batch.set(docRef, data as T);
+            chunkIds.push(docRef.id);
+          });
+
+          await batch.commit();
+          allIds.push(...chunkIds);
+
+          // Reportar progreso
+          if (onProgress) {
+            onProgress(allIds.length, dataArray.length);
+          }
+
+          if (this.enableLogging) {
+            this.logger.debug(`Chunk procesado: ${allIds.length}/${dataArray.length} documentos`, {
+              collection: this.collectionName,
+              chunkSize: chunk.length
+            });
+          }
+
+          // Pequeña pausa entre chunks para evitar throttling
+          if (i + chunkSize < dataArray.length) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+          }
+        }
+
+        if (this.enableLogging) {
+          this.logger.info(`${dataArray.length} documentos creados en batch chunked`, {
+            collection: this.collectionName,
+            totalChunks: Math.ceil(dataArray.length / chunkSize)
+          });
+        }
+
+        return allIds;
+      }, 'createBatchChunked');
+    } catch (error) {
+      this.handleError(error, 'createBatchChunked', { count: dataArray.length, chunkSize });
     }
   }
 

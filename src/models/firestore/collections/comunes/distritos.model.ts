@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase-admin/firestore';
+import { Timestamp, FieldValue } from 'firebase-admin/firestore';
 
 /**
  * Modelo de Firestore para una comuna dentro de un distrito
@@ -17,10 +17,10 @@ export interface DistritoFirestore {
   numero: string;
   /** Comunas que pertenecen al distrito */
   comunas: ComunaDistritoFirestore[];
-  /** Fecha de creación en Firestore */
-  createdAt: Timestamp;
-  /** Fecha de última actualización */
-  updatedAt: Timestamp;
+  /** Fecha de creación en Firestore (puede ser Timestamp o FieldValue para server timestamp) */
+  createdAt: Timestamp | FieldValue;
+  /** Fecha de última actualización (puede ser Timestamp o FieldValue para server timestamp) */
+  updatedAt: Timestamp | FieldValue;
   /** Metadata de la fuente de datos */
   metadata: {
     /** Fuente de los datos */

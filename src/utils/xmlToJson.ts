@@ -54,22 +54,27 @@ class SimpleXmlParser {
   private parseElement(xml: string): any {
     xml = xml.trim();
 
-    // Extraer el tag raíz
+    // Extraer el tag raíz (soportando namespaces)
     const tagMatch = xml.match(/^<([^\s>\/]+)/);
     if (!tagMatch) return null;
 
     const tagName = tagMatch[1];
+    
+    // Escapar caracteres especiales en el tagName para usarlo en regex
+    const escapedTagName = tagName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-    // Extraer atributos
-    const attrsMatch = xml.match(new RegExp(`^<${tagName}([^>]*)>`));
+    // Extraer atributos (soportando namespaces como xmlns:xsi)
+    // Buscar hasta el primer > que no esté precedido por /
+    const openTagMatch = xml.match(/^<[^>]+>/);
     const attributes: Record<string, string> = {};
 
-    if (attrsMatch && attrsMatch[1]) {
-      const attrString = attrsMatch[1];
-      const attrRegex = /(\w+)=["']([^"']*)["']/g;
+    if (openTagMatch) {
+      const openTag = openTagMatch[0];
+      // Regex actualizado para soportar atributos con : (namespaces)
+      const attrRegex = /([\w:]+)=["']([^"']*)["']/g;
       let attrMatch;
 
-      while ((attrMatch = attrRegex.exec(attrString)) !== null) {
+      while ((attrMatch = attrRegex.exec(openTag)) !== null) {
         attributes[attrMatch[1]] = attrMatch[2];
       }
     }
@@ -94,11 +99,19 @@ class SimpleXmlParser {
       return result;
     }
 
-    // Extraer el contenido entre tags
-    const contentRegex = new RegExp(`^<${tagName}[^>]*>([\\s\\S]*)<\\/${tagName}>$`);
+    // Extraer el contenido entre tags usando el tagName escapado
+    const contentRegex = new RegExp(`^<${escapedTagName}(?:\\s[^>]*)?>(.*)<\\/${escapedTagName}>$`, 's');
     const contentMatch = xml.match(contentRegex);
 
     if (!contentMatch) {
+      console.error('DEBUG - Failed to match:', {
+        tagName,
+        escapedTagName,
+        xmlLength: xml.length,
+        xmlStart: xml.substring(0, 100),
+        xmlEnd: xml.substring(xml.length - 100),
+        regexPattern: `^<${escapedTagName}(?:\\s[^>]*)?>(.*)<\\/${escapedTagName}>$`
+      });
       throw new Error(`Malformed XML: closing tag not found for ${tagName}`);
     }
 
@@ -112,11 +125,13 @@ class SimpleXmlParser {
 
       if (!this.ignoreAttrs && Object.keys(attributes).length > 0) {
         if (this.mergeAttrs) {
+          // Cuando mergeAttrs es true, agregar atributos al objeto y el texto como "_"
           Object.assign(obj, attributes);
+          obj._ = textContent;
         } else {
           obj.$ = attributes;
+          obj._ = textContent;
         }
-        obj._ = textContent;
       } else {
         if (this.explicitRoot) {
           return { [tagName]: textContent };
@@ -177,51 +192,57 @@ class SimpleXmlParser {
 
   private parseChildren(content: string): string[] {
     const children: string[] = [];
-    let depth = 0;
-    let currentChild = '';
     let i = 0;
-
-    while (i < content.length) {
-      const char = content[i];
-
-      if (char === '<') {
-        // Verificar si es un tag de apertura o cierre
-        if (content[i + 1] === '/') {
-          depth--;
-          currentChild += char;
-        } else if (content[i + 1] !== '!' && content[i + 1] !== '?') {
-          if (depth === 0 && currentChild.trim()) {
-            // Guardar el hijo anterior si existe
-            children.push(currentChild.trim());
-            currentChild = '';
-          }
-          depth++;
-          currentChild += char;
-        } else {
-          currentChild += char;
-        }
-      } else {
-        currentChild += char;
-      }
-
-      // Si volvemos a profundidad 0, guardamos el elemento
-      if (depth === 0 && currentChild.trim() && currentChild.includes('>')) {
-        const trimmed = currentChild.trim();
-        if (trimmed.startsWith('<')) {
-          children.push(trimmed);
-          currentChild = '';
-        }
-      }
-
+    
+    // Saltar espacios en blanco iniciales
+    while (i < content.length && /\s/.test(content[i])) {
       i++;
     }
 
-    // Agregar el último hijo si existe
-    if (currentChild.trim() && currentChild.includes('<')) {
-      children.push(currentChild.trim());
+    while (i < content.length) {
+      // Si encontramos un tag de apertura
+      if (content[i] === '<' && content[i + 1] !== '/' && content[i + 1] !== '!' && content[i + 1] !== '?') {
+        // Extraer el nombre del tag
+        const tagNameMatch = content.substring(i).match(/^<([^\s>\/]+)/);
+        if (!tagNameMatch) {
+          i++;
+          continue;
+        }
+        
+        const tagName = tagNameMatch[1];
+        const startPos = i;
+        let depth = 1;
+        i++; // Saltar el '<' inicial
+        
+        // Buscar el cierre de este elemento
+        while (i < content.length && depth > 0) {
+          if (content[i] === '<') {
+            if (content.substring(i).startsWith(`</${tagName}>`)) {
+              depth--;
+              if (depth === 0) {
+                // Incluir el tag de cierre completo
+                i += `</${tagName}>`.length;
+                children.push(content.substring(startPos, i));
+                break;
+              }
+            } else if (content.substring(i).match(new RegExp(`^<${tagName}[\\s>]`))) {
+              // Encontramos otro tag con el mismo nombre (anidado)
+              depth++;
+            }
+          }
+          i++;
+        }
+        
+        // Saltar espacios en blanco
+        while (i < content.length && /\s/.test(content[i])) {
+          i++;
+        }
+      } else {
+        i++;
+      }
     }
 
-    return children.filter(child => child.startsWith('<'));
+    return children;
   }
 }
 
@@ -254,10 +275,16 @@ export const fetchAndProcessXml = async (url: string): Promise<any> => {
     }
 
     const xmlText = await response.text();
+    console.log('XML recibido:', xmlText.substring(0, 500));
+    
     const jsonData = await convertXmlToJson(xmlText);
-
+    console.log('JSON parseado:', JSON.stringify(jsonData, null, 2));
+    
     // Aplicar transformaciones automáticas a los datos
-    return processXmlDataRecursively(jsonData);
+    const transformed = processXmlDataRecursively(jsonData);
+    console.log('JSON transformado:', JSON.stringify(transformed, null, 2));
+    
+    return transformed;
   } catch (error) {
     console.error('Error fetching or converting XML:', error);
     throw error;

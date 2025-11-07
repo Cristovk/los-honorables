@@ -438,10 +438,12 @@ router.get("/tiposEstadoAcuerdosResoluciones", async (req: Request, res: Respons
       });
   }
 });
-
+//<TiposIniciativaProyectoLeyResponse
 /* Tipos de Iniciativa de Proyecto de Ley */
+// Tipos de Iniciativa de Proyecto de Ley
 router.get("/tiposIniciativaProyectoLey", async (req: Request, res: Response<TiposIniciativaProyectoLeyResponse>) => {
   try {
+    console.log("comun_tipos_iniciativa_proyecto_ley");
     const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_iniciativa_proyecto_ley");
     if (!endpoint) {
       res.status(404).json({
@@ -466,6 +468,38 @@ router.get("/tiposIniciativaProyectoLey", async (req: Request, res: Response<Tip
         url: "",
         timestamp: new Date().toISOString(),
         data: { TiposIniciativaProyectoLeyColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoIniciativaProyectoLey: {} } }
+      });
+  }
+});
+
+/* Tipos de Sesión de Sala */
+router.get("/tiposSesionSala", async (req: Request, res: Response<TiposEstadoSesionSalaResponse>) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_sesion_sala");
+    if (!endpoint) {
+      res.status(404).json({
+        success: false,
+        endpoint: "comun_tipos_sesion_sala",
+        url: "",
+        timestamp: new Date().toISOString(),
+        // Se devuelve estructura vacía para mantener contrato estable durante pruebas
+        data: { TiposEstadoSesionSalaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionSala: {} } }
+      });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    console.log(url);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res
+      .status(500)
+      .json({
+        success: false,
+        endpoint: "comun_tipos_sesion_sala",
+        url: "",
+        timestamp: new Date().toISOString(),
+        data: { TiposEstadoSesionSalaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionSala: {} } }
       });
   }
 });
