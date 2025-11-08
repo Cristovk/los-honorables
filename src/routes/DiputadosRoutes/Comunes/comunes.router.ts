@@ -306,7 +306,8 @@ router.get("/tiposEstadoSesionComision", async (req: Request, res: Response<Tipo
         endpoint: "comun_tipos_estado_sesion_comision",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposEstadoSesionComisionColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionComision: {} } }
+        // Estructura con claves explícitas para cumplir contrato tipado
+        data: { TiposEstadoSesionComisionColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionComision: { '1': '', '2': '', '3': '', '4': '', '5': '' } } }
       });
       return;
     }
@@ -322,7 +323,7 @@ router.get("/tiposEstadoSesionComision", async (req: Request, res: Response<Tipo
         endpoint: "comun_tipos_estado_sesion_comision",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposEstadoSesionComisionColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionComision: {} } }
+        data: { TiposEstadoSesionComisionColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionComision: { '1': '', '2': '', '3': '', '4': '', '5': '' } } }
       });
   }
 });
@@ -356,7 +357,7 @@ router.get("/tiposTitularAsistencia", async (req: Request, res: Response<TiposTi
         endpoint: "comun_tipos_titular_asistencia",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposTitularAsistenciaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoTitularAsistencia: {} } }
+        data: { TiposTitularAsistenciaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoTitularAsistencia: { '1': '', '2': '' } } }
       });
       return;
     }
@@ -372,7 +373,7 @@ router.get("/tiposTitularAsistencia", async (req: Request, res: Response<TiposTi
         endpoint: "comun_tipos_titular_asistencia",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposTitularAsistenciaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoTitularAsistencia: {} } }
+        data: { TiposTitularAsistenciaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoTitularAsistencia: { '1': '', '2': '' } } }
       });
   }
 });
@@ -387,7 +388,7 @@ router.get("/tiposEstado", async (req: Request, res: Response<TiposEstadoRespons
         endpoint: "comun_tipos_estado",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposEstadoColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstado: {} } }
+        data: { TiposEstadoColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstado: { '0': '', '1': '' } } }
       });
       return;
     }
@@ -403,7 +404,7 @@ router.get("/tiposEstado", async (req: Request, res: Response<TiposEstadoRespons
         endpoint: "comun_tipos_estado",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposEstadoColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstado: {} } }
+        data: { TiposEstadoColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstado: { '0': '', '1': '' } } }
       });
   }
 });
@@ -418,7 +419,7 @@ router.get("/tiposEstadoAcuerdosResoluciones", async (req: Request, res: Respons
         endpoint: "comun_tipos_estado_acuerdos_resoluciones",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposEstadoAcuerdosResolucionesColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoAcuerdosResoluciones: {} } }
+        data: { TiposEstadoAcuerdosResolucionesColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoAcuerdosResoluciones: { '1': '', '2': '', '3': '', '4': '', '5': '', '6': '' } } }
       });
       return;
     }
@@ -434,7 +435,7 @@ router.get("/tiposEstadoAcuerdosResoluciones", async (req: Request, res: Respons
         endpoint: "comun_tipos_estado_acuerdos_resoluciones",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposEstadoAcuerdosResolucionesColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoAcuerdosResoluciones: {} } }
+        data: { TiposEstadoAcuerdosResolucionesColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoAcuerdosResoluciones: { '1': '', '2': '', '3': '', '4': '', '5': '', '6': '' } } }
       });
   }
 });
@@ -451,7 +452,7 @@ router.get("/tiposIniciativaProyectoLey", async (req: Request, res: Response<Tip
         endpoint: "comun_tipos_iniciativa_proyecto_ley",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposIniciativaProyectoLeyColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoIniciativaProyectoLey: {} } }
+        data: { TiposIniciativaProyectoLeyColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoIniciativaProyectoLey: { '1': '', '2': '' } } }
       });
       return;
     }
@@ -467,7 +468,7 @@ router.get("/tiposIniciativaProyectoLey", async (req: Request, res: Response<Tip
         endpoint: "comun_tipos_iniciativa_proyecto_ley",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposIniciativaProyectoLeyColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoIniciativaProyectoLey: {} } }
+        data: { TiposIniciativaProyectoLeyColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoIniciativaProyectoLey: { '1': '', '2': '' } } }
       });
   }
 });
@@ -482,8 +483,8 @@ router.get("/tiposSesionSala", async (req: Request, res: Response<TiposEstadoSes
         endpoint: "comun_tipos_sesion_sala",
         url: "",
         timestamp: new Date().toISOString(),
-        // Se devuelve estructura vacía para mantener contrato estable durante pruebas
-        data: { TiposEstadoSesionSalaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionSala: {} } }
+        // Se devuelve estructura con claves definidas para mantener contrato estable durante pruebas
+        data: { TiposEstadoSesionSalaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionSala: { '0': '', '1': '', '2': '' } } }
       });
       return;
     }
@@ -499,7 +500,7 @@ router.get("/tiposSesionSala", async (req: Request, res: Response<TiposEstadoSes
         endpoint: "comun_tipos_sesion_sala",
         url: "",
         timestamp: new Date().toISOString(),
-        data: { TiposEstadoSesionSalaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionSala: {} } }
+        data: { TiposEstadoSesionSalaColeccion: { xmlns: "", "xmlns:xsi": "", "xmlns:xsd": "", TipoEstadoSesionSala: { '0': '', '1': '', '2': '' } } }
       });
   }
 });

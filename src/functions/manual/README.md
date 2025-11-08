@@ -160,8 +160,12 @@ export const AVAILABLE_FUNCTIONS: ManualFunction[] = [
 - **Generar Reglas de Seguridad**: Crea reglas de seguridad básicas
 
 ### 🛠️ Utilidades
-- (Agregar aquí funciones de utilidad cuando las crees)
+- **Consultar Endpoints de Tipos**: Consulta todos los endpoints de tipos de la API de Diputados y muestra un objeto consolidado
 
+### 🏛️ Diputados (Rutas de API)
+- **Consultar Ministerios**: Consulta el endpoint de ministerios y muestra la lista completa de ministerios de Chile en formato tabla o lista
+  - Parámetros: URL base, mostrar respuesta completa, formato (tabla/lista)
+  - Guarda resultados en: `global.ultimosMinisterios`, `global.ministeriosLimpios`, `global.ministeriosArray`
 ## 📊 Navegación del Menú
 
 El sistema ofrece las siguientes opciones:

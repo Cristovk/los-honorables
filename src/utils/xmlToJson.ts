@@ -4,6 +4,11 @@ import { processXmlData } from './dataTransformations';
  * Parser XML nativo para Node.js sin dependencias externas
  * Utiliza regex y parsing manual para convertir XML a JSON
  */
+// Función helper para escapar caracteres especiales en regex
+const escapeRegex = (str: string): string => {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
+
 class SimpleXmlParser {
   private explicitArray: boolean;
   private ignoreAttrs: boolean;
@@ -65,11 +70,11 @@ class SimpleXmlParser {
 
     // Extraer atributos (soportando namespaces como xmlns:xsi)
     // Buscar hasta el primer > que no esté precedido por /
-    const openTagMatch = xml.match(/^<[^>]+>/);
+    const initialTagMatch = xml.match(/^<[^>]+>/);
     const attributes: Record<string, string> = {};
 
-    if (openTagMatch) {
-      const openTag = openTagMatch[0];
+    if (initialTagMatch) {
+      const openTag = initialTagMatch[0];
       // Regex actualizado para soportar atributos con : (namespaces)
       const attrRegex = /([\w:]+)=["']([^"']*)["']/g;
       let attrMatch;
@@ -99,23 +104,29 @@ class SimpleXmlParser {
       return result;
     }
 
-    // Extraer el contenido entre tags usando el tagName escapado
-    const contentRegex = new RegExp(`^<${escapedTagName}(?:\\s[^>]*)?>(.*)<\\/${escapedTagName}>$`, 's');
-    const contentMatch = xml.match(contentRegex);
-
-    if (!contentMatch) {
-      console.error('DEBUG - Failed to match:', {
+    // Buscar el contenido entre el tag de apertura y cierre de manera más robusta
+    const openTagRegex = new RegExp(`^<${escapedTagName}(?:\\s[^>]*)?>`);  
+    const openTagMatch = xml.match(openTagRegex);
+    
+    if (!openTagMatch) {
+      throw new Error(`Malformed XML: invalid opening tag for ${tagName}`);
+    }
+    
+    const openTagLength = openTagMatch[0].length;
+    const closeTag = `</${tagName}>`;
+    const closeTagIndex = xml.lastIndexOf(closeTag);
+    
+    if (closeTagIndex === -1) {
+      console.error('DEBUG - Failed to find closing tag:', {
         tagName,
-        escapedTagName,
         xmlLength: xml.length,
-        xmlStart: xml.substring(0, 100),
-        xmlEnd: xml.substring(xml.length - 100),
-        regexPattern: `^<${escapedTagName}(?:\\s[^>]*)?>(.*)<\\/${escapedTagName}>$`
+        xmlStart: xml.substring(0, 200),
+        xmlEnd: xml.substring(xml.length - 200)
       });
       throw new Error(`Malformed XML: closing tag not found for ${tagName}`);
     }
-
-    const content = contentMatch[1];
+    
+    const content = xml.substring(openTagLength, closeTagIndex);
 
     // Verificar si tiene solo texto (sin tags hijos)
     if (!content.includes('<')) {
@@ -211,26 +222,52 @@ class SimpleXmlParser {
         
         const tagName = tagNameMatch[1];
         const startPos = i;
-        let depth = 1;
-        i++; // Saltar el '<' inicial
         
-        // Buscar el cierre de este elemento
-        while (i < content.length && depth > 0) {
-          if (content[i] === '<') {
-            if (content.substring(i).startsWith(`</${tagName}>`)) {
-              depth--;
-              if (depth === 0) {
-                // Incluir el tag de cierre completo
-                i += `</${tagName}>`.length;
-                children.push(content.substring(startPos, i));
-                break;
-              }
-            } else if (content.substring(i).match(new RegExp(`^<${tagName}[\\s>]`))) {
-              // Encontramos otro tag con el mismo nombre (anidado)
+        // Verificar si es un tag auto-cerrado
+        const tagEndMatch = content.substring(i).match(/^<[^>]*\/>/);
+        if (tagEndMatch) {
+          // Tag auto-cerrado
+          i += tagEndMatch[0].length;
+          children.push(tagEndMatch[0]);
+          // Saltar espacios en blanco
+          while (i < content.length && /\s/.test(content[i])) {
+            i++;
+          }
+          continue;
+        }
+        
+        // Buscar el tag de cierre correspondiente
+        let depth = 0;
+        let searchPos = i;
+        
+        while (searchPos < content.length) {
+          const char = content[searchPos];
+          
+          if (char === '<') {
+            const remainingContent = content.substring(searchPos);
+            
+            // Verificar si es el tag de apertura del mismo elemento
+            if (remainingContent.match(new RegExp(`^<${escapeRegex(tagName)}(\\s[^>]*)?>`))) {
               depth++;
             }
+            // Verificar si es el tag de cierre del mismo elemento
+            else if (remainingContent.startsWith(`</${tagName}>`)) {
+              depth--;
+              if (depth === 0) {
+                // Encontramos el cierre correspondiente
+                const endPos = searchPos + `</${tagName}>`.length;
+                children.push(content.substring(startPos, endPos));
+                i = endPos;
+                break;
+              }
+            }
           }
-          i++;
+          searchPos++;
+        }
+        
+        // Si no se encontró el cierre, es un error
+        if (depth > 0) {
+          throw new Error(`Unclosed tag: ${tagName}`);
         }
         
         // Saltar espacios en blanco
@@ -275,7 +312,8 @@ export const fetchAndProcessXml = async (url: string): Promise<any> => {
     }
 
     const xmlText = await response.text();
-    console.log('XML recibido:', xmlText.substring(0, 500));
+    console.log('XML recibido (longitud total:', xmlText.length, ')');
+    console.log('XML recibido:', xmlText.substring(0, 1500)); // Aumentar para ver más contenido
     
     const jsonData = await convertXmlToJson(xmlText);
     console.log('JSON parseado:', JSON.stringify(jsonData, null, 2));

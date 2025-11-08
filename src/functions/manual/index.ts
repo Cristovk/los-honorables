@@ -14,16 +14,20 @@ export * from './types';
 export * from './function-registry';
 
 // Re-exportar funciones específicas para uso programático
-export { 
-  greetingFunction, 
-  calculatorFunction, 
-  systemInfoFunction 
+export {
+  greetingFunction,
+  calculatorFunction,
+  systemInfoFunction
 } from './examples/demo-functions';
 
-export { 
-  createCollectionStructure, 
-  generateSecurityRules 
+export {
+  createCollectionStructure,
+  generateSecurityRules
 } from './firestore/collection-functions';
+
+export {
+  consultarEndpointsTipos
+} from './call-routes-diputados/consultar-endpoints-tipos';
 
 // Función de conveniencia para ejecutar el manager
 export async function startFunctionManager(): Promise<void> {

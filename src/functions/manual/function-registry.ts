@@ -1,17 +1,30 @@
 import { ManualFunction } from './types';
 
 // Importar funciones de ejemplos
-import { 
-  greetingFunction, 
-  calculatorFunction, 
-  systemInfoFunction 
+import {
+  greetingFunction,
+  calculatorFunction,
+  systemInfoFunction
 } from './examples/demo-functions';
 
 // Importar funciones de Firestore
-import { 
-  createCollectionStructure, 
-  generateSecurityRules 
+import {
+  createCollectionStructure,
+  generateSecurityRules
 } from './firestore/collection-functions';
+
+// Importar funciones de utilidad para llamadas a rutas de Diputados
+import {
+  consultarEndpointsTipos
+} from './call-routes-diputados/consultar-endpoints-tipos';
+
+import {
+  consultarMinisterios
+} from './call-routes-diputados/consultar-ministerios';
+
+import {
+  consultarRegionesDistritos
+} from './call-routes-diputados/consultar-regiones-distritos';
 
 /**
  * Registro central de todas las funciones manuales disponibles
@@ -24,10 +37,15 @@ export const AVAILABLE_FUNCTIONS: ManualFunction[] = [
   greetingFunction,
   calculatorFunction,
   systemInfoFunction,
-  
+
   // Funciones de Firestore
   createCollectionStructure,
   generateSecurityRules,
+
+  // Funciones de rutas de Diputados
+  consultarEndpointsTipos,
+  consultarMinisterios,
+  consultarRegionesDistritos,
 ];
 
 /**
@@ -64,7 +82,7 @@ export const getAvailableCategories = (): string[] => {
  */
 export const searchFunctions = (searchText: string): ManualFunction[] => {
   const search = searchText.toLowerCase();
-  return AVAILABLE_FUNCTIONS.filter(func => 
+  return AVAILABLE_FUNCTIONS.filter(func =>
     func.name.toLowerCase().includes(search) ||
     func.description.toLowerCase().includes(search)
   );
