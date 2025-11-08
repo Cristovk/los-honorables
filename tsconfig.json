@@ -10,7 +10,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "moduleResolution": "Node",
-    "module": "ES2022",
+    "module": "CommonJS",
     "noEmit": false,
     "sourceMap": true,
     "allowImportingTsExtensions": false,

@@ -1,9 +1,9 @@
 import { Router, Request, Response } from "express";
 import { fetchAndProcessXml } from "@utils/xmlToJson";
 import { CONFIG } from "@config/endpoints-config";
-import { 
-  ProyectoAcuerdoDetalleRequest, 
-  ProyectoAcuerdoPorAnnoRequest 
+import {
+  ProyectoAcuerdoDetalleRequest,
+  ProyectoAcuerdoPorAnnoRequest
 } from "@interface/request.interface";
 
 const router = Router();

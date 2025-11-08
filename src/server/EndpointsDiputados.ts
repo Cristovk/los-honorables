@@ -248,8 +248,13 @@ export const EndpointsDiputados = {
     },
     comun_tipos_iniciativa_proyecto_ley: {
       titulo: "COMUN_TIPOS_INICIATIVA_PROYECTO_LEY",
-      url: "WSComun.asmx/retornarTiposIniciativaProyectoLey",
+      url: "WSComun.asmx/retornarTiposIniciativaProyectoLey?",
       urlEjemplo: "WSComun.asmx/retornarTiposIniciativaProyectoLey",
+    },
+    comun_tipos_sesion_sala: {
+      titulo: "COMUN_TIPOS_SEsION_SALA",
+      url: "WSComun.asmx/retornarTiposSesionSala",
+      urlEjemplo: "WSComun.asmx/retornarTiposSesionSala",
     },
   },
 };
