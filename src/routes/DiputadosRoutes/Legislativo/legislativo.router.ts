@@ -2,6 +2,13 @@ import { Router, Request, Response } from "express";
 import { fetchAndProcessXml } from "@utils/xmlToJson";
 import CONFIG from "@config/endpoints-config";
 import { MensajesXAnnoRequest, MocionesXAnnoRequest, ProyectoLeyRequest } from "@interface/external/camara-diputados/comunes";
+import { MocionesXAnnoDto } from "@interface/external/camara-diputados/legislativo/mociones-x-anno.dto";
+import { MensajesXAnnoDto } from "@interface/external/camara-diputados/legislativo/mensajes-x-anno.dto";
+import { MateriasDto } from "@interface/external/camara-diputados/legislativo/materias.dto";
+import { LegislaturasDto } from "@interface/external/camara-diputados/legislativo/legislaturas.dto";
+import { ProyectoLeyResponseDto } from "@interface/external/camara-diputados/legislativo/proyecto-ley.dto";
+import { TramitesConstitucionalesDto } from "@interface/external/camara-diputados/legislativo/tramites-constitucionales.dto";
+import { TramitesReglamentariosDto } from "@interface/external/camara-diputados/legislativo/tramites-reglamentarios.dto";
 
 const router = Router();
 
@@ -22,7 +29,7 @@ router.get("/mocionesXAnno", async (req: Request, res: Response) => {
     }
     const url = CONFIG.buildUrl(endpoint, { prmAnno: year });
     console.log(url);
-    const data = await fetchAndProcessXml(url); // Cambia 'Mocion' según el nodo raíz del XML
+    const data: MocionesXAnnoDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -42,7 +49,7 @@ router.get("/mensajesXAnno", async (req: Request, res: Response) => {
     }
     const url = CONFIG.buildUrl(endpoint, { prmAnno: year });
     console.log(url);
-    const data = await fetchAndProcessXml(url); // Cambia 'Mensaje' según el nodo raíz del XML
+    const data: MensajesXAnnoDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -61,7 +68,7 @@ router.get("/materias", async (req: Request, res: Response) => {
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
-    const data = await fetchAndProcessXml(url); // Cambia 'Material' según el nodo raíz del XML
+    const data: MateriasDto = await fetchAndProcessXml(url);
     const totalMaterias = data.length;
     res.status(200).json({ totalMaterias, data });
   }
@@ -82,7 +89,7 @@ router.get("/legislaturas", async (req: Request, res: Response) => {
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: LegislaturasDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -106,7 +113,7 @@ router.get("/proyectoLey", async (req: Request, res: Response) => {
     }
     const url = CONFIG.buildUrl(endpoint, { prmNumeroBoletin: numeroBoletin });
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: ProyectoLeyResponseDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -125,7 +132,7 @@ router.get("/tramitesConstitucionales", async (req: Request, res: Response) => {
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: TramitesConstitucionalesDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -144,7 +151,7 @@ router.get("/tramitesReglamentarios", async (req: Request, res: Response) => {
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: TramitesReglamentariosDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res

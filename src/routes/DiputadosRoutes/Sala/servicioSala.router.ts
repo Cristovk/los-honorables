@@ -2,6 +2,9 @@ import { Router, Request, Response } from "express";
 import { fetchAndProcessXml } from "@utils/xmlToJson";
 import { CONFIG } from "@config/endpoints-config";
 import { SesionAsistenciaRequest, SesionesXAnnoRequest, SesionesXLegislaturaRequest } from "@interface/request.interface";
+import { SesionAsistenciaDto } from "@interface/external/camara-diputados/sala/sesion-asistencia.dto";
+import { SesionesXAnnoDto } from "@interface/external/camara-diputados/sala/sesiones-x-anno.dto";
+import { SesionesXLegislaturaDto } from "@interface/external/camara-diputados/sala/sesiones-x-legislatura.dto";
 
 const router = Router();
 
@@ -20,7 +23,7 @@ router.get("/sesionAsistencia", async (req: Request<{}, {}, SesionAsistenciaRequ
     }
     const url = CONFIG.buildUrl(endpoint, { prmSesionId: id });
     console.log(url);
-    const data = await fetchAndProcessXml(url); // Cambia 'SesionAsistencia' según el nodo raíz del XML
+    const data: SesionAsistenciaDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -41,7 +44,7 @@ router.get("/sesionesXAnno", async (req: Request<{}, {}, SesionesXAnnoRequest>, 
     }
     const url = CONFIG.buildUrl(endpoint, { prmAnno: year });
     console.log(url);
-    const data = await fetchAndProcessXml(url); // Cambia 'SesionAsistencia' según el nodo raíz del XML
+    const data: SesionesXAnnoDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -60,7 +63,7 @@ router.get("/sesionesXLegislatura", async (req: Request<{}, {}, SesionesXLegisla
     }
     const url = CONFIG.buildUrl(endpoint, { prmLegislaturaId: id });
     console.log(url);
-    const data = await fetchAndProcessXml(url); // Cambia 'SesionAsistencia' según el nodo raíz del XML
+    const data: SesionesXLegislaturaDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
