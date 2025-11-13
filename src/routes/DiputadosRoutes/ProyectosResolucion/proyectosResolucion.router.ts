@@ -5,6 +5,8 @@ import {
   ProyectoResolucionDetalleRequest,
   ProyectoResolucionPorAnnoRequest
 } from "@interface/request.interface";
+import { ProyectoResolucionDetalleDto } from "@interface/external/camara-diputados/ProyectosResolucion/proyecto-resolucion-detalle.dto";
+import { ProyectosResolucionPorAnnoDto } from "@interface/external/camara-diputados/ProyectosResolucion/proyectos-resolucion-por-anno.dto";
 
 const router = Router();
 
@@ -27,7 +29,7 @@ router.get("/detalle", async (req: Request<{}, {}, ProyectoResolucionDetalleRequ
     }
     const url = CONFIG.buildUrl(endpoint, { idProyectoResolucion });
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: ProyectoResolucionDetalleDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -51,7 +53,7 @@ router.get("/porAnno", async (req: Request<{}, {}, ProyectoResolucionPorAnnoRequ
     }
     const url = CONFIG.buildUrl(endpoint, { anno });
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: ProyectosResolucionPorAnnoDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res

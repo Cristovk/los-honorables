@@ -1,6 +1,8 @@
 import { Router, Request, Response } from "express";
 import { fetchAndProcessXml } from "@utils/xmlToJson";
 import { CONFIG } from "@config/endpoints-config";
+import { PeriodosLegislativosDto } from "@interface/external/camara-diputados/periodosLegislativos/periodos-legislativos.dto";
+import { PeriodoLegislativoResponseDto } from "@interface/external/camara-diputados/periodosLegislativos/periodo-actual.dto";
 
 const router = Router();
 
@@ -18,7 +20,7 @@ router.get("/periodosLegislativos", async (req: Request, res: Response) => {
     const url = CONFIG.buildUrl(endpoint);
 
     // Aquí corregimos el rootTag
-    const data = await fetchAndProcessXml(url);
+    const data: PeriodosLegislativosDto = await fetchAndProcessXml(url);
 
     res.status(200).json(data);
   } catch (error: any) {
@@ -37,7 +39,7 @@ router.get("/periodoActual", async (req: Request, res: Response) => {
     }
     const url = CONFIG.buildUrl(endpoint);
     // Aquí corregimos el rootTag
-    const data = await fetchAndProcessXml(url);
+    const data: PeriodoLegislativoResponseDto = await fetchAndProcessXml(url);
 
     res.status(200).json(data);
   } catch (error: any) {

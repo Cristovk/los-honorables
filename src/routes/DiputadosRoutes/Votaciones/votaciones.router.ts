@@ -2,6 +2,9 @@ import { Router, Request, Response } from "express";
 import { fetchAndProcessXml } from "@utils/xmlToJson";
 import { CONFIG } from "@config/endpoints-config";
 import { DetalleVotacionRequest, VotacionesXAnnoRequest, VotacionesXProyectoLeyRequest } from "@interface/request.interface";
+import { DetalleVotacionDto } from "@interface/external/camara-diputados/votaciones/detalle-votacion.dto";
+import { VotacionesXAnnoDto } from "@interface/external/camara-diputados/votaciones/votaciones-x-anno.dto";
+import { VotacionesXProyectoLeyDto } from "@interface/external/camara-diputados/votaciones/votaciones-x-proyecto-ley.dto";
 
 const router = Router();
 
@@ -24,7 +27,7 @@ router.get("/detalleVotacion", async (req: Request<{}, {}, DetalleVotacionReques
     }
     const url = CONFIG.buildUrl(endpoint, { prmVotacionId: id });
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: DetalleVotacionDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -49,7 +52,7 @@ router.get("/votacionesXAnno", async (req: Request<{}, {}, VotacionesXAnnoReques
     }
     const url = CONFIG.buildUrl(endpoint, { prmAnno: year });
     console.log(url);
-    const data = await fetchAndProcessXml(url); // Cambia 'Votacion' según el nodo raíz del XML
+    const data: VotacionesXAnnoDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -74,7 +77,7 @@ router.get("/votacionesXProyectoLey", async (req: Request<{}, {}, VotacionesXPro
     }
     const url = CONFIG.buildUrl(endpoint, { prmNumeroBoletin: id });
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: VotacionesXProyectoLeyDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res

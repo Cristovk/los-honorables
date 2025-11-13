@@ -6,6 +6,10 @@ import {
   ComisionDetalleRequest,
   ComisionPorPeriodoRequest
 } from "@interface/request.interface";
+import { SesionesXComisionYAnnoDto } from "@interface/external/camara-diputados/comisiones/sesiones-x-comision-y-anno.dto";
+import { ComisionResponseDto } from "@interface/external/camara-diputados/comisiones/comision-detalle.dto";
+import { ComisionesVigentesDto } from "@interface/external/camara-diputados/comisiones/comisiones-vigentes.dto";
+import { ComisionesPorPeriodoDto } from "@interface/external/camara-diputados/comisiones/comisiones-por-periodo.dto";
 
 const router = Router();
 
@@ -28,7 +32,7 @@ router.get("/sesionesXComisionYAnno", async (req: Request<{}, {}, ComisionSesion
     }
     const url = CONFIG.buildUrl(endpoint, { prmComisionId: comisionId, prmAnno: anno });
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: SesionesXComisionYAnnoDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -52,7 +56,7 @@ router.get("/detalle", async (req: Request<{}, {}, ComisionDetalleRequest>, res:
     }
     const url = CONFIG.buildUrl(endpoint, { prmComisionId: comisionId });
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: ComisionResponseDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -71,7 +75,7 @@ router.get("/vigentes", async (req: Request, res: Response) => {
     }
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: ComisionesVigentesDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
@@ -95,7 +99,7 @@ router.get("/porPeriodo", async (req: Request<{}, {}, ComisionPorPeriodoRequest>
     }
     const url = CONFIG.buildUrl(endpoint, { prmPeriodoId: periodoId });
     console.log(url);
-    const data = await fetchAndProcessXml(url);
+    const data: ComisionesPorPeriodoDto = await fetchAndProcessXml(url);
     res.status(200).json(data);
   } catch (error: any) {
     res
