@@ -1,12 +1,12 @@
 # los-honorables
 
-**Proyecto Senado Chile**
+**Proyecto Los Honorables**
 
 ## Descripción
 
-El proyecto "Senado Chile" es un servicio diseñado para consultar, almacenar y categorizar datos legislativos del Senado y la Cámara de Diputados de Chile.
+El proyecto "Los Honorables" es un servicio diseñado para consultar, almacenar y categorizar datos legislativos del Senado y la Cámara de Diputados de Chile.
 Utiliza Firestore para almacenar datos y modelos de inteligencia artificial
-como Gemini o ChatGPT para clasificar automáticamente los proyectos de ley en categorías relevantes.
+como DeepSeek para clasificar automáticamente los proyectos de ley en categorías relevantes.
 
 El sistema ofrece flexibilidad y escalabilidad al permitir consultas dinámicas desde Firestore, adaptándose a las necesidades de los usuarios y la cantidad de datos.
 

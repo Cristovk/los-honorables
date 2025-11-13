@@ -26,6 +26,14 @@ import {
   consultarRegionesDistritos
 } from './call-routes-diputados/consultar-regiones-distritos';
 
+import {
+  consultarDiputadosVigentes
+} from './call-routes-diputados/consultar-diputados-vigentes';
+
+import {
+  consultarDiputadosVigenciaLista
+} from './call-routes-diputados/consultar-diputados-vigencia-lista';
+
 /**
  * Registro central de todas las funciones manuales disponibles
  * Para agregar una nueva función:
@@ -46,6 +54,8 @@ export const AVAILABLE_FUNCTIONS: ManualFunction[] = [
   consultarEndpointsTipos,
   consultarMinisterios,
   consultarRegionesDistritos,
+  consultarDiputadosVigentes,
+  consultarDiputadosVigenciaLista,
 ];
 
 /**
