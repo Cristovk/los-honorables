@@ -14,7 +14,7 @@ router.get("/on", (req: Request, res: Response) => {
 
 /* Detalle de Votaciones */
 router.get("/detalleVotacion", async (req: Request<{}, {}, DetalleVotacionRequest>, res: Response): Promise<void> => {
-  const { id } = req.body;
+  const id = (req.query?.id as string) || (req.body as any)?.id;
   try {
     if (!id) {
       res.status(400).json({ message: "El parámetro 'id' es requerido" });
@@ -39,7 +39,7 @@ router.get("/detalleVotacion", async (req: Request<{}, {}, DetalleVotacionReques
 
 /* Votaciones por Año */
 router.get("/votacionesXAnno", async (req: Request<{}, {}, VotacionesXAnnoRequest>, res: Response): Promise<void> => {
-  const { year } = req.body;
+  const year = (req.query?.year as string) || (req.body as any)?.year;
   try {
     if (!year) {
       res.status(400).json({ message: "El parámetro 'year' es requerido" });
@@ -63,7 +63,7 @@ router.get("/votacionesXAnno", async (req: Request<{}, {}, VotacionesXAnnoReques
 
 /* Votaciones por Proyecto de Ley */
 router.get("/votacionesXProyectoLey", async (req: Request<{}, {}, VotacionesXProyectoLeyRequest>, res: Response): Promise<void> => {
-  const { id } = req.body;
+  const id = (req.query?.id as string) || (req.body as any)?.id;
   try {
     console.log('ID recibido:', id);
     if (!id) {

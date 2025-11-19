@@ -506,3 +506,147 @@ router.get("/tiposSesionSala", async (req: Request, res: Response<TiposEstadoSes
 });
 
 export default router;
+
+/* Tipos de Sesión de Comisión */
+router.get("/tiposSesionComision", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_sesion_comision");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching tiposSesionComision", error: error.message });
+  }
+});
+
+/* Tipos de Opción de Voto */
+router.get("/tiposOpcionVoto", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_opcion_voto");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching tiposOpcionVoto", error: error.message });
+  }
+});
+
+/* Tipos de Votación */
+router.get("/tiposVotacion", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_votacion");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching tiposVotacion", error: error.message });
+  }
+});
+
+/* Tipos de Votación de Proyecto de Ley */
+router.get("/tiposVotacionProyectoLey", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_votacion_proyecto_ley");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching tiposVotacionProyectoLey", error: error.message });
+  }
+});
+
+/* Tipos de Quórum de Votación */
+router.get("/tiposQuorumVotacion", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_quorum_votacion");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching tiposQuorumVotacion", error: error.message });
+  }
+});
+
+/* Tipos de Resultado de Votación */
+router.get("/tiposResultadoVotacion", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_resultado_votacion");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching tiposResultadoVotacion", error: error.message });
+  }
+});
+
+/* Tipos de Justificaciones de Inasistencia */
+router.get("/tiposJustificacionesInasistencia", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_justificaciones_inasistencia");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching tiposJustificacionesInasistencia", error: error.message });
+  }
+});
+
+/* Tipos de Sexo */
+router.get("/tiposSexo", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_sexo");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching tiposSexo", error: error.message });
+  }
+});
+
+/* Tipos de Legislatura */
+router.get("/tiposLegislatura", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Comun", "comun_tipos_legislatura");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching tiposLegislatura", error: error.message });
+  }
+});

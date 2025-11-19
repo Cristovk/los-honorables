@@ -51,3 +51,18 @@ router.get("/periodoActual", async (req: Request, res: Response) => {
 });
 
 export default router;
+
+router.get("/legislaturaActual", async (req: Request, res: Response) => {
+  try {
+    const endpoint = CONFIG.getEndpoint("Legislativo_periodo", "legislativo_legislatura_actual");
+    if (!endpoint) {
+      res.status(404).json({ message: "Endpoint not found" });
+      return;
+    }
+    const url = CONFIG.buildUrl(endpoint);
+    const data = await fetchAndProcessXml(url);
+    res.status(200).json(data);
+  } catch (error: any) {
+    res.status(500).json({ message: "Error fetching legislatura actual", error: error.message });
+  }
+});

@@ -68,7 +68,7 @@ export const EndpointsDiputados = {
     diputado_por_periodo: {
       titulo: "DIPUTADO_POR_PERIODO",
       url: "WSDiputado.asmx/retornarDiputadosXPeriodo",
-      urlEjemplo: "WSDiputado.asmx/retornarDiputadosXPeriodo?prmPeriodoID=",
+      urlEjemplo: "WSDiputado.asmx/retornarDiputadosXPeriodo?prmPeriodoId=",
     },
   },
   ProyectoAcuerdo: {
@@ -188,8 +188,8 @@ export const EndpointsDiputados = {
   Comun: {
     comun_comunas: {
       titulo: "COMUN_COMUNAS",
-      url: "WSComun.asmx/retornarComunas?",
-      urlEjemplo: "WSComun.asmx/retornarComunas?",
+      url: "WSComun.asmx/retornarComunas",
+      urlEjemplo: "WSComun.asmx/retornarComunas",
     },
     comun_distritos: {
       titulo: "COMUN_DISTRITOS",
@@ -248,13 +248,58 @@ export const EndpointsDiputados = {
     },
     comun_tipos_iniciativa_proyecto_ley: {
       titulo: "COMUN_TIPOS_INICIATIVA_PROYECTO_LEY",
-      url: "WSComun.asmx/retornarTiposIniciativaProyectoLey?",
+      url: "WSComun.asmx/retornarTiposIniciativaProyectoLey",
       urlEjemplo: "WSComun.asmx/retornarTiposIniciativaProyectoLey",
     },
     comun_tipos_sesion_sala: {
       titulo: "COMUN_TIPOS_SEsION_SALA",
       url: "WSComun.asmx/retornarTiposSesionSala",
       urlEjemplo: "WSComun.asmx/retornarTiposSesionSala",
+    },
+    comun_tipos_sesion_comision: {
+      titulo: "COMUN_TIPOS_SESION_COMISION",
+      url: "WSComun.asmx/retornarTiposSesionComision",
+      urlEjemplo: "WSComun.asmx/retornarTiposSesionComision",
+    },
+    comun_tipos_opcion_voto: {
+      titulo: "COMUN_TIPOS_OPCION_VOTO",
+      url: "WSComun.asmx/retornarTiposOpcionVoto",
+      urlEjemplo: "WSComun.asmx/retornarTiposOpcionVoto",
+    },
+    comun_tipos_votacion: {
+      titulo: "COMUN_TIPOS_VOTACION",
+      url: "WSComun.asmx/retornarTiposVotacion",
+      urlEjemplo: "WSComun.asmx/retornarTiposVotacion",
+    },
+    comun_tipos_votacion_proyecto_ley: {
+      titulo: "COMUN_TIPOS_VOTACION_PROYECTO_LEY",
+      url: "WSComun.asmx/retornarTiposVotacionProyectoLey",
+      urlEjemplo: "WSComun.asmx/retornarTiposVotacionProyectoLey",
+    },
+    comun_tipos_quorum_votacion: {
+      titulo: "COMUN_TIPOS_QUORUM_VOTACION",
+      url: "WSComun.asmx/retornarTiposQuorumVotacion",
+      urlEjemplo: "WSComun.asmx/retornarTiposQuorumVotacion",
+    },
+    comun_tipos_resultado_votacion: {
+      titulo: "COMUN_TIPOS_RESULTADO_VOTACION",
+      url: "WSComun.asmx/retornarTiposResultadoVotacion",
+      urlEjemplo: "WSComun.asmx/retornarTiposResultadoVotacion",
+    },
+    comun_tipos_justificaciones_inasistencia: {
+      titulo: "COMUN_TIPOS_JUSTIFICACIONES_INASISTENCIA",
+      url: "WSComun.asmx/retornarTiposJustificacionesInasistencia",
+      urlEjemplo: "WSComun.asmx/retornarTiposJustificacionesInasistencia",
+    },
+    comun_tipos_sexo: {
+      titulo: "COMUN_TIPOS_SEXO",
+      url: "WSComun.asmx/retornarTiposSexo",
+      urlEjemplo: "WSComun.asmx/retornarTiposSexo",
+    },
+    comun_tipos_legislatura: {
+      titulo: "COMUN_TIPOS_LEGISLATURA",
+      url: "WSComun.asmx/retornarTiposLegislatura",
+      urlEjemplo: "WSComun.asmx/retornarTiposLegislatura",
     },
   },
 };

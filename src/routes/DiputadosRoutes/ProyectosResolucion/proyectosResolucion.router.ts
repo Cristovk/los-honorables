@@ -5,8 +5,8 @@ import {
   ProyectoResolucionDetalleRequest,
   ProyectoResolucionPorAnnoRequest
 } from "@interface/request.interface";
-import { ProyectoResolucionDetalleDto } from "@interface/external/camara-diputados/ProyectosResolucion/proyecto-resolucion-detalle.dto";
-import { ProyectosResolucionPorAnnoDto } from "@interface/external/camara-diputados/ProyectosResolucion/proyectos-resolucion-por-anno.dto";
+import { ProyectoResolucionDetalleDto } from "@interface/external/camara-diputados/proyectosResolucion/proyecto-resolucion-detalle.dto";
+import { ProyectosResolucionPorAnnoDto } from "@interface/external/camara-diputados/proyectosResolucion/proyectos-resolucion-por-anno.dto";
 
 const router = Router();
 

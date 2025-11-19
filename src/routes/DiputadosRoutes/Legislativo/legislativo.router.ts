@@ -69,7 +69,8 @@ router.get("/materias", async (req: Request, res: Response) => {
     const url = CONFIG.buildUrl(endpoint);
     console.log(url);
     const data: MateriasDto = await fetchAndProcessXml(url);
-    const totalMaterias = data.length;
+    const materias = data?.MateriasColeccion?.Materia as unknown;
+    const totalMaterias = Array.isArray(materias) ? materias.length : materias ? 1 : 0;
     res.status(200).json({ totalMaterias, data });
   }
   catch (error: any) {

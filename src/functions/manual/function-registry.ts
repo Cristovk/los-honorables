@@ -33,6 +33,9 @@ import {
 import {
   consultarDiputadosVigenciaLista
 } from './call-routes-diputados/consultar-diputados-vigencia-lista';
+import {
+  consultarVotaciones
+} from './call-routes-diputados/consultar-votaciones';
 
 /**
  * Registro central de todas las funciones manuales disponibles
@@ -56,6 +59,7 @@ export const AVAILABLE_FUNCTIONS: ManualFunction[] = [
   consultarRegionesDistritos,
   consultarDiputadosVigentes,
   consultarDiputadosVigenciaLista,
+  consultarVotaciones,
 ];
 
 /**
