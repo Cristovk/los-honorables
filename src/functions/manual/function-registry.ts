@@ -37,6 +37,10 @@ import {
   consultarVotaciones
 } from './call-routes-diputados/consultar-votaciones';
 
+import {
+  consultarAsistenciaDiputadoSala
+} from './call-routes-diputados/consultar-asistencia-diputado-sala';
+
 /**
  * Registro central de todas las funciones manuales disponibles
  * Para agregar una nueva función:
@@ -60,6 +64,7 @@ export const AVAILABLE_FUNCTIONS: ManualFunction[] = [
   consultarDiputadosVigentes,
   consultarDiputadosVigenciaLista,
   consultarVotaciones,
+  consultarAsistenciaDiputadoSala,
 ];
 
 /**

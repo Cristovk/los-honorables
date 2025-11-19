@@ -15,7 +15,7 @@ router.get("/on", (req: Request, res: Response) => {
 
 /* Asistencia a Sesiones */
 router.get("/sesionAsistencia", async (req: Request<{}, {}, SesionAsistenciaRequest>, res: Response) => {
-  const { id } = req.body;
+  const id = (req.query?.id as string) || (req.body as any)?.id;
   try {
     const endpoint = CONFIG.getEndpoint("Sala", "sala_sesion_asistencia");
     if (!endpoint) {
@@ -36,7 +36,7 @@ router.get("/sesionAsistencia", async (req: Request<{}, {}, SesionAsistenciaRequ
 
 /* Sesiones de Asistencia */
 router.get("/sesionesXAnno", async (req: Request<{}, {}, SesionesXAnnoRequest>, res: Response) => {
-  const { year } = req.body;
+  const year = (req.query?.year as string) || (req.body as any)?.year;
   try {
     const endpoint = CONFIG.getEndpoint("Sala", "sala_sesiones_por_anno");
     if (!endpoint) {
@@ -55,7 +55,7 @@ router.get("/sesionesXAnno", async (req: Request<{}, {}, SesionesXAnnoRequest>, 
 
 /* Sesiones por Legislatura */
 router.get("/sesionesXLegislatura", async (req: Request<{}, {}, SesionesXLegislaturaRequest>, res: Response) => {
-  const { id } = req.body;
+  const id = (req.query?.id as string) || (req.body as any)?.id;
   try {
     const endpoint = CONFIG.getEndpoint("Sala", "sala_sesiones_por_legislatura");
     if (!endpoint) {

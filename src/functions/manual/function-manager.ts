@@ -322,6 +322,7 @@ class FunctionManager {
       firestore: '🔥',
       utils: '🛠️',
       examples: '💡',
+      diputados: '🏛️',
     };
     return emojis[category] || '📄';
   }

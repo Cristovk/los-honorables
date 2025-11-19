@@ -31,17 +31,13 @@ const getTipoAsistenciaCode = (tipo: any): string => {
   return '';
 };
 
-const parseYearRange = (range: string): { start: number; end: number } => {
-  const match = range.match(/^\s*(\d{4})\s*a\s*(\d{4})\s*$/i);
-  if (!match) throw new Error('Formato inválido. Usa "YYYY a YYYY"');
-  let a = parseInt(match[1], 10);
-  let b = parseInt(match[2], 10);
-  if (a < 1990 || a > 2025 || b < 1990 || b > 2025) {
-    throw new Error('Rango fuera de límites. Permitido: 1990 a 2025');
-  }
-  if (a > b) [a, b] = [b, a];
-  return { start: a, end: b };
+const validateYear = (year: number): number => {
+  if (!Number.isInteger(year)) throw new Error('El año debe ser número entero');
+  if (year < 1990 || year > 2025) throw new Error('Año fuera de límites [1990, 2025]');
+  return year;
 };
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Ejecuta análisis de asistencia del diputado 857 en sesiones de Sala
@@ -59,32 +55,37 @@ export const consultarAsistenciaDiputadoSala: ManualFunction = {
   category: 'diputados',
   inputs: [
     { name: 'base_url', type: 'string', description: 'URL base del servidor', required: false, defaultValue: 'http://localhost:6000' },
-    { name: 'year_range', type: 'string', description: 'Rango de años "YYYY a YYYY"', required: true },
+    { name: 'start_year', type: 'number', description: 'Año de inicio (número)', required: true },
+    { name: 'end_year', type: 'number', description: 'Año final (número)', required: true },
+    { name: 'diputado_id', type: 'number', description: 'ID de Diputado', required: true },
     { name: 'show_full_response', type: 'boolean', description: 'Mostrar estructura final completa', required: false, defaultValue: false },
   ],
   execute: async (params?: AnyObj) => {
     const baseUrl: string = params?.base_url || 'http://localhost:6000';
-    const rangeInput: string = String(params?.year_range || '').trim();
+    const startYearInput: number = params?.start_year;
+    const endYearInput: number = params?.end_year;
+    const diputadoIdInput: number = params?.diputado_id;
     const showFull: boolean = !!params?.show_full_response;
 
     console.log('\n🧮 ANÁLISIS DE ASISTENCIA - SALA');
     console.log('─'.repeat(60));
     console.log(`🔗 Base URL: ${baseUrl}`);
-    console.log(`📅 Rango: ${rangeInput}`);
+    console.log(`📅 Inicio: ${startYearInput} | Fin: ${endYearInput}`);
+    console.log(`🆔 Diputado: ${diputadoIdInput}`);
     console.log('─'.repeat(60));
 
     let startYear = 0;
     let endYear = 0;
     try {
-      const parsed = parseYearRange(rangeInput);
-      startYear = parsed.start;
-      endYear = parsed.end;
+      startYear = validateYear(Number(startYearInput));
+      endYear = validateYear(Number(endYearInput));
+      if (startYear > endYear) [startYear, endYear] = [endYear, startYear];
     } catch (e: any) {
-      console.log(`❌ Error en rango de años: ${e.message}`);
+      console.log(`❌ Error en años: ${e.message}`);
       throw e;
     }
 
-    const targetDiputadoId = '857';
+    const targetDiputadoId = String(diputadoIdInput);
     let diputadoInfo: DiputadoDto | null = null;
     let totalCelebradas = 0;
     let asiste = 0;
@@ -94,7 +95,8 @@ export const consultarAsistenciaDiputadoSala: ManualFunction = {
     for (let year = startYear; year <= endYear; year++) {
       try {
         const urlSesiones = `${baseUrl}/servicioSala/sesionesXAnno`;
-        const respSesiones = await axios.get<SesionesXAnnoDto | { SesionesSalaColeccion: any }>(urlSesiones, { params: { year }, timeout: 20000 });
+        const respSesiones = await axios.get<SesionesXAnnoDto | { SesionesSalaColeccion: any }>(urlSesiones, { params: { year: String(year) }, timeout: 20000 });
+        await sleep(5000);
         const sesionesRoot: any = respSesiones.data as any;
         const coleccion = sesionesRoot?.SesionesSalaColeccion || sesionesRoot?.data?.SesionesSalaColeccion;
         const sesiones: SesionResumenDto[] = toArray<SesionResumenDto>(coleccion?.Sesion);
@@ -110,7 +112,8 @@ export const consultarAsistenciaDiputadoSala: ManualFunction = {
           if (!sesionId) continue;
           try {
             const urlAsistencia = `${baseUrl}/servicioSala/sesionAsistencia`;
-            const respAsistencia = await axios.get<SesionAsistenciaDto | { SesionSala: any }>(urlAsistencia, { params: { id: sesionId }, timeout: 20000 });
+            const respAsistencia = await axios.get<SesionAsistenciaDto | { SesionSala: any }>(urlAsistencia, { params: { id: String(sesionId) }, timeout: 20000 });
+            await sleep(5000);
             const asistenciaRoot: any = respAsistencia.data as any;
             const sesionSala = asistenciaRoot?.SesionSala || asistenciaRoot?.data?.SesionSala;
             const listado = sesionSala?.ListadoAsistencia;
