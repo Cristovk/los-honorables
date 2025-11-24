@@ -9,7 +9,7 @@ import type {
 } from 'firebase-admin/firestore';
 
 import { ILogger } from '@interface/logging.interface';
-import { createLogger } from '@services/logging/console-logger.service';
+import { createLogger } from '@services/logging/pino-logger.service';
 import {
   createFirestoreErrorHandler,
   FirestoreErrorHandlerService

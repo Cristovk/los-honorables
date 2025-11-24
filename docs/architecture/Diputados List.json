@@ -1,0 +1,1403 @@
+{
+    "data": [
+        {
+            "Position": 1,
+            "Distrito": "20",
+            "Email": "maria.acevedo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1096",
+            "Nombre": "María Candelaria Acevedo",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1096"
+        },
+        {
+            "Position": 2,
+            "Distrito": "20",
+            "Email": "eric.aedo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1097",
+            "Nombre": "Eric Aedo",
+            "Partido": "DC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1097"
+        },
+        {
+            "Position": 3,
+            "Distrito": "3",
+            "Email": "yovana.ahumada@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1098",
+            "Nombre": "Yovana Ahumada",
+            "Partido": "PSC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1098"
+        },
+        {
+            "Position": 4,
+            "Distrito": "10",
+            "Email": "jorge.alessandri@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1009",
+            "Nombre": "Jorge Alessandri",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1009"
+        },
+        {
+            "Position": 5,
+            "Distrito": "27",
+            "Email": "rene.alinco@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL803",
+            "Nombre": "René Alinco",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=803"
+        },
+        {
+            "Position": 6,
+            "Distrito": "3",
+            "Email": "jaime.araya@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1099",
+            "Nombre": "Jaime Araya",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1099"
+        },
+        {
+            "Position": 7,
+            "Distrito": "11",
+            "Email": "cristian.araya@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1100",
+            "Nombre": "Cristián Araya",
+            "Partido": "PREP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1100"
+        },
+        {
+            "Position": 8,
+            "Distrito": "12",
+            "Email": "monica.arce@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1101",
+            "Nombre": "Mónica Arce",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1101"
+        },
+        {
+            "Position": 9,
+            "Distrito": "20",
+            "Email": "roberto.arroyo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1102",
+            "Nombre": "Roberto Arroyo",
+            "Partido": "PSC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1102"
+        },
+        {
+            "Position": 10,
+            "Distrito": "2",
+            "Email": "danisa.astudillo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1103",
+            "Nombre": "Danisa Astudillo",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1103"
+        },
+        {
+            "Position": 11,
+            "Distrito": "6",
+            "Email": "chiara.barchiesi@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1104",
+            "Nombre": "Chiara Barchiesi",
+            "Partido": "PREP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1104"
+        },
+        {
+            "Position": 12,
+            "Distrito": "9",
+            "Email": "boris.barrera@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1012",
+            "Nombre": "Boris Barrera",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1012"
+        },
+        {
+            "Position": 13,
+            "Distrito": "25",
+            "Email": "hector.barria@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1105",
+            "Nombre": "Héctor Barría",
+            "Partido": "DC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1105"
+        },
+        {
+            "Position": 14,
+            "Distrito": "7",
+            "Email": "arturo.barrios@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1185",
+            "Nombre": "Arturo Barrios",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1185"
+        },
+        {
+            "Position": 15,
+            "Distrito": "23",
+            "Email": "miguel.becker@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1106",
+            "Nombre": "Miguel Ángel Becker",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1106"
+        },
+        {
+            "Position": 16,
+            "Distrito": "6",
+            "Email": "mariafrancisca.bello@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1107",
+            "Nombre": "María Francisca Bello",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1107"
+        },
+        {
+            "Position": 17,
+            "Distrito": "22",
+            "Email": "juancarlos.beltran@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1108",
+            "Nombre": "Juan Carlos Beltrán",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1108"
+        },
+        {
+            "Position": 18,
+            "Distrito": "18",
+            "Email": "gustavo.benavente@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1109",
+            "Nombre": "Gustavo Benavente",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1109"
+        },
+        {
+            "Position": 19,
+            "Distrito": "24",
+            "Email": "bernardo.berger@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL971",
+            "Nombre": "Bernardo Berger",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=971"
+        },
+        {
+            "Position": 20,
+            "Distrito": "26",
+            "Email": "alejandro.bernales@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1013",
+            "Nombre": "Alejandro Bernales",
+            "Partido": "LIBERAL",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1013"
+        },
+        {
+            "Position": 21,
+            "Distrito": "28",
+            "Email": "carlos.bianchi@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1110",
+            "Nombre": "Carlos Bianchi",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1110"
+        },
+        {
+            "Position": 22,
+            "Distrito": "20",
+            "Email": "sergio.bobadilla@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL815",
+            "Nombre": "Sergio Bobadilla",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=815"
+        },
+        {
+            "Position": 23,
+            "Distrito": "26",
+            "Email": "fernando.borquez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1111",
+            "Nombre": "Fernando Bórquez",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1111"
+        },
+        {
+            "Position": 24,
+            "Distrito": "24",
+            "Email": "anamaria.bravo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1112",
+            "Nombre": "Ana María Bravo",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1112"
+        },
+        {
+            "Position": 25,
+            "Distrito": "19",
+            "Email": "marta.bravo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1113",
+            "Nombre": "Marta Bravo",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1113"
+        },
+        {
+            "Position": 26,
+            "Distrito": "7",
+            "Email": "jorge.brito@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1015",
+            "Nombre": "Jorge Brito",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1015"
+        },
+        {
+            "Position": 27,
+            "Distrito": "16",
+            "Email": "felix.bugueno@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1114",
+            "Nombre": "Félix Bugueño",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1114"
+        },
+        {
+            "Position": 28,
+            "Distrito": "27",
+            "Email": "miguelangel.calisto@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1016",
+            "Nombre": "Miguel Ángel Calisto",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1016"
+        },
+        {
+            "Position": 29,
+            "Distrito": "19",
+            "Email": "felipe.camano@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1116",
+            "Nombre": "Felipe Camaño",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1116"
+        },
+        {
+            "Position": 30,
+            "Distrito": "9",
+            "Email": "karol.cariola@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL973",
+            "Nombre": "Srta. Karol Cariola",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=973"
+        },
+        {
+            "Position": 31,
+            "Distrito": "12",
+            "Email": "alvaro.carter@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1017",
+            "Nombre": "Álvaro Carter",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1017"
+        },
+        {
+            "Position": 32,
+            "Distrito": "5",
+            "Email": "nathalie.castillo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1117",
+            "Nombre": "Nathalie Castillo",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1117"
+        },
+        {
+            "Position": 33,
+            "Distrito": "3",
+            "Email": "josemiguel.castro@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1019",
+            "Nombre": "José Miguel Castro",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1019"
+        },
+        {
+            "Position": 34,
+            "Distrito": "17",
+            "Email": "roberto.celedon@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1184",
+            "Nombre": "Roberto Celedón",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1184"
+        },
+        {
+            "Position": 35,
+            "Distrito": "7",
+            "Email": "andres.celis@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1021",
+            "Nombre": "Andrés Celis",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1021"
+        },
+        {
+            "Position": 36,
+            "Distrito": "4",
+            "Email": "daniella.cicardini@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL975",
+            "Nombre": "Daniella Cicardini",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=975"
+        },
+        {
+            "Position": 37,
+            "Distrito": "4",
+            "Email": "sofia.cid@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1022",
+            "Nombre": "Sofía Cid",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1022"
+        },
+        {
+            "Position": 38,
+            "Distrito": "5",
+            "Email": "ricardo.cifuentes@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1118",
+            "Nombre": "Ricardo Cifuentes",
+            "Partido": "DC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1118"
+        },
+        {
+            "Position": 39,
+            "Distrito": "14",
+            "Email": "juanantoniocoloma@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL976",
+            "Nombre": "Juan Antonio Coloma",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=976"
+        },
+        {
+            "Position": 40,
+            "Distrito": "19",
+            "Email": "sara.concha@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1119",
+            "Nombre": "Sara Concha",
+            "Partido": "PSC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1119"
+        },
+        {
+            "Position": 41,
+            "Distrito": "10",
+            "Email": "marialuisa.cordero@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1120",
+            "Nombre": "María Luisa Cordero",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1120"
+        },
+        {
+            "Position": 42,
+            "Distrito": "16",
+            "Email": "eduardo.cornejo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1121",
+            "Nombre": "Eduardo Cornejo",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1121"
+        },
+        {
+            "Position": 43,
+            "Distrito": "7",
+            "Email": "luis.cuello@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1122",
+            "Nombre": "Luis Alberto Cuello",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1122"
+        },
+        {
+            "Position": 44,
+            "Distrito": "11",
+            "Email": "gonzalo.delacarrera@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1123",
+            "Nombre": "Gonzalo De la Carrera",
+            "Partido": "PNL",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1123"
+        },
+        {
+            "Position": 45,
+            "Distrito": "11",
+            "Email": "catalina.delreal@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1025",
+            "Nombre": "Catalina Del Real",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1025"
+        },
+        {
+            "Position": 46,
+            "Distrito": "8",
+            "Email": "viviana.delgado@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1125",
+            "Nombre": "Viviana Delgado",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1125"
+        },
+        {
+            "Position": 47,
+            "Distrito": "17",
+            "Email": "felipe.donoso@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1126",
+            "Nombre": "Felipe Donoso",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1126"
+        },
+        {
+            "Position": 48,
+            "Distrito": "9",
+            "Email": "jorge.duran@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1027",
+            "Nombre": "Jorge Durán",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1027"
+        },
+        {
+            "Position": 49,
+            "Distrito": "13",
+            "Email": "eduardo.duran@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1028",
+            "Nombre": "Eduardo Durán",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1028"
+        },
+        {
+            "Position": 50,
+            "Distrito": "6",
+            "Email": "camila.flores@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1030",
+            "Nombre": "Camila Flores",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1030"
+        },
+        {
+            "Position": 51,
+            "Distrito": "10",
+            "Email": "lorena.fries@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1127",
+            "Nombre": "Lorena Fries",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1127"
+        },
+        {
+            "Position": 52,
+            "Distrito": "5",
+            "Email": "juan.fuenzalida@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1031",
+            "Nombre": "Juan Fuenzalida",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1031"
+        },
+        {
+            "Position": 53,
+            "Distrito": "12",
+            "Email": "anamaria.gazmuri@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1128",
+            "Nombre": "Ana María Gazmuri",
+            "Partido": "PAH",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1128"
+        },
+        {
+            "Position": 54,
+            "Distrito": "9",
+            "Email": "andres.giordano@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1129",
+            "Nombre": "Andrés Giordano",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1129"
+        },
+        {
+            "Position": 55,
+            "Distrito": "20",
+            "Email": "felix.gonzalez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1034",
+            "Nombre": "Félix González",
+            "Partido": "PEV",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1034"
+        },
+        {
+            "Position": 56,
+            "Distrito": "15",
+            "Email": "marta.gonzalez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1130",
+            "Nombre": "Marta González",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1130"
+        },
+        {
+            "Position": 57,
+            "Distrito": "26",
+            "Email": "mauro.gonzalez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1131",
+            "Nombre": "Mauro González",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1131"
+        },
+        {
+            "Position": 58,
+            "Distrito": "17",
+            "Email": "jorge.guzman@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1132",
+            "Nombre": "Jorge Guzmán",
+            "Partido": "EVOP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1132"
+        },
+        {
+            "Position": 59,
+            "Distrito": "8",
+            "Email": "carmen.hertz@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1035",
+            "Nombre": "Carmen Hertz",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1035"
+        },
+        {
+            "Position": 60,
+            "Distrito": "11",
+            "Email": "tomas.hirsch@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1036",
+            "Nombre": "Tomás Hirsch",
+            "Partido": "PAH",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1036"
+        },
+        {
+            "Position": 61,
+            "Distrito": "6",
+            "Email": "diego.ibanez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1037",
+            "Nombre": "Diego Ibáñez",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1037"
+        },
+        {
+            "Position": 62,
+            "Distrito": "24",
+            "Email": "marcos.ilabaca@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1038",
+            "Nombre": "Marcos Ilabaca",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1038"
+        },
+        {
+            "Position": 63,
+            "Distrito": "14",
+            "Email": "juan.irarrazaval@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1133",
+            "Nombre": "Juan Irarrázaval",
+            "Partido": "PREP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1133"
+        },
+        {
+            "Position": 64,
+            "Distrito": "12",
+            "Email": "pamela.jiles@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1039",
+            "Nombre": "Pamela Jiles",
+            "Partido": "PH",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1039"
+        },
+        {
+            "Position": 65,
+            "Distrito": "23",
+            "Email": "andres.jouannet@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1134",
+            "Nombre": "Andrés Jouannet",
+            "Partido": "AMA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1134"
+        },
+        {
+            "Position": 66,
+            "Distrito": "25",
+            "Email": "harry.jurgensen@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1040",
+            "Nombre": "Harry Jürgensen",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1040"
+        },
+        {
+            "Position": 67,
+            "Distrito": "10",
+            "Email": "johannes.kaiser@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1135",
+            "Nombre": "Johannes Kaiser",
+            "Partido": "PNL",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1135"
+        },
+        {
+            "Position": 68,
+            "Distrito": "8",
+            "Email": "cristian.labbe@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1094",
+            "Nombre": "Cristian Labbé",
+            "Partido": "PNL",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1094"
+        },
+        {
+            "Position": 69,
+            "Distrito": "18",
+            "Email": "paula.labra@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1136",
+            "Nombre": "Paula Labra",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1136"
+        },
+        {
+            "Position": 70,
+            "Distrito": "7",
+            "Email": "tomas.lagomarsino@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1137",
+            "Nombre": "Tomás Lagomarsino",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1137"
+        },
+        {
+            "Position": 71,
+            "Distrito": "8",
+            "Email": "joaquin.lavin@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL989",
+            "Nombre": "Joaquín Lavín",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=989"
+        },
+        {
+            "Position": 72,
+            "Distrito": "23",
+            "Email": "henry.leal@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1138",
+            "Nombre": "Henry Leal",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1138"
+        },
+        {
+            "Position": 73,
+            "Distrito": "1",
+            "Email": "enrique.lee@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1139",
+            "Nombre": "Enrique Lee",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1139"
+        },
+        {
+            "Position": 74,
+            "Distrito": "14",
+            "Email": "raul.leiva@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1044",
+            "Nombre": "Raúl Leiva",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1044"
+        },
+        {
+            "Position": 75,
+            "Distrito": "25",
+            "Email": "daniel.lilayu@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1140",
+            "Nombre": "Daniel Lilayu",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1140"
+        },
+        {
+            "Position": 76,
+            "Distrito": "6",
+            "Email": "andres.longton@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1046",
+            "Nombre": "Andrés Longton",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1046"
+        },
+        {
+            "Position": 77,
+            "Distrito": "1",
+            "Email": "luis.malla@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1141",
+            "Nombre": "Luis Malla",
+            "Partido": "LIBERAL",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1141"
+        },
+        {
+            "Position": 78,
+            "Distrito": "5",
+            "Email": "daniel.manouchehri@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1142",
+            "Nombre": "Daniel Manouchehri",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1142"
+        },
+        {
+            "Position": 79,
+            "Distrito": "19",
+            "Email": "cristobal.martinez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1143",
+            "Nombre": "Cristóbal Martínez",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1143"
+        },
+        {
+            "Position": 80,
+            "Distrito": "6",
+            "Email": "carolina.marzan@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1048",
+            "Nombre": "Carolina Marzán",
+            "Partido": "PPD",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1048"
+        },
+        {
+            "Position": 81,
+            "Distrito": "28",
+            "Email": "christian.matheson@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1144",
+            "Nombre": "Christian Matheson",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1144"
+        },
+        {
+            "Position": 82,
+            "Distrito": "21",
+            "Email": "karen.medina@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1145",
+            "Nombre": "Karen Medina",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1145"
+        },
+        {
+            "Position": 83,
+            "Distrito": "16",
+            "Email": "cosme.mellado@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1049",
+            "Nombre": "Cosme Mellado",
+            "Partido": "PR",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1049"
+        },
+        {
+            "Position": 84,
+            "Distrito": "23",
+            "Email": "miguel.mellado@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1050",
+            "Nombre": "Miguel Mellado",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1050"
+        },
+        {
+            "Position": 85,
+            "Distrito": "13",
+            "Email": "daniel.melo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL990",
+            "Nombre": "Daniel Melo",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=990"
+        },
+        {
+            "Position": 86,
+            "Distrito": "9",
+            "Email": "jose.meza@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1146",
+            "Nombre": "José Carlos Meza",
+            "Partido": "PREP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1146"
+        },
+        {
+            "Position": 87,
+            "Distrito": "1",
+            "Email": "vlado.mirosevic@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL991",
+            "Nombre": "Vlado Mirosevic",
+            "Partido": "LIBERAL",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=991"
+        },
+        {
+            "Position": 88,
+            "Distrito": "8",
+            "Email": "claudia.mix@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1051",
+            "Nombre": "Claudia Mix",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1051"
+        },
+        {
+            "Position": 89,
+            "Distrito": "10",
+            "Email": "helia.molina@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1147",
+            "Nombre": "Helia Molina",
+            "Partido": "PPD",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1147"
+        },
+        {
+            "Position": 90,
+            "Distrito": "28",
+            "Email": "javiera.morales@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1148",
+            "Nombre": "Javiera Morales",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1148"
+        },
+        {
+            "Position": 91,
+            "Distrito": "16",
+            "Email": "carla.morales@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1149",
+            "Nombre": "Carla Morales",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1149"
+        },
+        {
+            "Position": 92,
+            "Distrito": "13",
+            "Email": "cristhian.moreira@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1053",
+            "Nombre": "Cristhian Moreira",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1053"
+        },
+        {
+            "Position": 93,
+            "Distrito": "17",
+            "Email": "benjamin.moreno@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1150",
+            "Nombre": "Benjamín Moreno",
+            "Partido": "PREP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1150"
+        },
+        {
+            "Position": 94,
+            "Distrito": "4",
+            "Email": "jaime.mulet@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL872",
+            "Nombre": "Jaime Mulet",
+            "Partido": "FRVS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=872"
+        },
+        {
+            "Position": 95,
+            "Distrito": "20",
+            "Email": "francesca.munoz@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1054",
+            "Nombre": "Francesca Muñoz",
+            "Partido": "PSC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1054"
+        },
+        {
+            "Position": 96,
+            "Distrito": "14",
+            "Email": "camila.musante@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1151",
+            "Nombre": "Camila Musante",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1151"
+        },
+        {
+            "Position": 97,
+            "Distrito": "18",
+            "Email": "jaime.naranjo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL74",
+            "Nombre": "Jaime Naranjo",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=74"
+        },
+        {
+            "Position": 98,
+            "Distrito": "22",
+            "Email": "gloria.naveillan@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1152",
+            "Nombre": "Gloria Naveillan",
+            "Partido": "PNL",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1152"
+        },
+        {
+            "Position": 99,
+            "Distrito": "25",
+            "Email": "emilia.nuyado@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1056",
+            "Nombre": "Emilia Nuyado",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1056"
+        },
+        {
+            "Position": 100,
+            "Distrito": "23",
+            "Email": "ericka.nanco@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1153",
+            "Nombre": "Coca Ericka Ñanco",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1153"
+        },
+        {
+            "Position": 101,
+            "Distrito": "23",
+            "Email": "mauricio.ojeda@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1154",
+            "Nombre": "Mauricio Ojeda",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1154"
+        },
+        {
+            "Position": 102,
+            "Distrito": "9",
+            "Email": "erika.olivera@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1057",
+            "Nombre": "Erika Olivera",
+            "Partido": "DEM",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1057"
+        },
+        {
+            "Position": 103,
+            "Distrito": "9",
+            "Email": "maite.orsini@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1058",
+            "Nombre": "Maite Orsini",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1058"
+        },
+        {
+            "Position": 104,
+            "Distrito": "12",
+            "Email": "ximena.ossandon@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1059",
+            "Nombre": "Ximena Ossandón",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1059"
+        },
+        {
+            "Position": 105,
+            "Distrito": "8",
+            "Email": "ruben.oyarzo@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1155",
+            "Nombre": "Rubén Darío Oyarzo",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1155"
+        },
+        {
+            "Position": 106,
+            "Distrito": "12",
+            "Email": "hernan.palma@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1156",
+            "Nombre": "Hernán Palma",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1156"
+        },
+        {
+            "Position": 107,
+            "Distrito": "20",
+            "Email": "marlene.perez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1157",
+            "Nombre": "Marlene Pérez",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1157"
+        },
+        {
+            "Position": 108,
+            "Distrito": "21",
+            "Email": "joanna.perez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1062",
+            "Nombre": "Joanna Pérez",
+            "Partido": "DEM",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1062"
+        },
+        {
+            "Position": 109,
+            "Distrito": "3",
+            "Email": "catalina.perez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1063",
+            "Nombre": "Catalina Pérez",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1063"
+        },
+        {
+            "Position": 110,
+            "Distrito": "5",
+            "Email": "victor.pino@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1158",
+            "Nombre": "Víctor Alejandro Pino",
+            "Partido": "DEM",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1158"
+        },
+        {
+            "Position": 111,
+            "Distrito": "13",
+            "Email": "lorena.pizarro@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1159",
+            "Nombre": "Lorena Pizarro",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1159"
+        },
+        {
+            "Position": 112,
+            "Distrito": "10",
+            "Email": "alejandra.placencia@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1160",
+            "Nombre": "Alejandra Placencia",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1160"
+        },
+        {
+            "Position": 113,
+            "Distrito": "17",
+            "Email": "francisco.pulgar@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1161",
+            "Nombre": "Francisco Pulgar",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1161"
+        },
+        {
+            "Position": 114,
+            "Distrito": "11",
+            "Email": "guillermo.ramirez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1065",
+            "Nombre": "Guillermo Ramírez",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1065"
+        },
+        {
+            "Position": 115,
+            "Distrito": "2",
+            "Email": "matias.ramirez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1162",
+            "Nombre": "Matías Ramírez",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1162"
+        },
+        {
+            "Position": 116,
+            "Distrito": "27",
+            "Email": "marcia.raphael@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1163",
+            "Nombre": "Marcia Raphael",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1163"
+        },
+        {
+            "Position": 117,
+            "Distrito": "22",
+            "Email": "jorge.rathgeb@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL999",
+            "Nombre": "Jorge Rathgeb",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=999"
+        },
+        {
+            "Position": 118,
+            "Distrito": "17",
+            "Email": "hugo.rey@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1067",
+            "Nombre": "Hugo Rey",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1067"
+        },
+        {
+            "Position": 119,
+            "Distrito": "15",
+            "Email": "marcela.riquelme@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1164",
+            "Nombre": "Marcela Riquelme",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1164"
+        },
+        {
+            "Position": 120,
+            "Distrito": "6",
+            "Email": "grivas@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL948",
+            "Nombre": "Gaspar Rivas",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=948"
+        },
+        {
+            "Position": 121,
+            "Distrito": "7",
+            "Email": "camila.rojas@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1068",
+            "Nombre": "Camila Rojas",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1068"
+        },
+        {
+            "Position": 122,
+            "Distrito": "8",
+            "Email": "agustin.romero@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1165",
+            "Nombre": "Agustín Romero",
+            "Partido": "PREP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1165"
+        },
+        {
+            "Position": 123,
+            "Distrito": "20",
+            "Email": "leonidas.romero@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1069",
+            "Nombre": "Leonidas Romero",
+            "Partido": "PNL",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1069"
+        },
+        {
+            "Position": 124,
+            "Distrito": "15",
+            "Email": "natalia.romero@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1166",
+            "Nombre": "Natalia Romero",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1166"
+        },
+        {
+            "Position": 125,
+            "Distrito": "24",
+            "Email": "patricio.rosas@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1070",
+            "Nombre": "Patricio Rosas",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1070"
+        },
+        {
+            "Position": 126,
+            "Distrito": "26",
+            "Email": "jaime.saez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1167",
+            "Nombre": "Jaime Sáez",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1167"
+        },
+        {
+            "Position": 127,
+            "Distrito": "22",
+            "Email": "jorge.saffirio@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1168",
+            "Nombre": "Jorge Saffirio",
+            "Partido": "DEM",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1168"
+        },
+        {
+            "Position": 128,
+            "Distrito": "21",
+            "Email": "clara.sagardia@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1169",
+            "Nombre": "Clara Sagardía",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1169"
+        },
+        {
+            "Position": 129,
+            "Distrito": "7",
+            "Email": "luis.sanchez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1170",
+            "Nombre": "Luis Sánchez",
+            "Partido": "PREP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1170"
+        },
+        {
+            "Position": 130,
+            "Distrito": "4",
+            "Email": "juan.santana@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1073",
+            "Nombre": "Juan Santana",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1073"
+        },
+        {
+            "Position": 131,
+            "Distrito": "14",
+            "Email": "marisela.santibanez@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1074",
+            "Nombre": "Marisela Santibáñez",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1074"
+        },
+        {
+            "Position": 132,
+            "Distrito": "19",
+            "Email": "frank.sauerbaum@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL953",
+            "Nombre": "Frank Sauerbaum",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=953"
+        },
+        {
+            "Position": 133,
+            "Distrito": "15",
+            "Email": "diego.schalper@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1075",
+            "Nombre": "Diego Schalper",
+            "Partido": "RN",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1075"
+        },
+        {
+            "Position": 134,
+            "Distrito": "10",
+            "Email": "emilia.schneider@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1171",
+            "Nombre": "Emilia Schneider",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1171"
+        },
+        {
+            "Position": 135,
+            "Distrito": "23",
+            "Email": "stephan.schubert@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1172",
+            "Nombre": "Stephan Schubert",
+            "Partido": "PREP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1172"
+        },
+        {
+            "Position": 136,
+            "Distrito": "17",
+            "Email": "alexis.sepulveda@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1076",
+            "Nombre": "Alexis Sepúlveda",
+            "Partido": "PR",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1076"
+        },
+        {
+            "Position": 137,
+            "Distrito": "12",
+            "Email": "daniela.serrano@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1173",
+            "Nombre": "Daniela Serrano",
+            "Partido": "PC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1173"
+        },
+        {
+            "Position": 138,
+            "Distrito": "14",
+            "Email": "leonardo.soto@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1002",
+            "Nombre": "Leonardo Soto",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1002"
+        },
+        {
+            "Position": 139,
+            "Distrito": "15",
+            "Email": "raul.soto@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1077",
+            "Nombre": "Raúl Soto",
+            "Partido": "PPD",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1077"
+        },
+        {
+            "Position": 140,
+            "Distrito": "5",
+            "Email": "marco.sulantay@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1174",
+            "Nombre": "Marco Antonio Sulantay",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1174"
+        },
+        {
+            "Position": 141,
+            "Distrito": "4",
+            "Email": "cristian.tapia@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1175",
+            "Nombre": "Cristián Tapia",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1175"
+        },
+        {
+            "Position": 142,
+            "Distrito": "7",
+            "Email": "hotuiti.teao@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1176",
+            "Nombre": "Hotuiti Teao",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1176"
+        },
+        {
+            "Position": 143,
+            "Distrito": "5",
+            "Email": "carolina.tello@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1177",
+            "Nombre": "Carolina Tello",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1177"
+        },
+        {
+            "Position": 144,
+            "Distrito": "2",
+            "Email": "renzo.trisotti@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1003",
+            "Nombre": "Renzo Trisotti",
+            "Partido": "PREP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1003"
+        },
+        {
+            "Position": 145,
+            "Distrito": "26",
+            "Email": "hector.ulloa@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1178",
+            "Nombre": "Héctor Ulloa",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1178"
+        },
+        {
+            "Position": 146,
+            "Distrito": "11",
+            "Email": "francisco.undurraga@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1081",
+            "Nombre": "Francisco Undurraga",
+            "Partido": "EVOP",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1081"
+        },
+        {
+            "Position": 147,
+            "Distrito": "8",
+            "Email": "alberto.undurraga@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1179",
+            "Nombre": "Alberto Undurraga",
+            "Partido": "DC",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1179"
+        },
+        {
+            "Position": 148,
+            "Distrito": "21",
+            "Email": "cristobal.urruticoechea@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1082",
+            "Nombre": "Cristóbal Urruticoechea",
+            "Partido": "PNL",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1082"
+        },
+        {
+            "Position": 149,
+            "Distrito": "18",
+            "Email": "consuelo.veloso@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1180",
+            "Nombre": "Consuelo Veloso",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1180"
+        },
+        {
+            "Position": 150,
+            "Distrito": "6",
+            "Email": "nelson.venegas@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1181",
+            "Nombre": "Nelson Venegas",
+            "Partido": "PS",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1181"
+        },
+        {
+            "Position": 151,
+            "Distrito": "3",
+            "Email": "sebastian.videla@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1182",
+            "Nombre": "Sebastián Videla",
+            "Partido": "IND",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1182"
+        },
+        {
+            "Position": 152,
+            "Distrito": "24",
+            "Email": "gaston.vonmuhlenbrock@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL917",
+            "Nombre": "Gastón Von Mühlenbrock",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=917"
+        },
+        {
+            "Position": 153,
+            "Distrito": "21",
+            "Email": "flor.weisse@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1183",
+            "Nombre": "Flor Weisse",
+            "Partido": "UDI",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1183"
+        },
+        {
+            "Position": 154,
+            "Distrito": "10",
+            "Email": "gonzalo.winter@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1086",
+            "Nombre": "Gonzalo Winter",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1086"
+        },
+        {
+            "Position": 155,
+            "Distrito": "13",
+            "Email": "gael.yeomans@congreso.cl?subject=Consulta",
+            "Image": "https://www.camara.cl/img.aspx?prmID=GRCL1087",
+            "Nombre": "Gael Yeomans",
+            "Partido": "FA",
+            "Profile_Link": "https://www.camara.cl/diputados/detalle/mociones.aspx?prmID=1087"
+        }
+    ],
+    "table": "Diputados List",
+    "schema_version": "1.0",
+    "export_id": "5466795f-b8f0-48e0-ad5d-e1a936b47102",
+    "export_created_at": "2025-11-19T22:18:48.875Z"
+}

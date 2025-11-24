@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ManualFunction } from '../types';
 import { SesionesXAnnoDto, SesionResumenDto } from '@interface/external/camara-diputados/sala/sesiones-x-anno.dto';
 import { SesionAsistenciaDto, AsistenciaDto, DiputadoDto } from '@interface/external/camara-diputados/sala/sesion-asistencia.dto';
+import { appendAsistenciaRun } from '../utils/persistent-cache';
 
 type AnyObj = Record<string, any>;
 
@@ -58,6 +59,10 @@ export const consultarAsistenciaDiputadoSala: ManualFunction = {
     { name: 'start_year', type: 'number', description: 'Año de inicio (número)', required: true },
     { name: 'end_year', type: 'number', description: 'Año final (número)', required: true },
     { name: 'diputado_id', type: 'number', description: 'ID de Diputado', required: true },
+    { name: 'delay_ms', type: 'number', description: 'Retraso entre llamadas (ms)', required: false, defaultValue: 200 },
+    { name: 'retry_attempts', type: 'number', description: 'Reintentos por llamada', required: false, defaultValue: 3 },
+    { name: 'enable_cache', type: 'boolean', description: 'Habilitar caché en memoria', required: false, defaultValue: true },
+    { name: 'persist_cache', type: 'boolean', description: 'Persistir resultados en caché', required: false, defaultValue: true },
     { name: 'show_full_response', type: 'boolean', description: 'Mostrar estructura final completa', required: false, defaultValue: false },
   ],
   execute: async (params?: AnyObj) => {
@@ -65,6 +70,10 @@ export const consultarAsistenciaDiputadoSala: ManualFunction = {
     const startYearInput: number = params?.start_year;
     const endYearInput: number = params?.end_year;
     const diputadoIdInput: number = params?.diputado_id;
+    const delayMs: number = Math.max(0, Number(params?.delay_ms ?? 200));
+    const retryAttempts: number = Math.max(1, Number(params?.retry_attempts ?? 3));
+    const enableCache: boolean = params?.enable_cache !== undefined ? !!params.enable_cache : true;
+    const persistCache: boolean = params?.persist_cache !== undefined ? !!params.persist_cache : true;
     const showFull: boolean = !!params?.show_full_response;
 
     console.log('\n🧮 ANÁLISIS DE ASISTENCIA - SALA');
@@ -72,6 +81,7 @@ export const consultarAsistenciaDiputadoSala: ManualFunction = {
     console.log(`🔗 Base URL: ${baseUrl}`);
     console.log(`📅 Inicio: ${startYearInput} | Fin: ${endYearInput}`);
     console.log(`🆔 Diputado: ${diputadoIdInput}`);
+    console.log(`⏱️ Delay: ${delayMs}ms | Reintentos: ${retryAttempts} | Caché: ${enableCache}`);
     console.log('─'.repeat(60));
 
     let startYear = 0;
@@ -92,12 +102,41 @@ export const consultarAsistenciaDiputadoSala: ManualFunction = {
     let justificado = 0;
     let noAsiste = 0;
 
+    const cache = new Map<string, { data: any; ts: number }>();
+    const getCached = (key: string) => (enableCache ? cache.get(key)?.data : undefined);
+    const setCached = (key: string, data: any) => {
+      if (enableCache) cache.set(key, { data, ts: Date.now() });
+    };
+
+    const axiosGetWithRetry = async (url: string, config: AnyObj): Promise<any> => {
+      let attempt = 0;
+      while (attempt < retryAttempts) {
+        try {
+          await sleep(delayMs);
+          const resp = await axios.get(url, config);
+          return resp.data;
+        } catch (err: any) {
+          const status = err?.response?.status;
+          const isRate = status === 429;
+          const backoff = Math.min(1000 * Math.pow(2, attempt), 8000);
+          if (attempt === retryAttempts - 1) throw err;
+          await sleep(isRate ? backoff : backoff);
+          attempt++;
+        }
+      }
+      return null;
+    };
+
     for (let year = startYear; year <= endYear; year++) {
       try {
         const urlSesiones = `${baseUrl}/servicioSala/sesionesXAnno`;
-        const respSesiones = await axios.get<SesionesXAnnoDto | { SesionesSalaColeccion: any }>(urlSesiones, { params: { year: String(year) }, timeout: 20000 });
-        await sleep(5000);
-        const sesionesRoot: any = respSesiones.data as any;
+        const cacheKeyYear = `year:${year}`;
+        let sesionesRoot: any = getCached(cacheKeyYear);
+        if (!sesionesRoot) {
+          const dataYear = await axiosGetWithRetry(urlSesiones, { params: { year: String(year) }, timeout: 20000 });
+          sesionesRoot = dataYear;
+          setCached(cacheKeyYear, sesionesRoot);
+        }
         const coleccion = sesionesRoot?.SesionesSalaColeccion || sesionesRoot?.data?.SesionesSalaColeccion;
         const sesiones: SesionResumenDto[] = toArray<SesionResumenDto>(coleccion?.Sesion);
 
@@ -112,9 +151,13 @@ export const consultarAsistenciaDiputadoSala: ManualFunction = {
           if (!sesionId) continue;
           try {
             const urlAsistencia = `${baseUrl}/servicioSala/sesionAsistencia`;
-            const respAsistencia = await axios.get<SesionAsistenciaDto | { SesionSala: any }>(urlAsistencia, { params: { id: String(sesionId) }, timeout: 20000 });
-            await sleep(5000);
-            const asistenciaRoot: any = respAsistencia.data as any;
+            const cacheKeySes = `ses:${sesionId}`;
+            let asistenciaRoot: any = getCached(cacheKeySes);
+            if (!asistenciaRoot) {
+              const dataSes = await axiosGetWithRetry(urlAsistencia, { params: { id: String(sesionId) }, timeout: 20000 });
+              asistenciaRoot = dataSes;
+              setCached(cacheKeySes, asistenciaRoot);
+            }
             const sesionSala = asistenciaRoot?.SesionSala || asistenciaRoot?.data?.SesionSala;
             const listado = sesionSala?.ListadoAsistencia;
             const registros = toArray<AsistenciaDto>(listado?.Asistencia);
@@ -171,6 +214,20 @@ export const consultarAsistenciaDiputadoSala: ManualFunction = {
     if (showFull) {
       console.log('\n🔍 ESTRUCTURA COMPLETA:');
       console.log(JSON.stringify(resultado, null, 2));
+    }
+
+    if (persistCache) {
+      appendAsistenciaRun(targetDiputadoId, {
+        years: { start: startYear, end: endYear, processedYears: Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i) },
+        totalCelebradas,
+        categorias: {
+          asiste: { percent: Number(((asiste / denom) * 100).toFixed(2)), count: asiste },
+          justificado: { percent: Number(((justificado / denom) * 100).toFixed(2)), count: justificado },
+          noAsiste: { percent: Number(((noAsiste / denom) * 100).toFixed(2)), count: noAsiste },
+        },
+        timestamp: new Date().toISOString(),
+      });
+      console.log('Caché persistente actualizada');
     }
 
     (global as any).asistenciaDiputadoSalaResumen = resultado;

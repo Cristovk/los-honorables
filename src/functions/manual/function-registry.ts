@@ -41,6 +41,12 @@ import {
   consultarAsistenciaDiputadoSala
 } from './call-routes-diputados/consultar-asistencia-diputado-sala';
 
+import {
+  resumenAsistenciaCache
+} from './call-routes-diputados/resumen-asistencia-cache';
+import { syncPeriodosLegislativos } from './call-routes-diputados/sync-periodos-legislativos';
+import { consultarComunesTodos } from './call-routes-diputados/consultar-comunes-todos';
+
 /**
  * Registro central de todas las funciones manuales disponibles
  * Para agregar una nueva función:
@@ -65,6 +71,9 @@ export const AVAILABLE_FUNCTIONS: ManualFunction[] = [
   consultarDiputadosVigenciaLista,
   consultarVotaciones,
   consultarAsistenciaDiputadoSala,
+  resumenAsistenciaCache,
+  syncPeriodosLegislativos,
+  consultarComunesTodos,
 ];
 
 /**
