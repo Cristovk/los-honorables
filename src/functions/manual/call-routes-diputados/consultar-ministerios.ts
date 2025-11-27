@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ManualFunction } from '../types';
+import { supabaseAdmin } from '@config/supabase.config';
 
 /**
  * Interfaz para un ministerio
@@ -121,6 +122,12 @@ export const consultarMinisterios: ManualFunction = {
         };
       });
 
+      const records = ministerios.map(m => ({ id: String(m.Id), nombre: String(m.Nombre), raw_data: m }));
+      const admin: any = supabaseAdmin as any;
+      const { error, count } = await admin.from('ministerios').upsert(records, { onConflict: 'id', count: 'exact' });
+      if (error) throw error;
+      console.log(`\n💾 Guardados en Supabase: ${typeof count === 'number' ? count : records.length}`);
+
       // Mostrar según el formato seleccionado
       if (format === 'firestore') {
         console.log('\n🔥 ESTRUCTURA PARA FIRESTORE:');
@@ -176,6 +183,7 @@ export const consultarMinisterios: ManualFunction = {
       (global as any).ultimosMinisterios = response.data;
       (global as any).ministeriosFirestore = firestoreDocs;
       (global as any).ministeriosArray = ministerios;
+      (global as any).ministeriosSupabaseCount = typeof count === 'number' ? count : records.length;
 
       console.log('\n💾 DATOS GUARDADOS EN MEMORIA:');
       console.log('─'.repeat(60));

@@ -7,7 +7,8 @@ import {
   getFunctionsByCategory, 
   getFunctionById, 
   getAvailableCategories,
-  searchFunctions 
+  searchFunctions,
+  getFunctionExplanation 
 } from './function-registry';
 
 /**
@@ -97,7 +98,7 @@ class FunctionManager {
   private async listAllFunctions(): Promise<void> {
     const functions = getAllFunctions();
     
-    console.log('\\n📋 FUNCIONES DISPONIBLES:');
+    console.log('\n📋 FUNCIONES DISPONIBLES:');
     console.log('─'.repeat(50));
     
     functions.forEach((func, index) => {
@@ -105,6 +106,13 @@ class FunctionManager {
       console.log(`${index + 1}. ${categoryEmoji} ${func.name}`);
       console.log(`   ${func.description}`);
       console.log(`   ID: ${func.id} | Categoría: ${func.category}`);
+      const explain = getFunctionExplanation(func.id);
+      if (explain) {
+        console.log('   ' + explain.title);
+        console.log(`   Endpoints: ${explain.endpoints.join(', ')}`);
+        console.log(`   Tablas: ${explain.tables.join(', ')}`);
+        console.log(`   Notas: ${explain.notes.join(' | ')}`);
+      }
       console.log('');
     });
   }
@@ -136,6 +144,13 @@ class FunctionManager {
       console.log(`${index + 1}. ${func.name}`);
       console.log(`   ${func.description}`);
       console.log(`   ID: ${func.id}`);
+      const explain = getFunctionExplanation(func.id);
+      if (explain) {
+        console.log('   ' + explain.title);
+        console.log(`   Endpoints: ${explain.endpoints.join(', ')}`);
+        console.log(`   Tablas: ${explain.tables.join(', ')}`);
+        console.log(`   Notas: ${explain.notes.join(' | ')}`);
+      }
       console.log('');
     });
   }
@@ -203,10 +218,19 @@ class FunctionManager {
    * Ejecuta una función específica
    */
   private async executeFunction(func: ManualFunction): Promise<void> {
-    console.log(`\\n⚡ EJECUTANDO: ${func.name}`);
+    console.log(`\n⚡ EJECUTANDO: ${func.name}`);
     console.log('─'.repeat(50));
     console.log(func.description);
     console.log('');
+    const explain = getFunctionExplanation(func.id);
+    if (explain) {
+      console.log('📘 Resumen de la función:');
+      console.log('• ' + explain.title);
+      console.log(`• Endpoints: ${explain.endpoints.join(', ')}`);
+      console.log(`• Tablas en Supabase: ${explain.tables.join(', ')}`);
+      console.log(`• Notas: ${explain.notes.join(' | ')}`);
+      console.log('');
+    }
 
     let params: Record<string, any> = {};
 

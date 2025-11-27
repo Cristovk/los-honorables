@@ -47,6 +47,36 @@ import {
 import { syncPeriodosLegislativos } from './call-routes-diputados/sync-periodos-legislativos';
 import { consultarComunesTodos } from './call-routes-diputados/consultar-comunes-todos';
 
+export const getFunctionExplanation = (id: string): {
+  title: string;
+  endpoints: string[];
+  tables: string[];
+  notes: string[];
+} | null => {
+  const map: Record<string, { title: string; endpoints: string[]; tables: string[]; notes: string[] }> = {
+    'consultar-regiones-distritos': {
+      title: 'Consulta y guarda regiones, provincias, comunas y distritos en Supabase',
+      endpoints: ['/comunes/regiones', '/comunes/distritos', '/comunes/provincias'],
+      tables: ['regiones', 'provincias', 'comunas', 'distritos'],
+      notes: [
+        'IDs numéricos (BIGINT) alineados con Numero del origen',
+        'Upsert con conflicto en id',
+        'Actualiza distrito_id en comunas usando datos de distritos'
+      ]
+    },
+    'consultar-ministerios': {
+      title: 'Consulta y guarda ministerios en Supabase',
+      endpoints: ['/comunes/ministerios'],
+      tables: ['ministerios'],
+      notes: [
+        'Guarda id, nombre y raw_data',
+        'Upsert con conflicto en id'
+      ]
+    }
+  };
+  return map[id] || null;
+};
+
 /**
  * Registro central de todas las funciones manuales disponibles
  * Para agregar una nueva función:

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ManualFunction } from '../types';
+import { supabaseAdmin } from '@config/supabase.config';
 
 /**
  * Interfaces para las respuestas de la API
@@ -64,6 +65,27 @@ interface RegionesResponse {
       xmlns_xsi: string;
       xmlns_xsd: string;
       Region: Region[];
+    };
+  };
+}
+
+interface ProvinciaOnly {
+  Numero: string;
+  Nombre: string;
+  Comunas: { Comuna: { Numero: string; Nombre: string }[] | { Numero: string; Nombre: string } };
+}
+
+interface ProvinciasOnlyResponse {
+  success: boolean;
+  endpoint: string;
+  url: string;
+  timestamp: string;
+  data: {
+    ProvinciasColeccion: {
+      'xmlns:xsi': string;
+      'xmlns:xsd': string;
+      'xmlns': string;
+      Provincia: ProvinciaOnly[];
     };
   };
 }
@@ -154,6 +176,7 @@ export const consultarRegionesDistritos: ManualFunction = {
 
     let distritosData: DistritoFirestoreDoc[] = [];
     let regionesData: RegionFirestoreDoc[] = [];
+    const admin: any = supabaseAdmin as any;
 
     try {
       // =========================================
@@ -193,6 +216,17 @@ export const consultarRegionesDistritos: ManualFunction = {
         if (show_full_response) {
           console.log('\n🔍 RESPUESTA COMPLETA DE LA API (DISTRITOS):');
           console.log(JSON.stringify(responseDistritos.data, null, 2));
+        }
+
+        const distritosRecords = distritosData.map(d => ({ id: parseInt(d.id, 10), nombre: d.nombre, raw_data: d }));
+        const { error: dErr } = await admin.from('distritos').upsert(distritosRecords, { onConflict: 'id' });
+        if (dErr) throw dErr;
+
+        for (const d of distritosData) {
+          const comunaIds = d.comunas.map(c => parseInt(c.id, 10)).filter(Number.isFinite);
+          if (comunaIds.length > 0) {
+            await admin.from('comunas').update({ distrito_id: parseInt(d.id, 10) }).in('id', comunaIds);
+          }
         }
       }
 
@@ -241,6 +275,33 @@ export const consultarRegionesDistritos: ManualFunction = {
         if (show_full_response) {
           console.log('\n🔍 RESPUESTA COMPLETA DE LA API (REGIONES):');
           console.log(JSON.stringify(responseRegiones.data, null, 2));
+        }
+
+        const regionesRecords = regionesData.map(r => ({ id: parseInt(r.id, 10), nombre: r.nombre, numero_romano: r.numeroRomano, raw_data: r }));
+        const { error: rErr } = await admin.from('regiones').upsert(regionesRecords, { onConflict: 'id' });
+        if (rErr) throw rErr;
+
+        const provinciasRecords = regionesData.flatMap(r => r.provincias.map(p => ({ id: parseInt(p.id, 10), region_id: parseInt(r.id, 10), nombre: p.nombre, raw_data: p })));
+        const { error: pErr } = await admin.from('provincias').upsert(provinciasRecords, { onConflict: 'id' });
+        if (pErr) throw pErr;
+
+        const comunasRecords = regionesData.flatMap(r => r.provincias.flatMap(p => p.comunas.map(c => ({ id: parseInt(c.id, 10), nombre: c.nombre, provincia_id: parseInt(p.id, 10), raw_data: c }))));
+        const { error: cErr } = await admin.from('comunas').upsert(comunasRecords, { onConflict: 'id' });
+        if (cErr) throw cErr;
+      }
+
+      if (tipo === 'ambos' || tipo === 'regiones') {
+        const urlProvincias = `${base_url}/comunes/provincias`;
+        const respProv = await axios.get<ProvinciasOnlyResponse>(urlProvincias, { timeout: 10000 });
+        const provinciasOnly = (respProv.data?.data?.ProvinciasColeccion?.Provincia || []) as ProvinciaOnly[];
+        const comunasProvRecords = provinciasOnly.flatMap(p => {
+          const comunas = normalizeToArray(p.Comunas?.Comuna as any);
+          const pid = parseInt(p.Numero, 10);
+          return comunas.map((c: any) => ({ id: parseInt(c.Numero, 10), nombre: c.Nombre, provincia_id: pid, raw_data: c }));
+        });
+        if (comunasProvRecords.length > 0) {
+          const { error: cProvErr } = await admin.from('comunas').upsert(comunasProvRecords, { onConflict: 'id' });
+          if (cProvErr) throw cProvErr;
         }
       }
 
