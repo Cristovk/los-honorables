@@ -343,7 +343,7 @@ class FunctionManager {
    */
   private getCategoryEmoji(category: string): string {
     const emojis: Record<string, string> = {
-      firestore: '🔥',
+      supabase: '🗄️',
       utils: '🛠️',
       examples: '💡',
       diputados: '🏛️',

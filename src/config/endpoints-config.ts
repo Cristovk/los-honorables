@@ -15,9 +15,6 @@ export const CONFIG = {
   BASE_URL: env('BASE_URL', 'https://opendata.camara.cl/camaradiputados/WServices/'),
   PORT: Number(env('PORT', '6000')),
 
-  // Configuración Firebase
-  FIREBASE_CREDENTIALS_PATH: env('FIREBASE_CREDENTIALS', 'horonables-firebase.json'),
-
   // Configuración IA
   DEEPSEEK_API_KEY: env('DEEPSEEK_API_KEY'),
   AI_PROCESSING_ENABLED: env('AI_PROCESSING_ENABLED', 'true') === 'true',

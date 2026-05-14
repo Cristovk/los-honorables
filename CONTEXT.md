@@ -52,8 +52,8 @@ Ciudadanos chilenos interesados en seguir la actividad legislativa de manera acc
 |------------|------------|
 | **Runtime** | Node.js con TypeScript |
 | **Framework** | Express.js |
-| **Base de Datos** | Firestore (NoSQL) |
-| **Plataforma Cloud** | Firebase |
+| **Base de Datos** | Supabase (PostgreSQL) |
+| **Plataforma Cloud** | Supabase |
 | **Modelo de IA** | DeepSeek v3.1 (planificado) |
 | **Procesamiento de Datos** | XML to JSON conversion |
 | **Gestor de Paquetes** | bun |

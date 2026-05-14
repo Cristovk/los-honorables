@@ -7,11 +7,11 @@ import {
   systemInfoFunction
 } from './examples/demo-functions';
 
-// Importar funciones de Firestore
+// Importar funciones de Supabase
 import {
-  createCollectionStructure,
-  generateSecurityRules
-} from './firestore/collection-functions';
+  checkSupabaseConnection,
+  inspectSupabaseTable
+} from './supabase/supabase-utils';
 
 // Importar funciones de utilidad para llamadas a rutas de Diputados
 import {
@@ -89,9 +89,9 @@ export const AVAILABLE_FUNCTIONS: ManualFunction[] = [
   calculatorFunction,
   systemInfoFunction,
 
-  // Funciones de Firestore
-  createCollectionStructure,
-  generateSecurityRules,
+  // Funciones de Supabase
+  checkSupabaseConnection,
+  inspectSupabaseTable,
 
   // Funciones de rutas de Diputados
   consultarEndpointsTipos,

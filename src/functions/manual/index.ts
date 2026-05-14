@@ -21,9 +21,9 @@ export {
 } from './examples/demo-functions';
 
 export {
-  createCollectionStructure,
-  generateSecurityRules
-} from './firestore/collection-functions';
+  checkSupabaseConnection,
+  inspectSupabaseTable
+} from './supabase/supabase-utils';
 
 export {
   consultarEndpointsTipos

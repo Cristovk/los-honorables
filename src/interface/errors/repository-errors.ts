@@ -45,9 +45,9 @@ export class BatchOperationError extends RepositoryError {
   }
 }
 
-export class FirestoreConnectionError extends RepositoryError {
+export class DatabaseConnectionError extends RepositoryError {
   constructor(message: string, operation: string) {
-    super(message, 'FIRESTORE_CONNECTION_ERROR', operation);
-    this.name = 'FirestoreConnectionError';
+    super(message, 'DATABASE_CONNECTION_ERROR', operation);
+    this.name = 'DatabaseConnectionError';
   }
 }

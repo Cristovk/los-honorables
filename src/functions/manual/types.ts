@@ -3,7 +3,7 @@ export interface ManualFunction {
   id: string;
   name: string;
   description: string;
-  category: 'firestore' | 'utils' | 'examples' | 'diputados';
+  category: 'supabase' | 'utils' | 'examples' | 'diputados';
   inputs?: FunctionInput[];
   execute: (params?: Record<string, any>) => Promise<void>;
 }

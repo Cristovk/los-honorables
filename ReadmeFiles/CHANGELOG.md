@@ -46,12 +46,44 @@ bun install
 | Iniciar en producción | `bun start` |
 | Desarrollo con hot-reload | `bun dev` |
 | Compilar TypeScript | `bun run build` |
-| Build para Cloud Functions | `bun run build:functions` |
 | Ejecutar tests | `bun test` |
 | Linting | `bun run lint` |
 | Type checking | `bun run type-check` |
 | Funciones manuales (CLI) | `bun run functions` |
-| Deploy a Firebase | `bun run deploy` |
-| Iniciar emuladores | `bun run emulators` |
+
+---
+
+## [Sin versión] - 2026-05-14
+
+### Cambio: Migración completa de Firebase/Firestore a Supabase
+
+#### Motivación
+
+Firebase y Firestore representaban una capa de persistencia NoSQL con costos elevados para la carga histórica de datos legislativos. Supabase con PostgreSQL ofrece consultas relacionales nativas, costo cero indefinido en plan gratuito y una API REST/GraphQL autogenerada, ajustándose mejor a los requisitos del proyecto.
+
+#### Eliminaciones
+
+- **`firebase.json`**, **`firestore.rules`**, **`firestore.indexes.json`**: configuración de Firebase eliminada.
+- **`src/cloud/firebaseConfig.ts`**: módulo de inicialización de Firebase Admin SDK eliminado.
+- **`src/models/firestore/`**: toda la capa de repositorios y modelos de Firestore eliminada.
+- **`src/services/error-handling/firestore-error-handler.service.ts`**: servicio de errores específico de Firestore eliminado.
+- **`src/functions/manual/firestore/`**: funciones manuales de utilidad de Firestore eliminadas.
+- **`src/functions/manual/test-firestore-connection/`**: verificador de conexión Firestore eliminado.
+- **`src/utils/firestoreUtils.ts`**: archivo vacío eliminado.
+- Dependencias `firebase`, `firebase-admin`, `firebase-functions` y `firebase-tools` removidas de `package.json`.
+- Scripts `build:functions`, `deploy`, `emulators` y `emulators:functions` removidos.
+
+#### Cambios
+
+- **`src/interface/errors/repository-errors.ts`**: `FirestoreConnectionError` renombrado a `DatabaseConnectionError`.
+- **`src/functions/manual/types.ts`**: categoría `'firestore'` reemplazada por `'supabase'`.
+- **`src/functions/manual/function-registry.ts`**: funciones de Firestore reemplazadas por utilidades de Supabase.
+- **`src/functions/index.ts`**: eliminada dependencia de `firebase-admin`.
+- **`src/config/endpoints-config.ts`**: eliminado campo `FIREBASE_CREDENTIALS_PATH`.
+- **`CONTEXT.md`**: tabla de stack actualizada (Firebase → Supabase).
+
+#### Nuevos archivos
+
+- **`src/functions/manual/supabase/supabase-utils.ts`**: funciones manuales `check-supabase-connection` e `inspect-supabase-table` para operar y diagnosticar Supabase desde el CLI interactivo.
 
 ---
