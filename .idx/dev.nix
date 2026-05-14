@@ -8,7 +8,7 @@
   # Paquetes necesarios para el proyecto
   packages = [
     pkgs.nodejs_20        # Node.js LTS
-    pkgs.pnpm            # Gestor de paquetes pnpm
+    pkgs.bun             # Gestor de paquetes bun
     pkgs.typescript      # Compilador TypeScript
     pkgs.firebase-tools  # CLI de Firebase
     pkgs.jq              # Procesamiento JSON
@@ -38,7 +38,7 @@
         # Preview para el servidor principal
         web = {
           command = [
-            "pnpm"
+            "bun"
             "run"
             "dev"
             "--"
@@ -73,18 +73,18 @@
     workspace = {
       # Ejecuta cuando el workspace se crea por primera vez
       onCreate = {
-        # Instalar dependencias con pnpm
-        pnpm-install = "pnpm install";
+        # Instalar dependencias con bun
+        bun-install = "bun install";
         # Build inicial del proyecto
-        build-project = "pnpm run build";
+        build-project = "bun run build";
       };
 
       # Ejecuta cuando el workspace se (re)inicia
       onStart = {
         # Instalar dependencias si no existen
-        pnpm-install-if-needed = "if [ ! -d node_modules ]; then pnpm install; fi";
+        bun-install-if-needed = "if [ ! -d node_modules ]; then bun install; fi";
         # Iniciar watcher de TypeScript en background
-        typescript-watch = "pnpm run build:watch &";
+        typescript-watch = "bun run build:watch &";
       };
     };
   };

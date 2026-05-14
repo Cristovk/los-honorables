@@ -5,7 +5,7 @@
  * funciones manuales desde la línea de comandos.
  * 
  * Uso:
- * - Desde package.json: `pnpm run functions`
+ * - Desde package.json: `bun run functions`
  * - Desde Node.js: import FunctionManager from './function-manager'
  */
 

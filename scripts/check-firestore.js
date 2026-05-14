@@ -2,7 +2,7 @@
 
 /**
  * Script ejecutable para verificar conexión con Firestore
- * Uso: pnpm run check-firestore
+ * Uso: bun run check-firestore
  */
 
 import { execSync } from 'child_process';

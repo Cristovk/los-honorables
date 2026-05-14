@@ -22,8 +22,8 @@ Logger de alto rendimiento basado en [Pino](https://getpino.io/) que genera logs
 ### Instalación
 
 ```bash
-pnpm add pino@10.1.0
-pnpm add -D pino-pretty
+bun add pino@10.1.0
+bun add -d pino-pretty
 ```
 
 ### Uso Básico
@@ -137,7 +137,7 @@ El logger utiliza una paleta vibrante inspirada en la estética cyberpunk:
 ### Instalación
 
 ```bash
-pnpm add chalk@5.6.2
+bun add chalk@5.6.2
 ```
 
 > **Nota**: Chalk 5.x es ESM-only. El proyecto debe estar configurado para soportar módulos ESM.

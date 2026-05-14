@@ -70,7 +70,7 @@ rm -rf dist
 rm -rf .tsbuildinfo
 
 # Recompilar desde cero
-pnpm run build
+bun run build
 
 # Verificar el archivo compilado
 cat dist/models/firestore/repositories/base.repository.js | grep -A 20 "createBatch"
@@ -204,7 +204,7 @@ cat dist/models/firestore/repositories/base.repository.js | grep -A 30 "createBa
 firebase emulators:start --only firestore
 
 # En otra terminal, ejecutar la función
-pnpm run emulators:functions
+bun run emulators:functions
 ```
 
 ### 3. Verificar Documentos Creados
@@ -219,7 +219,7 @@ Acceder a http://127.0.0.1:8080/ y verificar:
 
 - [ ] Limpiar directorio `dist/`
 - [ ] Limpiar `.tsbuildinfo`
-- [ ] Recompilar con `pnpm run build`
+- [ ] Recompilar con `bun run build`
 - [ ] Verificar el archivo `dist/models/firestore/repositories/base.repository.js`
 - [ ] Ejecutar función de prueba con emulador
 - [ ] Verificar que los datos se guardan correctamente

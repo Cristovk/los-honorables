@@ -15,7 +15,7 @@ Un sistema interactivo para gestionar y ejecutar funciones desde la línea de co
 
 ### Ejecutar desde package.json
 ```bash
-pnpm run functions
+bun run functions
 ```
 
 ### Usar programáticamente

@@ -56,7 +56,7 @@ Ciudadanos chilenos interesados en seguir la actividad legislativa de manera acc
 | **Plataforma Cloud** | Firebase |
 | **Modelo de IA** | DeepSeek v3.1 (planificado) |
 | **Procesamiento de Datos** | XML to JSON conversion |
-| **Gestor de Paquetes** | pnpm |
+| **Gestor de Paquetes** | bun |
 | **Herramienta de Build** | TypeScript compiler |
 
 ### Despliegue

@@ -417,7 +417,7 @@ export const AVAILABLE_FUNCTIONS: ManualFunction[] = [
 ### 11.3. Ejecutar
 
 ```bash
-pnpm run functions
+bun run functions
 # Selecciona: "Test Conexión Supabase"
 ```
 

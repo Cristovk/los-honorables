@@ -257,7 +257,7 @@ curl -X GET "http://localhost:6000/comunes/on" && echo ""
 # =================================================================
 
 # 1. Asegúrate de que el servidor esté corriendo en puerto 6000:
-#    pnpm run dev
+#    bun run dev
 
 # 2. Todos los endpoints que requieren parámetros usan req.body
 #    por lo que necesitan Content-Type: application/json

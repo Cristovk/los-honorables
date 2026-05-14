@@ -103,7 +103,7 @@ logger.progress(50, 100, 'Progreso general');
 
 **Comando**:
 ```bash
-pnpm run functions
+bun run functions
 ```
 
 #### Funciones Disponibles:
@@ -111,14 +111,14 @@ pnpm run functions
 ##### **consultar-ministerios**
 ```bash
 # Consulta ministerios disponibles de Chile
-pnpm run functions → Seleccionar opción "consultar-ministerios"
+bun run functions → Seleccionar opción "consultar-ministerios"
 ```
 
 ##### **consultar-asistencia-diputado-sala**
 ```bash
 # Obtiene asistencia histórica de un diputado específico
 # Parámetros: base_url, start_year, end_year, diputado_id
-pnpm run functions → "consultar-asistencia-diputado-sala"
+bun run functions → "consultar-asistencia-diputado-sala"
 ```
 
 **Features**:
@@ -130,7 +130,7 @@ pnpm run functions → "consultar-asistencia-diputado-sala"
 ##### **resumen-asistencia-cache**
 ```bash
 # Agrega y muestra estadísticas desde caché local
-pnpm run functions → "resumen-asistencia-cache"
+bun run functions → "resumen-asistencia-cache"
 ```
 
 ### 3. 💾 Sistema de Caché Local

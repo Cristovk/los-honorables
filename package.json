@@ -10,17 +10,17 @@
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "build": "tsc && tsc-alias",
-    "build:functions": "pnpm run build && cd dist/functions && pnpm install",
+    "build:functions": "bun run build && cd dist/functions && bun install",
     "test": "jest",
     "lint": "eslint .",
-    "deploy": "pnpm run build && firebase deploy",
+    "deploy": "bun run build && firebase deploy",
     "type-check": "tsc --noEmit",
     "procesarEndpoint": "node scripts/procesarEndpoint.js",
     "collect": "node scripts/collector-servicios.js",
     "check-firestore": "node scripts/check-firestore.js",
     "functions": "tsx src/functions/manual/function-manager.ts",
-    "emulators": "pnpm run build:functions && firebase emulators:start",
-    "emulators:functions": "pnpm run build:functions && firebase emulators:start --only functions"
+    "emulators": "bun run build:functions && firebase emulators:start",
+    "emulators:functions": "bun run build:functions && firebase emulators:start --only functions"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.83.0",

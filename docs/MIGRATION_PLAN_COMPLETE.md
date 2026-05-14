@@ -11,7 +11,7 @@ Este documento detalla el plan completo para migrar el proyecto **Los Honorables
 ### 1.1 Configuración del Entorno Supabase
 ```bash
 # Verificar conexión actual
-pnpm run functions → Seleccionar "test-supabase"
+bun run functions → Seleccionar "test-supabase"
 
 # Crear proyecto Supabase (si no existe)
 # Ir a: https://app.supabase.com → New Project
