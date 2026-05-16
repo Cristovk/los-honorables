@@ -46,6 +46,8 @@ import {
 } from './call-routes-diputados/resumen-asistencia-cache';
 import { syncPeriodosLegislativos } from './call-routes-diputados/sync-periodos-legislativos';
 import { consultarComunesTodos } from './call-routes-diputados/consultar-comunes-todos';
+import { syncCatalogosTipos } from './call-routes-diputados/sync-catalogos-tipos';
+import { syncReferenciasLegislativas } from './call-routes-diputados/sync-referencias-legislativas';
 
 export const getFunctionExplanation = (id: string): {
   title: string;
@@ -104,6 +106,8 @@ export const AVAILABLE_FUNCTIONS: ManualFunction[] = [
   resumenAsistenciaCache,
   syncPeriodosLegislativos,
   consultarComunesTodos,
+  syncCatalogosTipos,
+  syncReferenciasLegislativas,
 ];
 
 /**

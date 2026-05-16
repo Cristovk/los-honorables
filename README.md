@@ -1,173 +1,199 @@
-# los-honorables
+# Los Honorables
 
-**Proyecto Los Honorables**
+> Democratizando el acceso a la información legislativa de Chile.
 
 ## Descripción
 
-El proyecto "Los Honorables" es un servicio diseñado para consultar, almacenar y categorizar datos legislativos del Senado y la Cámara de Diputados de Chile.
-Utiliza Firestore para almacenar datos y modelos de inteligencia artificial
-como DeepSeek para clasificar automáticamente los proyectos de ley en categorías relevantes.
+**Los Honorables** es un sistema backend diseñado para recolectar, almacenar y exponer de forma accesible los datos legislativos del Congreso Nacional de Chile. El objetivo final es construir una plataforma web que permita a cualquier ciudadano entender qué hacen sus representantes: cómo votan, a qué proyectos se oponen, en qué comisiones participan y cuál es su historial de asistencia.
 
-El sistema ofrece flexibilidad y escalabilidad al permitir consultas dinámicas desde Firestore, adaptándose a las necesidades de los usuarios y la cantidad de datos.
+### Etapas del proyecto
 
-## Funcionalidades
+**Etapa 1 (actual) — Recolección y almacenamiento:**
+Consumir las APIs públicas del Senado y la Cámara de Diputados, transformar los datos XML en estructuras relacionales limpias y almacenarlas en Supabase (PostgreSQL). La integración con la Cámara de Diputados está avanzada (32 endpoints cubiertos). La integración con el Senado está en planificación.
 
-1. **Consulta de Datos Legislativos:**
+**Etapa 2 (próxima) — Procesamiento con IA:**
+Usar modelos de lenguaje (DeepSeek, GPT u otros) para resumir proyectos de ley, clasificarlos por categoría (salud, educación, economía, etc.) y generar explicaciones en lenguaje ciudadano.
 
-   - Obtener proyectos de ley nuevos desde el Senado y la Cámara de Diputados.
-   - Consultar detalles de proyectos, votaciones y legisladores.
+**Etapa 3 (futura) — Web pública:**
+API REST / GraphQL pública y frontend web que permita a los ciudadanos consultar, filtrar y entender la actividad legislativa de sus representantes.
 
-2. **Almacenamiento de Datos:**
+## Estado actual del proyecto
 
-   - Guardar y estructurar los datos legislativos en Firestore para consultas rápidas y eficientes.
+### Cámara de Diputados — integración avanzada
 
-3. **Clasificación Automática:**
+32 endpoints cubiertos, organizados en las siguientes categorías:
 
-   - Clasificar proyectos de ley en categorías como Sociales, Económicos, Salud, entre otros, utilizando modelos de inteligencia artificial.
+- **Comisiones** (`/comisiones`): sesiones por año, detalle de comisión, comisiones vigentes y por período
+- **Comunes** (`/comunes`): catálogos geográficos (regiones, provincias, comunas, distritos) y tipos del sistema (asistencia, sesiones, votaciones, estados de proyectos, etc.)
+- **Diputados** (`/diputados`): diputados vigentes, histórico, por período
+- **Legislativo** (`/legislativos`): proyectos de ley, mociones, mensajes, votaciones, trámites, legislaturas
+- **Períodos Legislativos** (`/periodosLegislativos`): períodos e historial
+- **Proyectos de Acuerdo** (`/proyectosAcuerdo`) y **Proyectos de Resolución** (`/proyectosResolucion`)
+- **Sala** (`/servicioSala`): sesiones y asistencia en sala
+- **Votaciones** (`/votaciones`): detalle y votaciones por proyecto
 
-4. **Automatización:**
-   - Cloud Functions para realizar tareas automáticas, como la actualización de datos legislativos y votaciones.
+Ver documentación completa de la API en [`docs/api/api-camara-docs.md`](./docs/api/api-camara-docs.md).
 
-## Tecnologías Utilizadas
+### Senado de Chile — planificado
 
-### **Frontend**
+La API pública del Senado (`https://tramitacion.senado.cl/wspublico/`) será integrada en una próxima fase.
 
-- React
-- TypeScript
-- Next.js
-- Material-UI
+### Sincronización a Supabase — en progreso
 
-### **Backend**
+Se están sincronizando los datos desde la API externa hacia las tablas relacionales de Supabase. Las siguientes sincronizaciones ya están operativas vía CLI (`bun run functions`):
 
-- Firebase Cloud Functions
-- Firestore
-- Firebase Cloud Storage
-- Firebase App Check (posiblemente)
-
----
-
-## Estructura de Servicios y Rutas
-
-A continuación, se detallan los servicios disponibles junto a sus rutas correspondientes:
-
-### **Comisión** - `/WSComision.asmx/`
-
-- `retornarSesionesXComisionYAnno`: Detalle de las sesiones de una comisión en un año específico.
-- `retornarComision`: Detalle de una comisión.
-- `retornarComisionesVigentes`: Lista de comisiones vigentes.
-- `retornarComisionesXPeriodo`: Lista de comisiones en un periodo legislativo.
-
-### **Diputado** - `/WSDiputado.asmx/`
-
-- `retornarDiputado`: Detalle de un Diputado/a.
-- `retornarDiputados`: Lista de todos los Diputados/as.
-- `retornarDiputadosPeriodoActual`: Diputados/as del periodo legislativo actual.
-- `retornarDiputadosXPeriodo`: Diputados/as en un periodo legislativo.
-
-### **Proyectos de Acuerdo** - `/WSProyectoAcuerdo.asmx/`
-
-- `retornarProyectoAcuerdo`: Detalle de un proyecto de acuerdo.
-- `retornarProyectosAcuerdoXAnno`: Proyectos de acuerdo presentados en un año específico.
-
-### **Proyectos de Resolución** - `/WSProyectoResolucion.asmx/`
-
-- `retornarProyectoResolucion`: Detalle de un proyecto de resolución.
-- `retornarProyectosResolucionXAnno`: Proyectos de resolución presentados en un año específico.
-
-### **Sala** - `/WSSala.asmx/`
-
-- `retornarSesionAsistencia`: Detalle de la asistencia en una sesión.
-- `retornarSesionesXAnno`: Sesiones de sala en un año específico.
-- `retornarSesionesXLegislatura`: Sesiones de sala por legislatura.
-
-### **Legislativo** - `/WSLegislativo.asmx/`
-
-- `retornarLegislaturaActual`: Legislatura actual.
-- `retornarLegislaturas`: Todas las legislaturas.
-- `retornarMaterias`: Materias asociadas a proyectos de ley.
-- `retornarMensajesXAnno`: Mensajes presentados en un año específico.
-- `retornarMocionesXAnno`: Mociones presentadas en un año específico.
-- `retornarProyectoLey`: Detalles de un proyecto de ley.
-- `retornarTramitesConstitucionales`: Detalle de trámites constitucionales.
-- `retornarTramitesReglamentarios`: Detalle de trámites reglamentarios.
-- `retornarVotacionDetalle`: Detalle de una votación.
-- `retornarVotacionesXAnno`: Votaciones efectuadas en un año específico.
-- `retornarVotacionesXProyectoLey`: Votaciones asociadas a un proyecto de ley.
-
-### **Común** - `/WSComunes.asmx/`
-
-- **División Político-Administrativa:**
-
-  - `retornarComunas`: Listado de comunas de Chile.
-  - `retornarDistritos`: División político-administrativa.
-  - `retornarProvincias`: Listado de provincias de Chile.
-  - `retornarRegiones`: Listado de regiones de Chile.
-
-- **Gobierno y Congreso:**
-
-  - `retornarMinisterios`: División gubernamental de Chile.
-  - `retornarTiposCamaraOrigen`: Tipos de cámaras en el Congreso Nacional.
-
-- **Asistencia y Sesiones:**
-
-  - `retornarTiposAsistencia`: Tipos de asistencia a sesiones.
-  - `retornarTiposEstadoSesionComision`: Estados posibles de una sesión de comisión.
-  - `retornarTiposEstadoSesionSala`: Estados posibles de una sesión de sala.
-  - `retornarTiposTitularAsistencia`: Tipos asociados a la asistencia de los Diputados/as.
-
-- **Proyectos de Ley y Legislación:**
-
-  - `retornarTiposEstado`: Tipos de estado.
-  - `retornarTiposEstadoAcuerdosResoluciones`: Estados posibles de proyectos de acuerdo y resolución.
-  - `retornarTiposIniciativaProyectoLey`: Tipos de iniciativa de un proyecto de ley.
-  - `retornarTiposLegislatura`: Tipos de legislaturas.
-  - `retornarTiposQuorumVotacion`: Tipos de quórum en una votación.
-  - `retornarTiposResultadoVotacion`: Resultados posibles de una votación.
-  - `retornarTiposVotacion`: Tipos de votación.
-  - `retornarTiposVotacionProyectoLey`: Tipos de votación en proyectos de ley.
-
-- **General:**
-  - `retornarTiposJustificacionesInasistencia`: Justificaciones posibles de inasistencia.
-  - `retornarTiposSexo`: Tipos de sexo.
+- Ministerios
+- Regiones, provincias, comunas y distritos
+- Períodos legislativos y legislaturas
+- Diputados vigentes
+- Asistencia a sesiones de sala
 
 ---
 
-## Enlace a Información de Utils
+## Tecnologías
 
-Puedes consultar la sección de utilidades haciendo clic en [Utils](./ReadmeFiles/UTILS.md).
+### Backend
+
+- **Runtime**: Node.js 22 + TypeScript
+- **Framework**: Express.js
+- **Base de datos**: Supabase (PostgreSQL)
+- **Gestor de paquetes**: bun
+- **Logging**: Pino (producción) + Chalk Console Logger (desarrollo/CLI)
+
+### Futuro Frontend
+
+- React / Next.js (planificado)
+
+---
+
+## Schema de base de datos
+
+Tablas principales en Supabase (ver `src/models/create-table/structure-table.sql` para el schema completo):
+
+| Tabla | Descripción |
+|-------|-------------|
+| `diputados` | Datos de todos los diputados |
+| `militancias` | Historial de partidos de cada diputado |
+| `partidos` | Partidos políticos |
+| `periodos_legislativos` | Períodos del Congreso (4 años) |
+| `legislaturas` | Legislaturas dentro de cada período |
+| `sesiones_sala` | Sesiones celebradas en sala |
+| `asistencias_sala` | Asistencia de diputados por sesión |
+| `proyectos_ley` | Proyectos de ley ingresados |
+| `votaciones_proyecto_ley` | Votaciones sobre proyectos |
+| `proyecto_autores` | Autores de cada proyecto |
+| `proyecto_materias` | Materias de cada proyecto |
+| `proyectos_acuerdo` | Proyectos de acuerdo |
+| `proyectos_resolucion` | Proyectos de resolución |
+| `ministerios` | Ministerios del gobierno |
+| `regiones` | Regiones de Chile |
+| `porcentaje_asistencia` | Estadísticas de asistencia por año |
 
 ---
 
 ## Configuración
 
-### **1. Variables de entorno**
+### 1. Prerrequisitos
 
-Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+- [bun](https://bun.sh) instalado
+- Cuenta en [Supabase](https://supabase.com) con proyecto creado
 
-```env
-FIRESTORE_PROJECT_ID=your-project-id
-FIRESTORE_PRIVATE_KEY=your-private-key
-FIRESTORE_CLIENT_EMAIL=your-client-email
+### 2. Instalar dependencias
+
+```bash
+bun install
 ```
 
-📌 Resumen del Flujo
-✅ 1. Obtener los periodos legislativos
-✅ 2. Filtrar el periodo legislativo actual o un año específico
-✅ 3. Obtener todos los proyectos de ley (mociones y mensajes)
-✅ 4. Consultar si el proyecto tiene votaciones
-✅ 5. Filtrar solo las votaciones en sala
-✅ 6. Obtener el detalle de las votaciones
-✅ 7. Listar qué diputados votaron y cómo votaron
-✅ 8. Cruzar la info con los diputados vigentes
+### 3. Variables de entorno
 
-📌 Ejemplo Práctico
-Si quieres obtener todos los proyectos votados en sala en 2024 y qué diputados votaron, sigues este flujo:
+Crea un archivo `.env` en la raíz del proyecto:
 
-1️⃣ GET /periodosLegislativos/periodosLegislativos ➝ Buscar el periodo 2022-2026.
-2️⃣ GET /legislativo/mocionesXAnno?year=2024 ➝ Obtener proyectos ingresados en 2024.
-3️⃣ GET /legislativo/mensajesXAnno?year=2024 ➝ Obtener proyectos presidenciales en 2024.
-4️⃣ GET /legislativo/votacionesXProyectoLey?boletin=XXXXX ➝ Verificar si el proyecto tuvo votaciones.
-5️⃣ GET /sala/sesionesXAnno?year=2024 ➝ Asegurar que la votación fue en sala.
-6️⃣ GET /legislativo/votacionDetalle?boletin=XXXXX ➝ Ver resultado de la votación.
-7️⃣ GET /legislativo/votacionesXProyectoLey?boletin=XXXXX ➝ Obtener qué diputados votaron.
-8️⃣ GET /diputados/vigentes ➝ Obtener la lista de diputados vigentes.
+```env
+# Supabase
+SUPABASE_URL=https://[tu-proyecto].supabase.co
+SUPABASE_ANON_KEY=[tu-anon-key]
+SUPABASE_SERVICE_ROLE_KEY=[tu-service-role-key]
+
+# Servidor
+BASE_URL=https://opendata.camara.cl/camaradiputados/WServices/
+PORT=6000
+
+# IA (etapa 2, opcional por ahora)
+DEEPSEEK_API_KEY=
+```
+
+Ver guía completa de configuración de Supabase en [`docs/SUPABASE_SETUP_GUIDE.md`](./docs/SUPABASE_SETUP_GUIDE.md).
+
+### 4. Scripts disponibles
+
+| Script | Descripción |
+|--------|-------------|
+| `bun dev` | Servidor en modo desarrollo con hot-reload |
+| `bun start` | Servidor en producción (requiere build previo) |
+| `bun run build` | Compilar TypeScript a JavaScript |
+| `bun run type-check` | Verificar tipos sin compilar |
+| `bun test` | Ejecutar tests |
+| `bun run lint` | Análisis estático con ESLint |
+| `bun run functions` | Abrir el CLI interactivo de funciones manuales |
+
+---
+
+## CLI de funciones manuales
+
+El proyecto incluye un CLI interactivo para operaciones de sincronización y diagnóstico. Se ejecuta con:
+
+```bash
+bun run functions
+```
+
+Funciones disponibles:
+
+| Función | Descripción |
+|---------|-------------|
+| `sync-periodos-legislativos` | Sincroniza períodos y legislaturas a Supabase |
+| `consultar-ministerios` | Consulta y guarda ministerios |
+| `consultar-regiones-distritos` | Sincroniza regiones, provincias, comunas y distritos |
+| `consultar-diputados-vigentes` | Muestra diputados del período actual |
+| `consultar-diputados-vigencia-lista` | Lista diputados con vigencia detallada |
+| `consultar-asistencia-diputado-sala` | Historial de asistencia de un diputado específico |
+| `resumen-asistencia-cache` | Agrega estadísticas de asistencia desde caché local |
+| `consultar-votaciones` | Consulta votaciones de proyectos de ley |
+| `consultar-comunes-todos` | Sincroniza todos los catálogos comunes |
+| `check-supabase-connection` | Verifica conexión y muestra conteo por tabla |
+| `inspect-supabase-table` | Inspecciona registros de una tabla específica |
+
+---
+
+## Flujo de datos
+
+```
+API Pública (Cámara / Senado)
+      |
+      v (XML → JSON)
+ Servidor Express
+      |
+      v
+ Supabase (PostgreSQL)
+      |
+      v (Etapa 2)
+ Procesamiento con IA
+      |
+      v (Etapa 3)
+ API pública / Web ciudadana
+```
+
+---
+
+## Documentación adicional
+
+- [API Cámara de Diputados](./docs/api/api-camara-docs.md)
+- [Guía de configuración Supabase](./docs/SUPABASE_SETUP_GUIDE.md)
+- [Sistema de logging](./docs/logging.md)
+- [Utilidades](./ReadmeFiles/UTILS.md)
+- [Changelog](./ReadmeFiles/CHANGELOG.md)
+
+---
+
+## Licencia
+
+Este proyecto está bajo la Licencia GNU General Public License v3.0. Consulta el archivo [LICENSE](./LICENSE).

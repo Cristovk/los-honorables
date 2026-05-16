@@ -1,5 +1,18 @@
 -- WARNING: This schema is for context only and is not meant to be run.
 -- Table order and constraints may not be valid for execution.
+--
+-- Migration history:
+--   001_initial_schema.sql  → tables below (original)
+--   002_complete_schema.sql → votos_diputado, comisiones, comision_presidentes,
+--                             sesiones_comision, asistencias_comision,
+--                             provincias, distritos, comunas,
+--                             senadores, militancias_senadores,
+--                             tramitaciones_senado, votaciones_senado, votos_senador,
+--                             votaciones_resolucion, votos_resolucion,
+--                             proyecto_acuerdo_autores, proyecto_acuerdo_respuestas,
+--                             proyecto_resolucion_autores, proyecto_resolucion_oficios,
+--                             proyecto_resolucion_respuestas
+--                           + fixes: militancias FK diputados, sesiones_sala.legislatura_id
 
 CREATE TABLE public.asistencias_sala (
   id integer NOT NULL DEFAULT nextval('asistencias_sala_id_seq'::regclass),

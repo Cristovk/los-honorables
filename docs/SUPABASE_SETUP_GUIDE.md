@@ -81,9 +81,9 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhY
 
 ### 7.2. Verificar que las Tablas se Crearon
 
-Después de ejecutar el script, verifica que todo se creó correctamente:
+Después de ejecutar el script, verifica que todo se creó correctamente.
 
-#### **Opción A: Desde SQL Editor**
+#### **Verificar tablas desde SQL Editor**
 
 Ejecuta esta query:
 ```sql
@@ -92,96 +92,61 @@ WHERE table_schema = 'public'
 ORDER BY table_name;
 ```
 
-Deberías ver:
-- `asistencias`
-- `diputados`
-- `sesiones`
-- `sincronizacion`
+Deberías ver las siguientes tablas (schema completo en `src/models/create-table/structure-table.sql`):
 
-#### **Opción B: Desde Table Editor**
-
-1. Ve a **Table Editor** en el menú lateral
-2. Deberías ver las 4 tablas listadas:
-   - 📊 `diputados`
-   - 📅 `sesiones`
-   - ✅ `asistencias`
-   - 🔄 `sincronizacion`
-
-### 7.3. Verificar la Vista Materializada
-
-Ejecuta en SQL Editor:
-```sql
-SELECT matviewname FROM pg_matviews WHERE schemaname = 'public';
-```
-
-Deberías ver:
-- `estadisticas_diputados`
+| Tabla | Descripción |
+|-------|-------------|
+| `asistencias_sala` | Asistencia de diputados por sesión |
+| `diputados` | Datos personales de todos los diputados |
+| `legislaturas` | Legislaturas dentro de cada período |
+| `militancias` | Historial de partidos de cada diputado |
+| `ministerios` | Ministerios del gobierno |
+| `partidos` | Partidos políticos |
+| `periodos_legislativos` | Períodos legislativos (4 años) |
+| `porcentaje_asistencia` | Estadísticas anuales de asistencia |
+| `proyecto_autores` | Autores de proyectos de ley |
+| `proyecto_materias` | Materias de proyectos de ley |
+| `proyectos_acuerdo` | Proyectos de acuerdo |
+| `proyectos_ley` | Proyectos de ley |
+| `proyectos_resolucion` | Proyectos de resolución |
+| `regiones` | Regiones de Chile |
+| `sesiones_sala` | Sesiones celebradas en sala |
+| `votaciones_proyecto_ley` | Votaciones asociadas a proyectos |
 
 ---
 
 ## 🎯 Paso 8: Probar la Conexión desde tu Proyecto
 
-### 8.1. Crear Script de Prueba
+### 8.1. Usando el CLI del proyecto (forma rápida)
 
-Crea un archivo temporal para probar la conexión:
+El proyecto incluye una función manual para verificar la conexión con Supabase. Solo necesitas tener las variables de entorno configuradas y ejecutar:
 
 ```bash
-# Desde la raíz de tu proyecto
+bun run functions
+# Selecciona: "Verificar Conexión Supabase"
 ```
 
-**Archivo**: `test-supabase-connection.ts` (en la raíz del proyecto)
+Esto verificará la conexión y mostrará el conteo de registros en cada tabla.
+
+### 8.2. Script manual de prueba
 
 ```typescript
 import { supabase, testSupabaseConnection } from './src/config/supabase.config';
 
 async function main() {
-  console.log('🔌 Probando conexión con Supabase...\n');
-  
-  // 1. Test de conexión básica
   const connected = await testSupabaseConnection();
-  
-  if (!connected) {
-    console.error('❌ No se pudo conectar a Supabase');
-    process.exit(1);
-  }
-  
-  // 2. Test de lectura (debe estar vacía por ahora)
-  console.log('\n📊 Consultando tabla diputados...');
-  const { data: diputados, error } = await supabase
-    .from('diputados')
-    .select('*')
-    .limit(5);
-  
-  if (error) {
-    console.error('❌ Error:', error.message);
-  } else {
-    console.log(`✅ Consulta exitosa - Total diputados: ${diputados?.length || 0}`);
-    console.log('Datos:', diputados);
-  }
-  
-  // 3. Test de vista materializada
-  console.log('\n📈 Consultando estadísticas...');
-  const { data: stats, error: statsError } = await supabase
-    .from('estadisticas_diputados')
-    .select('*')
-    .limit(5);
-  
-  if (statsError) {
-    console.error('❌ Error:', statsError.message);
-  } else {
-    console.log(`✅ Vista materializada funciona - Registros: ${stats?.length || 0}`);
-  }
-  
-  console.log('\n🎉 Todas las pruebas completadas!');
+  if (!connected) { process.exit(1); }
+
+  const { data, error } = await supabase.from('diputados').select('*').limit(5);
+  if (error) console.error('Error:', error.message);
+  else console.log(`Diputados en DB: ${data?.length || 0}`);
 }
 
 main();
 ```
 
-### 8.2. Ejecutar el Script de Prueba
-
 ```bash
-npx tsx test-supabase-connection.ts
+bun tsx test-supabase-connection.ts
 ```
 
 **Resultado esperado**:

@@ -44,7 +44,7 @@ Ciudadanos chilenos interesados en seguir la actividad legislativa de manera acc
 ## 🏗️ Arquitectura del Sistema
 
 ### Tipo de Arquitectura
-**REST API + Firebase Backend + AI Processing**
+**REST API + Supabase (PostgreSQL) + AI Processing (planificado)**
 
 ### Stack Tecnológico
 
@@ -63,18 +63,18 @@ Ciudadanos chilenos interesados en seguir la actividad legislativa de manera acc
 
 ```mermaid
 graph TD
-    A[APIs Gubernamentales] --> B[Express.js Server]
-    B --> C[Firestore Database]
-    C --> D[Firebase Cloud Functions]
-    D --> E[AI Processing - DeepSeek v3.1]
+    A[APIs Gubernamentales\nCámara / Senado] --> B[Express.js Server\nNode.js + TypeScript]
+    B --> C[Supabase\nPostgreSQL]
+    B --> D[CLI Funciones Manuales]
+    D --> C
+    C --> E[AI Processing\nDeepSeek / GPT - Etapa 2]
     E --> C
-    C --> F[REST API]
-    F --> G[Ciudadanos]
+    C --> F[API Pública REST\nEtapa 3]
+    F --> G[Web Ciudadana\nEtapa 3]
 ```
 
-- **Cloud Functions**: Firebase Cloud Functions para tareas programadas
-- **Hosting**: Firebase Hosting
-- **Programación**: Semanal automático + ejecución manual opcional
+- **Sincronización**: Manual via CLI interactivo (`bun run functions`) o scripts automáticos
+- **Hosting**: Por definir (Etapa 3)
 
 ---
 
@@ -88,8 +88,8 @@ graph TD
 2. **🔄 Conversión XML a JSON**
    - Transformación de datos XML gubernamentales a JSON estructurado
 
-3. **💾 Almacenamiento en Firestore**
-   - Persistencia de datos estructurados
+3. **💾 Almacenamiento en Supabase**
+   - Persistencia en tablas relacionales PostgreSQL
 
 4. **🤖 Procesamiento con IA**
    - Generación de explicaciones y categorizaciones mediante DeepSeek v3.1
@@ -118,11 +118,9 @@ graph TD
 los-honorables/
 ├── 📄 package.json                    # Configuración del proyecto y dependencias
 ├── 📄 tsconfig.json                   # Configuración de TypeScript
-├── 📄 .env                            # Variables de entorno (credenciales Firebase)
-├── 📄 horonables-firebase.json        # Configuración de Firebase
+├── 📄 .env                            # Variables de entorno (Supabase, etc.)
 ├── 📄 EndpointDiputadosAPI.json       # Documentación de 32 endpoints de la Cámara
 ├── 📄 README.md                       # Documentación del proyecto
-├── 📄 context.json                    # Contexto completo del proyecto
 └── 📄 CONTEXT.md                      # Esta documentación
 ```
 
@@ -130,48 +128,33 @@ los-honorables/
 
 ```
 los-honorables/
-├── src/                              # 📂 Código fuente principal
-│   ├── 🖥️  server/                  # Configuración del servidor Express
-│   ├── 🛣️  routes/                  # Endpoints REST organizados por funcionalidad (LEGACY)
-│   │   ├── Diputados/
-│   │   ├── Legislativo/
-│   │   ├── PeriodosLegislativos/
-│   │   ├── Proyectos/
-│   │   ├── Sala/
-│   │   ├── Senadores/
-│   │   └── Votaciones/
-│   ├── 🔧 utils/                    # Utilidades (XML/JSON, Firestore)
-│   ├── ☁️  cloud/                   # Configuración Firebase
-│   ├── ⚙️  config/                  # ⭐ Configuraciones centralizadas
-│   │   ├── ai-config.ts             # Configuración para DeepSeek v3.1
-│   │   └── endpoints-config.ts      # Configuración de endpoints externos
-│   ├── 🏗️  api/                     # ⭐ API estructurada
-│   │   ├── controllers/             # Controladores de endpoints
-│   │   └── middlewares/             # Middlewares de validación
-│   ├── 🔧 services/                 # ⭐ Servicios de negocio
-│   │   ├── ai-processor/            # 🤖 Procesamiento con IA
-│   │   │   └── deepseek-client.ts   # Cliente principal de DeepSeek v3.1
-│   │   ├── data-collector/          # 📥 Recolección de datos externos
-│   │   └── cache-manager/           # 🗃️ Gestión de caché
-│   │       └── ai-cache.ts          # Caché específico para respuestas IA
-│   ├── 📋 models/                   # ⭐ Modelos de datos
-│   │   ├── firestore/               # 🔥 Modelos Firestore
-│   │   │   ├── collections/         # 📁 Definiciones de colecciones
-│   │   │   │   └── ai-explanations.model.ts  # Modelo para explicaciones IA
-│   │   │   └── repositories/        # 📚 Repositorios de acceso a datos
-│   │   └── types/                   # 🏷️ Tipos TypeScript
-│   └── ⚡ functions/                # ⚡ Cloud Functions
-│       ├── scheduled/               # 📅 Funciones programadas
-│       │   └── weekly-data-processing.ts  # Procesamiento semanal principal
-│       ├── manual/                  # 🖱️ Funciones manuales
-│       └── shared/                  # 🔗 Utilidades compartidas
-├── 📚 docs/                         # 📚 Documentación
-│   ├── api/                         # 📋 Documentación de API
-│   ├── architecture/                # 🏗️ Documentación arquitectural
-│   └── deployment/                  # 🚀 Guías de despliegue
-├── 🧪 tests/                        # 🧪 Pruebas unitarias
-├── 📜 scripts/                      # 📜 Scripts de procesamiento
-└── 📄 Archivos de configuración raíz
+├── src/
+│   ├── server/           # Servidor Express y registro de rutas
+│   ├── routes/           # Rutas REST por categoría
+│   │   └── DiputadosRoutes/ # Comisiones, Comunes, Diputados, Legislativo...
+│   ├── config/           # Configuraciones centralizadas
+│   │   ├── supabase.config.ts  # Cliente Supabase + tipos de DB
+│   │   ├── ai-config.ts        # Configuración para DeepSeek (Etapa 2)
+│   │   └── endpoints-config.ts  # URLs de APIs externas
+│   ├── services/
+│   │   ├── ai-processor/       # Cliente DeepSeek v3.1 (Etapa 2)
+│   │   ├── cache-manager/      # Caché local para respuestas de IA
+│   │   └── logging/            # PinoLoggerService + ChalkConsoleLogger
+│   ├── models/
+│   │   └── create-table/       # Schema SQL de Supabase (estructura de tablas)
+│   ├── functions/
+│   │   ├── manual/             # CLI interactivo de sincronización
+│   │   │   ├── call-routes-diputados/  # Funciones de sync por entidad
+│   │   │   ├── supabase/               # Utilidades de diagnóstico Supabase
+│   │   │   └── examples/               # Funciones de demo
+│   │   └── scheduled/          # Funciones automáticas (pendiente)
+│   ├── interface/          # Tipos, DTOs e interfaces
+│   └── utils/              # Utilidades (xmlToJson, fecha)
+├── docs/               # Documentación
+├── migrations/         # Scripts SQL de migración Supabase
+├── scripts/            # Scripts auxiliares
+├── tests/              # Tests unitarios
+└── ReadmeFiles/        # Archivos de documentación auxiliar
 ```
 
 ---
