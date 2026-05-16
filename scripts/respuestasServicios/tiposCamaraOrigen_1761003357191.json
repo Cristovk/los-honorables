@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "endpoint": "tiposCamaraOrigen",
+  "url": "http://localhost:6000/comunes/tiposCamaraOrigen",
+  "timestamp": "2025-10-20T23:35:57.191Z",
+  "data": {
+    "TiposCamaraOrigenColeccion": {
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+      "xmlns": "http://opendata.camara.cl/camaradiputados/v1",
+      "TipoCamaraOrigen": {
+        "1": "Cámara de Diputados",
+        "2": "Senado"
+      }
+    }
+  }
+}

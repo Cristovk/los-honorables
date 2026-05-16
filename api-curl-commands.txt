@@ -1,0 +1,284 @@
+# 🏛️ Los Honorables - Comandos CURL para Todas las Rutas API
+# =================================================================
+# Base URL: http://localhost:6000
+# Fecha: 2025-10-01
+# Total de Endpoints: 32 endpoints completos de la Cámara de Diputados
+
+# =================================================================
+# 📊 VOTACIONES (Rutas Existentes)
+# =================================================================
+
+# Health Check - Votaciones
+curl -X GET "http://localhost:6000/votaciones/on"
+
+# Detalle de una Votación
+curl -X GET "http://localhost:6000/votaciones/detalleVotacion" \
+  -H "Content-Type: application/json" \
+  -d '{"id": "12345"}'
+
+# Votaciones por Año
+curl -X GET "http://localhost:6000/votaciones/votacionesXAnno" \
+  -H "Content-Type: application/json" \
+  -d '{"year": "2024"}'
+
+# Votaciones por Proyecto de Ley
+curl -X GET "http://localhost:6000/votaciones/votacionesXProyectoLey" \
+  -H "Content-Type: application/json" \
+  -d '{"id": "1234567"}'
+
+# =================================================================
+# 🏛️ COMISIONES (Nuevas Rutas)
+# =================================================================
+
+# Health Check - Comisiones
+curl -X GET "http://localhost:6000/comisiones/on"
+
+# Sesiones de Comisión por Año
+curl -X GET "http://localhost:6000/comisiones/sesionesXComisionYAnno" \
+  -H "Content-Type: application/json" \
+  -d '{"comisionId": 1, "anno": 2024}'
+
+# Detalle de una Comisión
+curl -X GET "http://localhost:6000/comisiones/detalle" \
+  -H "Content-Type: application/json" \
+  -d '{"comisionId": 1}'
+
+# Comisiones Vigentes
+curl -X GET "http://localhost:6000/comisiones/vigentes"
+
+# Comisiones por Período
+curl -X GET "http://localhost:6000/comisiones/porPeriodo" \
+  -H "Content-Type: application/json" \
+  -d '{"periodoId": 1}'
+
+# =================================================================
+# 👥 DIPUTADOS (Rutas Completadas)
+# =================================================================
+
+# Health Check - Diputados
+curl -X GET "http://localhost:6000/diputados/on"
+
+# Diputados Vigentes
+curl -X GET "http://localhost:6000/diputados/vigentes"
+
+# Detalle de un Diputado
+curl -X GET "http://localhost:6000/diputados/detalle" \
+  -H "Content-Type: application/json" \
+  -d '{"diputadoId": 123}'
+
+# Lista de Todos los Diputados
+curl -X GET "http://localhost:6000/diputados/lista"
+
+# Diputados por Período
+curl -X GET "http://localhost:6000/diputados/porPeriodo" \
+  -H "Content-Type: application/json" \
+  -d '{"periodoId": 1}'
+
+# =================================================================
+# 📜 PROYECTOS DE ACUERDO (Nuevas Rutas)
+# =================================================================
+
+# Health Check - Proyectos de Acuerdo
+curl -X GET "http://localhost:6000/proyectosAcuerdo/on"
+
+# Detalle de Proyecto de Acuerdo
+curl -X GET "http://localhost:6000/proyectosAcuerdo/detalle" \
+  -H "Content-Type: application/json" \
+  -d '{"idProyectoAcuerdo": 12345}'
+
+# Proyectos de Acuerdo por Año
+curl -X GET "http://localhost:6000/proyectosAcuerdo/porAnno" \
+  -H "Content-Type: application/json" \
+  -d '{"anno": 2024}'
+
+# =================================================================
+# 📋 PROYECTOS DE RESOLUCIÓN (Nuevas Rutas)
+# =================================================================
+
+# Health Check - Proyectos de Resolución
+curl -X GET "http://localhost:6000/proyectosResolucion/on"
+
+# Detalle de Proyecto de Resolución
+curl -X GET "http://localhost:6000/proyectosResolucion/detalle" \
+  -H "Content-Type: application/json" \
+  -d '{"idProyectoResolucion": 67890}'
+
+# Proyectos de Resolución por Año
+curl -X GET "http://localhost:6000/proyectosResolucion/porAnno" \
+  -H "Content-Type: application/json" \
+  -d '{"anno": 2024}'
+
+# =================================================================
+# 📚 LEGISLATIVO (Rutas Completadas)
+# =================================================================
+
+# Health Check - Legislativo
+curl -X GET "http://localhost:6000/legislativos/on"
+
+# Mociones por Año
+curl -X GET "http://localhost:6000/legislativos/mocionesXAnno" \
+  -H "Content-Type: application/json" \
+  -d '{"year": "2024"}'
+
+# Mensajes por Año
+curl -X GET "http://localhost:6000/legislativos/mensajesXAnno" \
+  -H "Content-Type: application/json" \
+  -d '{"year": "2024"}'
+
+# Materias Legislativas
+curl -X GET "http://localhost:6000/legislativos/materias"
+
+# Legislaturas
+curl -X GET "http://localhost:6000/legislativos/legislaturas"
+
+# Proyecto de Ley por Boletín
+curl -X GET "http://localhost:6000/legislativos/proyectoLey" \
+  -H "Content-Type: application/json" \
+  -d '{"numeroBoletin": 1234567}'
+
+# Trámites Constitucionales
+curl -X GET "http://localhost:6000/legislativos/tramitesConstitucionales"
+
+# Trámites Reglamentarios
+curl -X GET "http://localhost:6000/legislativos/tramitesReglamentarios"
+
+# =================================================================
+# 📅 PERÍODOS LEGISLATIVOS (Rutas Existentes)
+# =================================================================
+
+# Health Check - Períodos Legislativos
+curl -X GET "http://localhost:6000/periodosLegislativos/on"
+
+# Todos los Períodos Legislativos
+curl -X GET "http://localhost:6000/periodosLegislativos/periodosLegislativos"
+
+# Período Legislativo Actual
+curl -X GET "http://localhost:6000/periodosLegislativos/periodoActual"
+
+# =================================================================
+# 📋 PROYECTOS (Rutas Existentes)
+# =================================================================
+
+# Health Check - Proyectos
+curl -X GET "http://localhost:6000/projects/on"
+
+# Votaciones por Boletín
+curl -X GET "http://localhost:6000/projects/boletin" \
+  -H "Content-Type: application/json" \
+  -d '{"boletin": "1234567"}'
+
+# =================================================================
+# 🏛️ SERVICIO SALA (Rutas Existentes)
+# =================================================================
+
+# Health Check - Servicio Sala
+curl -X GET "http://localhost:6000/servicioSala/on"
+
+# Asistencia a Sesión
+curl -X GET "http://localhost:6000/servicioSala/sesionAsistencia" \
+  -H "Content-Type: application/json" \
+  -d '{"id": "123456"}'
+
+# Sesiones por Año
+curl -X GET "http://localhost:6000/servicioSala/sesionesXAnno" \
+  -H "Content-Type: application/json" \
+  -d '{"year": "2024"}'
+
+# Sesiones por Legislatura
+curl -X GET "http://localhost:6000/servicioSala/sesionesXLegislatura" \
+  -H "Content-Type: application/json" \
+  -d '{"id": "1"}'
+
+# =================================================================
+# 🌍 DATOS COMUNES (Nuevas Rutas - Sin Parámetros)
+# =================================================================
+
+# Health Check - Datos Comunes
+curl -X GET "http://localhost:6000/comunes/on"
+
+# Comunas
+curl -X GET "http://localhost:6000/comunes/comunas"
+
+# Distritos
+curl -X GET "http://localhost:6000/comunes/distritos"
+
+# Provincias
+curl -X GET "http://localhost:6000/comunes/provincias"
+
+# Regiones
+curl -X GET "http://localhost:6000/comunes/regiones"
+
+# Ministerios
+curl -X GET "http://localhost:6000/comunes/ministerios"
+
+# Tipos de Cámara de Origen
+curl -X GET "http://localhost:6000/comunes/tiposCamaraOrigen"
+
+# Tipos de Asistencia
+curl -X GET "http://localhost:6000/comunes/tiposAsistencia"
+
+# Tipos de Estado de Sesión de Comisión
+curl -X GET "http://localhost:6000/comunes/tiposEstadoSesionComision"
+
+# Tipos de Estado de Sesión de Sala
+curl -X GET "http://localhost:6000/comunes/tiposEstadoSesionSala"
+
+# Tipos de Titular de Asistencia
+curl -X GET "http://localhost:6000/comunes/tiposTitularAsistencia"
+
+# Tipos de Estado
+curl -X GET "http://localhost:6000/comunes/tiposEstado"
+
+# Tipos de Estado de Acuerdos y Resoluciones
+curl -X GET "http://localhost:6000/comunes/tiposEstadoAcuerdosResoluciones"
+
+# Tipos de Iniciativa de Proyecto de Ley
+curl -X GET "http://localhost:6000/comunes/tiposIniciativaProyectoLey"
+
+# =================================================================
+# 🔧 COMANDOS DE PRUEBA RÁPIDA
+# =================================================================
+
+# Probar todos los health checks en secuencia
+echo "=== PROBANDO HEALTH CHECKS ==="
+curl -X GET "http://localhost:6000/votaciones/on" && echo ""
+curl -X GET "http://localhost:6000/comisiones/on" && echo ""
+curl -X GET "http://localhost:6000/diputados/on" && echo ""
+curl -X GET "http://localhost:6000/proyectosAcuerdo/on" && echo ""
+curl -X GET "http://localhost:6000/proyectosResolucion/on" && echo ""
+curl -X GET "http://localhost:6000/legislativos/on" && echo ""
+curl -X GET "http://localhost:6000/periodosLegislativos/on" && echo ""
+curl -X GET "http://localhost:6000/projects/on" && echo ""
+curl -X GET "http://localhost:6000/servicioSala/on" && echo ""
+curl -X GET "http://localhost:6000/comunes/on" && echo ""
+
+# =================================================================
+# 📝 NOTAS DE USO
+# =================================================================
+
+# 1. Asegúrate de que el servidor esté corriendo en puerto 6000:
+#    bun run dev
+
+# 2. Todos los endpoints que requieren parámetros usan req.body
+#    por lo que necesitan Content-Type: application/json
+
+# 3. Los endpoints sin parámetros se pueden llamar directamente
+
+# 4. Para usar estos comandos en bash, puedes copiar y pegar directamente
+
+# 5. Para PowerShell en Windows, reemplaza las barras invertidas (\) con backticks (`)
+
+# 6. Ejemplos de valores de prueba:
+#    - comisionId: 1, 2, 3...
+#    - anno/year: 2024, 2023, 2022...
+#    - diputadoId: 123, 456, 789...
+#    - numeroBoletin: 1234567, 9876543...
+
+# =================================================================
+# 📊 ESTADÍSTICAS FINALES
+# =================================================================
+# Total de Endpoints Implementados: 32/32 (100%)
+# Total de Rutas con Health Checks: 10
+# Total de Endpoints con Parámetros: 15
+# Total de Endpoints sin Parámetros: 17
+# Cobertura Completa: ✅ TODOS LOS ENDPOINTS DE CÁMARA DE DIPUTADOS

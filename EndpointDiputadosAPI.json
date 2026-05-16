@@ -1,0 +1,380 @@
+[
+    {
+        "endpoint": "COMISION_SESIONES_X_COMISION_Y_ANNO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComision.asmx/retornarSesionesXComisionYAnno",
+        "descripcion": "Retorna las sesiones de una comisión en un año específico.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmComisionId=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único de la comisión.",
+                "valor_ejemplo": 1
+            },
+            {
+                "nombre": "prmComisionId=",
+                "tipo": "xsd:integer",
+                "descripcion": "Año de las sesiones.",
+                "valor_ejemplo": 2023
+            }
+        ]
+    },
+    {
+        "endpoint": "COMISION_DETALLE",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComision.asmx/retornarComision",
+        "descripcion": "Retorna la información detallada de una comisión.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmComisionId=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único de la comisión.",
+                "valor_ejemplo": 1
+            }
+        ]
+    },
+    {
+        "endpoint": "COMISION_VIGENTES",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComision.asmx/retornarComisionesVigentes",
+        "descripcion": "Retorna todas las comisiones actualmente vigentes.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMISION_POR_PERIODO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComision.asmx/retornarComisionesXPeriodo",
+        "descripcion": "Retorna las comisiones activas en un período legislativo específico.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmPeriodoId=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único del período legislativo.",
+                "valor_ejemplo": 1
+            }
+        ]
+    },
+    {
+        "endpoint": "DIPUTADO_DETALLE",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSDiputado.asmx/retornarDiputado",
+        "descripcion": "Retorna la información detallada de un diputado.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmDiputadoId=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único para el diputado.",
+                "valor_ejemplo": 123
+            }
+        ]
+    },
+    {
+        "endpoint": "DIPUTADO_LISTA",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSDiputado.asmx/retornarDiputados",
+        "descripcion": "Retorna una lista de todos los diputados.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "DIPUTADO_PERIODO_ACTUAL",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSDiputado.asmx/retornarDiputadosPeriodoActual",
+        "descripcion": "Retorna los diputados para el período legislativo actual.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "DIPUTADO_POR_PERIODO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSDiputado.asmx/retornarDiputadosXPeriodo",
+        "descripcion": "Retorna los diputados activos en un período legislativo específico.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmPeriodoID=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único del período legislativo.",
+                "valor_ejemplo": 1
+            }
+        ]
+    },
+    {
+        "endpoint": "PROYECTO_ACUERDO_DETALLE",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSProyectoAcuerdo.asmx/retornarProyectoAcuerdo",
+        "descripcion": "Retorna la información detallada de un proyecto de acuerdo.",
+        "parametros_necesarios": [
+            {
+                "nombre": "idProyectoAcuerdo",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único del proyecto de acuerdo.",
+                "valor_ejemplo": 12345
+            }
+        ]
+    },
+    {
+        "endpoint": "PROYECTO_ACUERDO_POR_ANNO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSProyectoAcuerdo.asmx/retornarProyectosAcuerdoXAnno",
+        "descripcion": "Retorna una lista de proyectos de acuerdo para un año específico.",
+        "parametros_necesarios": [
+            {
+                "nombre": "anno",
+                "tipo": "xsd:integer",
+                "descripcion": "Año de los proyectos de acuerdo.",
+                "valor_ejemplo": 2023
+            }
+        ]
+    },
+    {
+        "endpoint": "PROYECTO_RESOLUCION_DETALLE",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSProyectoResolucion.asmx/retornarProyectoResolucion",
+        "descripcion": "Retorna la información detallada de un proyecto de resolución.",
+        "parametros_necesarios": [
+            {
+                "nombre": "idProyectoResolucion",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único del proyecto de resolución.",
+                "valor_ejemplo": 67890
+            }
+        ]
+    },
+    {
+        "endpoint": "PROYECTO_RESOLUCION_POR_ANNO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSProyectoResolucion.asmx/retornarProyectosResolucionXAnno",
+        "descripcion": "Retorna una lista de proyectos de resolución para un año específico.",
+        "parametros_necesarios": [
+            {
+                "nombre": "anno",
+                "tipo": "xsd:integer",
+                "descripcion": "Año de los proyectos de resolución.",
+                "valor_ejemplo": 2023
+            }
+        ]
+    },
+    {
+        "endpoint": "SALA_SESION_ASISTENCIA",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSSala.asmx/retornarSesionAsistencia",
+        "descripcion": "Retorna los detalles de asistencia para una sesión específica.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmSesionId=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único de la sesión.",
+                "valor_ejemplo": 123456
+            }
+        ]
+    },
+    {
+        "endpoint": "SALA_SESIONES_POR_ANNO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSSala.asmx/retornarSesionesXAnno",
+        "descripcion": "Retorna una lista de sesiones para un año específico.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmAnno=",
+                "tipo": "xsd:integer",
+                "descripcion": "Año de las sesiones.",
+                "valor_ejemplo": 2023
+            }
+        ]
+    },
+    {
+        "endpoint": "SALA_SESIONES_POR_LEGISLATURA",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSSala.asmx/retornarSesionesXLegislatura",
+        "descripcion": "Retorna una lista de sesiones para una legislatura específica.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmLegislaturaId=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único de la legislatura.",
+                "valor_ejemplo": 1
+            }
+        ]
+    },
+    {
+        "endpoint": "LEGISLATIVO_LEGISLATURA_ACTUAL",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarLegislaturaActual",
+        "descripcion": "Retorna los detalles de la legislatura actual.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "LEGISLATIVO_PERIODO_ACTUAL",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarPeriodoLegislativoActual",
+        "descripcion": "Retorna los detalles del período legislativo actual.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "LEGISLATIVO_PERIODOS",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarPeriodosLegislativos",
+        "descripcion": "Retorna una lista de todos los períodos legislativos.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "LEGISLATIVO_LEGISLATURAS",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarLegislaturas",
+        "descripcion": "Retorna una lista de todas las legislaturas.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "LEGISLATIVO_MATERIAS",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarMaterias",
+        "descripcion": "Retorna una lista de materias o temas legislativos.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "LEGISLATIVO_MENSAJES_X_ANNO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarMensajesXAnno",
+        "descripcion": "Retorna una lista de mensajes para un año específico.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmAnno=",
+                "tipo": "xsd:integer",
+                "descripcion": "Año de los mensajes.",
+                "valor_ejemplo": 2023
+            }
+        ]
+    },
+    {
+        "endpoint": "LEGISLATIVO_MOCIONES_X_ANNO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarMocionesXAnno",
+        "descripcion": "Retorna una lista de mociones para un año específico.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmAnno=",
+                "tipo": "xsd:integer",
+                "descripcion": "Año de las mociones.",
+                "valor_ejemplo": 2023
+            }
+        ]
+    },
+    {
+        "endpoint": "LEGISLATIVO_PROYECTO_LEY",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarProyectoLey",
+        "descripcion": "Retorna los detalles de un proyecto de ley.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmNumeroBoletin=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único del proyecto de ley.",
+                "valor_ejemplo": 1234567
+            }
+        ]
+    },
+    {
+        "endpoint": "LEGISLATIVO_TRAMITES_CONSTITUCIONALES",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarTramitesConstitucionales",
+        "descripcion": "Retorna una lista de trámites constitucionales.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "LEGISLATIVO_TRAMITES_REGLAMENTARIOS",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarTramitesReglamentarios",
+        "descripcion": "Retorna una lista de trámites reglamentarios.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "LEGISLATIVO_VOTACION_DETALLE",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarVotacionDetalle",
+        "descripcion": "Retorna la información detallada de una votación.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmVotacionId=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único de la votación.",
+                "valor_ejemplo": 12345
+            }
+        ]
+    },
+    {
+        "endpoint": "LEGISLATIVO_VOTACIONES_POR_ANNO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarVotacionesXAnno",
+        "descripcion": "Retorna una lista de votaciones para un año específico.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmAnno=",
+                "tipo": "xsd:integer",
+                "descripcion": "Año de las votaciones.",
+                "valor_ejemplo": 2023
+            }
+        ]
+    },
+    {
+        "endpoint": "LEGISLATIVO_VOTACIONES_POR_PROYECTO_LEY",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSLegislativo.asmx/retornarVotacionesXProyectoLey",
+        "descripcion": "Retorna una lista de votaciones relacionadas con un proyecto de ley.",
+        "parametros_necesarios": [
+            {
+                "nombre": "prmNumeroBoletin=",
+                "tipo": "xsd:integer",
+                "descripcion": "Identificador único del proyecto de ley.",
+                "valor_ejemplo": 1234567
+            }
+        ]
+    },
+    {
+        "endpoint": "COMUN_COMUNAS",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarComunas",
+        "descripcion": "Retorna una lista de comunas.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_DISTRITOS",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarDistritos",
+        "descripcion": "Retorna una lista de distritos.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_PROVINCIAS",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarProvincias",
+        "descripcion": "Retorna una lista de provincias.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_REGIONES",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarRegiones",
+        "descripcion": "Retorna una lista de regiones.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_MINISTERIOS",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarMinisterios",
+        "descripcion": "Retorna una lista de ministerios.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_TIPOS_CAMARA_ORIGEN",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarTiposCamaraOrigen",
+        "descripcion": "Retorna una lista de tipos de cámara de origen.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_TIPOS_ASISTENCIA",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarTiposAsistencia",
+        "descripcion": "Retorna una lista de tipos de asistencia.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_TIPOS_ESTADO_SESION_COMISION",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarTiposEstadoSesionComision",
+        "descripcion": "Retorna una lista de tipos de estado de sesión de comisión.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_TIPOS_ESTADO_SESION_SALA",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarTiposEstadoSesionSala",
+        "descripcion": "Retorna una lista de tipos de estado de sesión de sala.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_TIPOS_TITULAR_ASISTENCIA",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarTiposTitularAsistencia",
+        "descripcion": "Retorna una lista de tipos de asistencia para miembros titulares.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_TIPOS_ESTADO",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarTiposEstado",
+        "descripcion": "Retorna una lista de tipos generales de estado.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_TIPOS_ESTADO_ACUERDOS_RESOLUCIONES",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarTiposEstadoAcuerdosResoluciones",
+        "descripcion": "Retorna una lista de tipos de estado para acuerdos y resoluciones.",
+        "parametros_necesarios": []
+    },
+    {
+        "endpoint": "COMUN_TIPOS_INICIATIVA_PROYECTO_LEY",
+        "url_completa": "https://opendata.camara.cl/camaradiputados/WServices/WSComunes.asmx/retornarTiposIniciativaProyectoLey",
+        "descripcion": "Retorna una lista de tipos de iniciativas de proyectos de ley.",
+        "parametros_necesarios": []
+    }
+]

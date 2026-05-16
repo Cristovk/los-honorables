@@ -1,4 +1,4 @@
-import app from './server/app.ts';  // Agrega la extensión .ts
+import app from '@server/app';
 
 const PORT = 6000;
 

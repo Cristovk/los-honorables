@@ -1,55 +1,373 @@
-import axios from "axios";
-import { JSDOM } from "jsdom";
+import { processXmlData } from './dataTransformations';
 
-const processNode = (node: Element): any => {
-  const children = Array.from(node.children);
+/**
+ * Parser XML nativo para Node.js sin dependencias externas
+ * Utiliza regex y parsing manual para convertir XML a JSON
+ */
+// Función helper para escapar caracteres especiales en regex
+const escapeRegex = (str: string): string => {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
 
-  if (children.length === 0) {
-    return node.textContent?.trim() || "";
+class SimpleXmlParser {
+  private explicitArray: boolean;
+  private ignoreAttrs: boolean;
+  private mergeAttrs: boolean;
+  private normalize: boolean;
+  private explicitRoot: boolean;
+
+  constructor(options: {
+    explicitArray?: boolean;
+    ignoreAttrs?: boolean;
+    mergeAttrs?: boolean;
+    normalize?: boolean;
+    explicitRoot?: boolean;
+  }) {
+    this.explicitArray = options.explicitArray ?? true;
+    this.ignoreAttrs = options.ignoreAttrs ?? true;
+    this.mergeAttrs = options.mergeAttrs ?? false;
+    this.normalize = options.normalize ?? false;
+    this.explicitRoot = options.explicitRoot ?? true;
   }
 
-  const result: Record<string, any> = {};
-  children.forEach((child) => {
-    const key = child.tagName;
-    if (result[key]) {
-      // Si la clave ya existe, convierte el valor en un array
-      if (!Array.isArray(result[key])) {
-        result[key] = [result[key]];
-      }
-      result[key].push(processNode(child));
-    } else {
-      result[key] = processNode(child);
+  parseString(xmlString: string, callback: (error: Error | null, result?: any) => void): void {
+    try {
+      const result = this.parse(xmlString);
+      callback(null, result);
+    } catch (error) {
+      callback(error as Error);
     }
-  });
-
-  return result;
-};
-
-export const extractDataFromXml = (xmlData: string, rootTag: string): any => {
-  try {
-    const dom = new JSDOM(xmlData, { contentType: "text/xml" });
-    const document = dom.window.document;
-
-    const rootElements = document.querySelectorAll(rootTag);
-    if (!rootElements.length)
-      throw new Error(`Root tag <${rootTag}> not found`);
-
-    // Si hay múltiples elementos, devolver array
-    return Array.from(rootElements).map((el) => processNode(el as Element));
-  } catch (error: any) {
-    throw new Error(`Error extracting data: ${error.message}`);
   }
+
+  private parse(xmlString: string): any {
+    // Limpiar el XML de declaraciones y comentarios
+    let cleanXml = xmlString
+      .replace(/<\?xml[^?]*\?>/g, '')
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .trim();
+
+    // Parsear el XML
+    const result = this.parseElement(cleanXml);
+
+    if (!result) {
+      throw new Error('Error parsing XML: Invalid XML structure');
+    }
+
+    return result;
+  }
+
+  private parseElement(xml: string): any {
+    xml = xml.trim();
+
+    // Extraer el tag raíz (soportando namespaces)
+    const tagMatch = xml.match(/^<([^\s>\/]+)/);
+    if (!tagMatch) return null;
+
+    const tagName = tagMatch[1];
+    
+    // Escapar caracteres especiales en el tagName para usarlo en regex
+    const escapedTagName = tagName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    // Extraer atributos (soportando namespaces como xmlns:xsi)
+    // Buscar hasta el primer > que no esté precedido por /
+    const initialTagMatch = xml.match(/^<[^>]+>/);
+    const attributes: Record<string, string> = {};
+
+    if (initialTagMatch) {
+      const openTag = initialTagMatch[0];
+      // Regex actualizado para soportar atributos con : (namespaces)
+      const attrRegex = /([\w:]+)=["']([^"']*)["']/g;
+      let attrMatch;
+
+      while ((attrMatch = attrRegex.exec(openTag)) !== null) {
+        attributes[attrMatch[1]] = attrMatch[2];
+      }
+    }
+
+    // Verificar si es un tag auto-cerrado
+    if (xml.match(/\/>$/)) {
+      const obj: any = {};
+
+      if (!this.ignoreAttrs && Object.keys(attributes).length > 0) {
+        if (this.mergeAttrs) {
+          Object.assign(obj, attributes);
+        } else {
+          obj.$ = attributes;
+        }
+      }
+
+      const result = Object.keys(obj).length > 0 ? obj : '';
+
+      if (this.explicitRoot) {
+        return { [tagName]: result };
+      }
+      return result;
+    }
+
+    // Buscar el contenido entre el tag de apertura y cierre de manera más robusta
+    const openTagRegex = new RegExp(`^<${escapedTagName}(?:\\s[^>]*)?>`);  
+    const openTagMatch = xml.match(openTagRegex);
+    
+    if (!openTagMatch) {
+      throw new Error(`Malformed XML: invalid opening tag for ${tagName}`);
+    }
+    
+    const openTagLength = openTagMatch[0].length;
+    const closeTag = `</${tagName}>`;
+    const closeTagIndex = xml.lastIndexOf(closeTag);
+    
+    if (closeTagIndex === -1) {
+      console.error('DEBUG - Failed to find closing tag:', {
+        tagName,
+        xmlLength: xml.length,
+        xmlStart: xml.substring(0, 200),
+        xmlEnd: xml.substring(xml.length - 200)
+      });
+      throw new Error(`Malformed XML: closing tag not found for ${tagName}`);
+    }
+    
+    const content = xml.substring(openTagLength, closeTagIndex);
+
+    // Verificar si tiene solo texto (sin tags hijos)
+    if (!content.includes('<')) {
+      const textContent = this.normalize ? content.trim() : content;
+
+      const obj: any = {};
+
+      if (!this.ignoreAttrs && Object.keys(attributes).length > 0) {
+        if (this.mergeAttrs) {
+          // Cuando mergeAttrs es true, agregar atributos al objeto y el texto como "_"
+          Object.assign(obj, attributes);
+          obj._ = textContent;
+        } else {
+          obj.$ = attributes;
+          obj._ = textContent;
+        }
+      } else {
+        if (this.explicitRoot) {
+          return { [tagName]: textContent };
+        }
+        return textContent;
+      }
+
+      if (this.explicitRoot) {
+        return { [tagName]: obj };
+      }
+      return obj;
+    }
+
+    // Parsear elementos hijos
+    const children = this.parseChildren(content);
+    const result: any = {};
+
+    // Agregar atributos
+    if (!this.ignoreAttrs && Object.keys(attributes).length > 0) {
+      if (this.mergeAttrs) {
+        Object.assign(result, attributes);
+      } else {
+        result.$ = attributes;
+      }
+    }
+
+    // Agregar elementos hijos
+    for (const child of children) {
+      const childTagMatch = child.match(/^<([^\s>\/]+)/);
+      if (!childTagMatch) continue;
+
+      const childTagName = childTagMatch[1];
+      const childValue = this.parseElement(child);
+      const childContent = childValue[childTagName];
+
+      if (result[childTagName] !== undefined) {
+        // Ya existe, convertir a array
+        if (!Array.isArray(result[childTagName])) {
+          result[childTagName] = [result[childTagName]];
+        }
+        result[childTagName].push(childContent);
+      } else {
+        // Primera ocurrencia
+        if (this.explicitArray) {
+          result[childTagName] = [childContent];
+        } else {
+          result[childTagName] = childContent;
+        }
+      }
+    }
+
+    if (this.explicitRoot) {
+      return { [tagName]: result };
+    }
+
+    return result;
+  }
+
+  private parseChildren(content: string): string[] {
+    const children: string[] = [];
+    let i = 0;
+    
+    // Saltar espacios en blanco iniciales
+    while (i < content.length && /\s/.test(content[i])) {
+      i++;
+    }
+
+    while (i < content.length) {
+      // Si encontramos un tag de apertura
+      if (content[i] === '<' && content[i + 1] !== '/' && content[i + 1] !== '!' && content[i + 1] !== '?') {
+        // Extraer el nombre del tag
+        const tagNameMatch = content.substring(i).match(/^<([^\s>\/]+)/);
+        if (!tagNameMatch) {
+          i++;
+          continue;
+        }
+        
+        const tagName = tagNameMatch[1];
+        const startPos = i;
+        
+        // Verificar si es un tag auto-cerrado
+        const tagEndMatch = content.substring(i).match(/^<[^>]*\/>/);
+        if (tagEndMatch) {
+          // Tag auto-cerrado
+          i += tagEndMatch[0].length;
+          children.push(tagEndMatch[0]);
+          // Saltar espacios en blanco
+          while (i < content.length && /\s/.test(content[i])) {
+            i++;
+          }
+          continue;
+        }
+        
+        // Buscar el tag de cierre correspondiente
+        let depth = 0;
+        let searchPos = i;
+        
+        while (searchPos < content.length) {
+          const char = content[searchPos];
+          
+          if (char === '<') {
+            const remainingContent = content.substring(searchPos);
+            
+            // Verificar si es el tag de apertura del mismo elemento
+            if (remainingContent.match(new RegExp(`^<${escapeRegex(tagName)}(\\s[^>]*)?>`))) {
+              depth++;
+            }
+            // Verificar si es el tag de cierre del mismo elemento
+            else if (remainingContent.startsWith(`</${tagName}>`)) {
+              depth--;
+              if (depth === 0) {
+                // Encontramos el cierre correspondiente
+                const endPos = searchPos + `</${tagName}>`.length;
+                children.push(content.substring(startPos, endPos));
+                i = endPos;
+                break;
+              }
+            }
+          }
+          searchPos++;
+        }
+        
+        // Si no se encontró el cierre, es un error
+        if (depth > 0) {
+          throw new Error(`Unclosed tag: ${tagName}`);
+        }
+        
+        // Saltar espacios en blanco
+        while (i < content.length && /\s/.test(content[i])) {
+          i++;
+        }
+      } else {
+        i++;
+      }
+    }
+
+    return children;
+  }
+}
+
+export const convertXmlToJson = async (xmlData: string): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    const parser = new SimpleXmlParser({
+      explicitArray: false,
+      ignoreAttrs: false,
+      mergeAttrs: true,
+      normalize: true,
+      explicitRoot: true
+    });
+
+    parser.parseString(xmlData, (error, result) => {
+      if (error) {
+        reject(new Error(`Error parsing XML: ${error.message}`));
+      } else {
+        resolve(result);
+      }
+    });
+  });
 };
 
-export const fetchAndProcessXml = async (
-  url: string,
-  rootTag: string
-): Promise<any> => {
+export const fetchAndProcessXml = async (url: string): Promise<any> => {
   try {
-    const response = await axios.get(url);
-    return extractDataFromXml(response.data, rootTag);
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const xmlText = await response.text();
+    console.log('XML recibido (longitud total:', xmlText.length, ')');
+    console.log('XML recibido:', xmlText.substring(0, 1500)); // Aumentar para ver más contenido
+    
+    const jsonData = await convertXmlToJson(xmlText);
+    console.log('JSON parseado:', JSON.stringify(jsonData, null, 2));
+    
+    // Aplicar transformaciones automáticas a los datos
+    const transformed = processXmlDataRecursively(jsonData);
+    console.log('JSON transformado:', JSON.stringify(transformed, null, 2));
+    
+    return transformed;
   } catch (error) {
-    console.error("Error fetching or processing XML:", error);
+    console.error('Error fetching or converting XML:', error);
     throw error;
   }
+};
+
+/**
+ * Función recursiva para aplicar transformaciones a todos los niveles del objeto JSON
+ * Busca estructuras { _: string, Valor: string } o { _: string, $: { Valor: string } } y las transforma automáticamente
+ */
+const processXmlDataRecursively = (data: any): any => {
+  if (Array.isArray(data)) {
+    // Si es un array, procesar cada elemento
+    return data.map(item => processXmlDataRecursively(item));
+  }
+
+  if (typeof data === 'object' && data !== null) {
+    // Función para verificar si un objeto tiene la estructura que podemos transformar
+    const hasValidStructure = (item: any) =>
+      item._ !== undefined && (item.Valor !== undefined || item.$?.Valor !== undefined);
+
+    // Si este objeto tiene la estructura que podemos transformar
+    if (hasValidStructure(data)) {
+      return processXmlData(data, 'keyValue');
+    }
+
+    // Buscar arrays que contengan objetos con la estructura válida
+    for (const key in data) {
+      if (data.hasOwnProperty(key) && Array.isArray(data[key])) {
+        const array = data[key];
+        if (array.length > 0 && hasValidStructure(array[0])) {
+          // Si encontramos un array con la estructura válida, transformarlo
+          data[key] = processXmlData(array, 'keyValue');
+        } else {
+          // Si no, procesar recursivamente cada elemento del array
+          data[key] = array.map(item => processXmlDataRecursively(item));
+        }
+      } else if (data.hasOwnProperty(key) && typeof data[key] === 'object' && data[key] !== null) {
+        // Procesar recursivamente objetos anidados
+        data[key] = processXmlDataRecursively(data[key]);
+      }
+    }
+
+    return data;
+  }
+
+  return data;
 };

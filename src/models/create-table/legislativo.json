@@ -1,0 +1,601 @@
+{
+    "PeriodosLegislativosColeccion": {
+        "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+        "xmlns": "http://opendata.camara.cl/camaradiputados/v1",
+        "PeriodoLegislativo": [
+            {
+                "Id": "1",
+                "Nombre": "1990-1994",
+                "FechaInicio": "1990-03-11T00:00:00",
+                "FechaTermino": "1994-03-10T00:00:00",
+                "Legislaturas": {
+                    "Legislatura": [
+                        {
+                            "Id": "3",
+                            "Numero": "319",
+                            "FechaInicio": "1990-03-11T00:00:00",
+                            "FechaTermino": "1990-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "4",
+                            "Numero": "320",
+                            "FechaInicio": "1990-05-21T00:00:00",
+                            "FechaTermino": "1990-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "5",
+                            "Numero": "321",
+                            "FechaInicio": "1990-09-18T00:00:00",
+                            "FechaTermino": "1991-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "6",
+                            "Numero": "322",
+                            "FechaInicio": "1991-05-21T00:00:00",
+                            "FechaTermino": "1991-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "7",
+                            "Numero": "323",
+                            "FechaInicio": "1991-09-18T00:00:00",
+                            "FechaTermino": "1992-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "8",
+                            "Numero": "324",
+                            "FechaInicio": "1992-05-21T00:00:00",
+                            "FechaTermino": "1992-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "9",
+                            "Numero": "325",
+                            "FechaInicio": "1992-09-18T00:00:00",
+                            "FechaTermino": "1993-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "10",
+                            "Numero": "326",
+                            "FechaInicio": "1993-05-21T00:00:00",
+                            "FechaTermino": "1993-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "11",
+                            "Numero": "327",
+                            "FechaInicio": "1993-09-18T00:00:00",
+                            "FechaTermino": "1994-03-10T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "Id": "2",
+                "Nombre": "1994-1998",
+                "FechaInicio": "1994-03-11T00:00:00",
+                "FechaTermino": "1998-03-10T00:00:00",
+                "Legislaturas": {
+                    "Legislatura": [
+                        {
+                            "Id": "12",
+                            "Numero": "328",
+                            "FechaInicio": "1994-03-11T00:00:00",
+                            "FechaTermino": "1994-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "13",
+                            "Numero": "329",
+                            "FechaInicio": "1994-05-21T00:00:00",
+                            "FechaTermino": "1994-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "14",
+                            "Numero": "330",
+                            "FechaInicio": "1994-09-18T00:00:00",
+                            "FechaTermino": "1995-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "15",
+                            "Numero": "331",
+                            "FechaInicio": "1995-05-21T00:00:00",
+                            "FechaTermino": "1995-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "16",
+                            "Numero": "332",
+                            "FechaInicio": "1995-09-18T00:00:00",
+                            "FechaTermino": "1996-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "17",
+                            "Numero": "333",
+                            "FechaInicio": "1996-05-21T00:00:00",
+                            "FechaTermino": "1996-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "18",
+                            "Numero": "334",
+                            "FechaInicio": "1996-09-18T00:00:00",
+                            "FechaTermino": "1997-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "19",
+                            "Numero": "335",
+                            "FechaInicio": "1997-05-21T00:00:00",
+                            "FechaTermino": "1997-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "20",
+                            "Numero": "336",
+                            "FechaInicio": "1997-09-18T00:00:00",
+                            "FechaTermino": "1998-03-10T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "Id": "3",
+                "Nombre": "1998-2002",
+                "FechaInicio": "1998-03-11T00:00:00",
+                "FechaTermino": "2002-03-10T00:00:00",
+                "Legislaturas": {
+                    "Legislatura": [
+                        {
+                            "Id": "21",
+                            "Numero": "337",
+                            "FechaInicio": "1998-03-11T00:00:00",
+                            "FechaTermino": "1998-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "22",
+                            "Numero": "338",
+                            "FechaInicio": "1998-05-21T00:00:00",
+                            "FechaTermino": "1998-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "23",
+                            "Numero": "339",
+                            "FechaInicio": "1998-09-18T00:00:00",
+                            "FechaTermino": "1999-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "24",
+                            "Numero": "340",
+                            "FechaInicio": "1999-05-21T00:00:00",
+                            "FechaTermino": "1999-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "25",
+                            "Numero": "341",
+                            "FechaInicio": "1999-09-18T00:00:00",
+                            "FechaTermino": "2000-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "26",
+                            "Numero": "342",
+                            "FechaInicio": "2000-05-21T00:00:00",
+                            "FechaTermino": "2000-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "27",
+                            "Numero": "343",
+                            "FechaInicio": "2000-09-18T00:00:00",
+                            "FechaTermino": "2001-05-20T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "28",
+                            "Numero": "344",
+                            "FechaInicio": "2001-05-21T00:00:00",
+                            "FechaTermino": "2001-09-17T23:59:59",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "29",
+                            "Numero": "345",
+                            "FechaInicio": "2001-09-18T00:00:00",
+                            "FechaTermino": "2002-03-10T23:59:59",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "Id": "4",
+                "Nombre": "2002-2006",
+                "FechaInicio": "2002-03-11T00:00:00",
+                "FechaTermino": "2006-03-10T00:00:00",
+                "Legislaturas": {
+                    "Legislatura": [
+                        {
+                            "Id": "30",
+                            "Numero": "346",
+                            "FechaInicio": "2002-03-11T00:00:00",
+                            "FechaTermino": "2002-05-20T23:59:00",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "31",
+                            "Numero": "347",
+                            "FechaInicio": "2002-05-21T00:00:00",
+                            "FechaTermino": "2002-09-17T23:59:00",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "32",
+                            "Numero": "348",
+                            "FechaInicio": "2002-09-18T00:00:00",
+                            "FechaTermino": "2003-05-20T23:59:00",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "33",
+                            "Numero": "349",
+                            "FechaInicio": "2003-05-21T00:00:00",
+                            "FechaTermino": "2003-09-17T23:59:00",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "34",
+                            "Numero": "350",
+                            "FechaInicio": "2003-09-18T00:00:00",
+                            "FechaTermino": "2004-05-20T23:59:00",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "35",
+                            "Numero": "351",
+                            "FechaInicio": "2004-05-21T00:00:00",
+                            "FechaTermino": "2004-09-17T23:59:00",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        },
+                        {
+                            "Id": "36",
+                            "Numero": "352",
+                            "FechaInicio": "2004-09-18T00:00:00",
+                            "FechaTermino": "2005-05-20T23:59:00",
+                            "Tipo": {
+                                "2": "Extraordinaria"
+                            }
+                        },
+                        {
+                            "Id": "37",
+                            "Numero": "353",
+                            "FechaInicio": "2005-05-21T00:00:00",
+                            "FechaTermino": "2006-03-10T23:59:00",
+                            "Tipo": {
+                                "1": "Ordinaria"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "Id": "5",
+                "Nombre": "2006-2010",
+                "FechaInicio": "2006-03-11T00:00:00",
+                "FechaTermino": "2010-03-10T00:00:00",
+                "Legislaturas": {
+                    "Legislatura": [
+                        {
+                            "Id": "40",
+                            "Numero": "356",
+                            "FechaInicio": "2008-03-11T00:00:00",
+                            "FechaTermino": "2009-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "39",
+                            "Numero": "355",
+                            "FechaInicio": "2007-03-11T00:00:00",
+                            "FechaTermino": "2008-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "38",
+                            "Numero": "354",
+                            "FechaInicio": "2006-03-11T00:00:00",
+                            "FechaTermino": "2007-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "41",
+                            "Numero": "357",
+                            "FechaInicio": "2009-03-11T00:00:00",
+                            "FechaTermino": "2010-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "Id": "6",
+                "Nombre": "2010-2014",
+                "FechaInicio": "2010-03-11T00:00:00",
+                "FechaTermino": "2014-03-10T00:00:00",
+                "Legislaturas": {
+                    "Legislatura": [
+                        {
+                            "Id": "42",
+                            "Numero": "358",
+                            "FechaInicio": "2010-03-11T00:00:00",
+                            "FechaTermino": "2011-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "43",
+                            "Numero": "359",
+                            "FechaInicio": "2011-03-11T00:00:00",
+                            "FechaTermino": "2012-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "45",
+                            "Numero": "361",
+                            "FechaInicio": "2013-03-11T00:00:00",
+                            "FechaTermino": "2014-03-11T12:00:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "44",
+                            "Numero": "360",
+                            "FechaInicio": "2012-03-11T00:00:00",
+                            "FechaTermino": "2013-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "Id": "7",
+                "Nombre": "1965-1969",
+                "FechaInicio": "1965-03-11T00:00:00",
+                "FechaTermino": "1969-03-11T00:00:00",
+                "Legislaturas": ""
+            },
+            {
+                "Id": "8",
+                "Nombre": "2014-2018",
+                "FechaInicio": "2014-03-11T00:00:00",
+                "FechaTermino": "2018-03-10T23:59:59",
+                "Legislaturas": {
+                    "Legislatura": [
+                        {
+                            "Id": "48",
+                            "Numero": "364",
+                            "FechaInicio": "2016-03-11T00:00:00",
+                            "FechaTermino": "2017-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "49",
+                            "Numero": "365",
+                            "FechaInicio": "2017-03-11T00:00:00",
+                            "FechaTermino": "2018-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "47",
+                            "Numero": "363",
+                            "FechaInicio": "2015-03-11T00:00:00",
+                            "FechaTermino": "2016-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "46",
+                            "Numero": "362",
+                            "FechaInicio": "2014-03-11T00:00:00",
+                            "FechaTermino": "2015-03-10T23:59:00",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "Id": "9",
+                "Nombre": "2018-2022",
+                "FechaInicio": "2018-03-11T00:00:00",
+                "FechaTermino": "2022-03-10T23:59:59",
+                "Legislaturas": {
+                    "Legislatura": [
+                        {
+                            "Id": "50",
+                            "Numero": "366",
+                            "FechaInicio": "2018-03-11T00:00:00",
+                            "FechaTermino": "2019-03-10T23:59:59",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "52",
+                            "Numero": "368",
+                            "FechaInicio": "2020-03-11T00:00:00",
+                            "FechaTermino": "2021-03-10T23:59:59",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "53",
+                            "Numero": "369",
+                            "FechaInicio": "2021-03-11T00:00:00",
+                            "FechaTermino": "2022-03-10T23:59:59",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "51",
+                            "Numero": "367",
+                            "FechaInicio": "2019-03-11T00:00:00",
+                            "FechaTermino": "2020-03-10T23:59:59",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "Id": "10",
+                "Nombre": "2022-2026",
+                "FechaInicio": "2022-03-11T00:00:00",
+                "FechaTermino": "2026-03-10T23:59:59",
+                "Legislaturas": {
+                    "Legislatura": [
+                        {
+                            "Id": "54",
+                            "Numero": "370",
+                            "FechaInicio": "2022-03-11T00:00:00",
+                            "FechaTermino": "2023-03-10T23:59:59",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "57",
+                            "Numero": "373",
+                            "FechaInicio": "2025-03-11T00:00:00",
+                            "FechaTermino": "2026-03-10T23:59:59",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "55",
+                            "Numero": "371",
+                            "FechaInicio": "2023-03-11T00:00:00",
+                            "FechaTermino": "2024-03-10T23:59:59",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        },
+                        {
+                            "Id": "56",
+                            "Numero": "372",
+                            "FechaInicio": "2024-03-11T00:00:00",
+                            "FechaTermino": "2025-03-10T23:59:59",
+                            "Tipo": {
+                                "3": "-"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
